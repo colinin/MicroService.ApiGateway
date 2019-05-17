@@ -3,29 +3,6 @@
   "texts": {
     "Menu:Home": "首页",
     "Menu:Logout": "退出",
-    "Welcome": "欢迎",
-    "Side:Make": "生产制造",
-    "Side:Make:Custom": "定制车型",
-    "Side:Baidu": "百度组件",
-    "Side:Baidu:ECharts": "百度图表",
-    "OrderNumberMustThanZero": "订单行号必须为大于0的纯数字!",
-    "QueryConditions": "查询条件",
-    "CreationDate": "创建日期",
-    "ProductMadeDate": "生产日期",
-    "DealerArea": "经销商地区",
-    "EnterDealerArea": "请输入经销商地区",
-    "OrderCode": "生产订单号",
-    "OrderLineCode": "订单行号",
-    "InvCode": "存货编码",
-    "FrameCode": "车架编码",
-    "MotorCode": "电机编码",
-    "ExecutionStatus": "执行状态",
-    "FailedExecution": "未执行",
-    "Execution": "执行中",
-    "HasBeenInStorage": "已入库",
-    "HaveOutBound": "已出库",
-    "PrintStatus": "打印状态",
-    "HasPrint": "已打印",
-    "NotPrint": "未打印"
+    "Welcome": "欢迎"
   }
 }

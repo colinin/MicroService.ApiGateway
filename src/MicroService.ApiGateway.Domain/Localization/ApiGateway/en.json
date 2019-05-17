@@ -3,29 +3,6 @@
   "texts": {
     "Menu:Home": "Home",
     "Menu:Logout": "Logout",
-    "Welcome": "Welcome",
-    "Side:Make": "Production make",
-    "Side:Make:Custom": "Custom models",
-    "Side:Baidu": "Baidu components",
-    "Side:Baidu:ECharts": "Baidu echarts",
-    "OrderNumberMustThanZero": "The order line number must be a pure number greater than 0!",
-    "QueryConditions": "Query conditions",
-    "CreationDate": "Creation date",
-    "ProductMadeDate": "Product made date",
-    "DealerArea": "Dealer area",
-    "EnterDealerArea": "Please enter dealer area",
-    "OrderCode": "Order of number",
-    "OrderLineCode": "Order line of number",
-    "InvCode": "Inventory code",
-    "FrameCode": "Frame code",
-    "MotorCode": "Motor code",
-    "ExecutionStatus": "Execution status",
-    "FailedExecution": "Failed execution",
-    "Execution": "Execution",
-    "HasBeenInStorage": "Has been in storage",
-    "HaveOutBound": "Have out bround",
-    "PrintStatus": "Print status",
-    "HasPrint": "Has print",
-    "NotPrint": "Not print"
+    "Welcome": "Welcome"
   }
 }
