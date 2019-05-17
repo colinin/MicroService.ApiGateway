@@ -1,0 +1,31 @@
+﻿@using Volo.Abp.UI.Navigation
+@model ApplicationMenuItem
+@{
+    var elementId = string.IsNullOrEmpty(Model.ElementId) ? string.Empty : $"id=\"{Model.ElementId}\"";
+    var cssClass = string.IsNullOrEmpty(Model.CssClass) ? string.Empty : Model.CssClass;
+    var disabled = Model.IsDisabled ? "disabled" : string.Empty;
+}
+@if (Model.IsLeaf)
+{
+    <li>
+        <a href="@(Model.Url ?? "#")" class="@cssClass @disabled" @elementId>
+            @Model.DisplayName
+        </a>
+    </li>
+}
+else
+{
+    <li class="has_sub">
+        <a href="@(Model.Url ?? "#")" class="waves-effect @cssClass @disabled" @elementId>
+            <i class="zmdi  @Model.Icon"></i>
+            <span>@Model.DisplayName</span>
+            <span class="menu-arrow"></span>
+        </a>
+        <ul class="list-unstyled">
+            @foreach (var childMenuItem in Model.Items)
+            {
+                @await Html.PartialAsync("~/Themes/Uplon/Components/SideNavBar/_SideBarItem.cshtml", childMenuItem)
+            }
+        </ul>
+    </li>
+}

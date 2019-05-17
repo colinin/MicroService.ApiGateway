@@ -1,0 +1,28 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Uplon.Themes.Uplon.Components.Toolbar.LanguageSwitch
+@model LanguageSwitchViewComponentModel
+<li class="list-inline-item dropdown notification-list">
+    <a class="nav-link dropdown-toggle arrow-none waves-light waves-effect" data-toggle="dropdown" href="#" role="button"
+       aria-haspopup="false" aria-expanded="false">
+        <i class="zmdi fa-language"></i>
+        <span>@Model.CurrentLanguage.DisplayName</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Preview">
+        <!-- item-->
+        <div class="dropdown-item noti-title">
+            <h5 class="text-overflow">
+                <small>@Model.CurrentLanguage.DisplayName</small>
+            </h5>
+        </div>
+        @if (Model.OtherLanguages.Any())
+        {
+            @foreach (var language in Model.OtherLanguages)
+            {
+                <a class="dropdown-item notify-item" href="/Abp/Languages/Switch?culture=@(language.CultureName)&uiCulture=@(language.UiCultureName)">
+                    <i class="zmdi @language.FlagIcon">
+                        <span>@language.DisplayName</span>
+                    </i>
+                </a>
+            }
+        }
+    </div>
+</li>

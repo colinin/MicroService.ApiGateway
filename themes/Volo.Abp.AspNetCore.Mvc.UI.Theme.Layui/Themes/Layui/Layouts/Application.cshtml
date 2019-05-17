@@ -1,0 +1,158 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.AntiForgery
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Bundling
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Themes.Layui.Components.Menu
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Themes.Layui.Components.Toolbar
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Themes.Layui.Components.SideNavBar
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Localization.Layui
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Components
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IBrandingProvider BrandingProvider
+@inject IHtmlLocalizer<LayuiResource> Localizer
+@{
+    Layout = null;
+    AbpAntiForgeryManager.SetCookie();
+    var containerClass = ViewBag.FluidLayout == true ? "container-fluid" : "container";
+    var bodyClass = string.IsNullOrWhiteSpace(ViewBag.BodyThemes) ? "" : ViewBag.BodyThemes;
+    var projectName = ViewBag.Title == null ? BrandingProvider.AppName : ViewBag.Title;
+    var footerInfo = ViewBag.FooterInfo == null ? "Volo.Abp.Framework" : ViewBag.FooterInfo;
+    var mainTabPage = ViewBag.MainPage;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>@projectName</title>
+    <link rel="shortcut icon" href="@BrandingProvider.LogoUrl" />
+
+    <abp-style-bundle name="@LayuiThemeBundles.Styles.Global" />
+
+    @await RenderSectionAsync("styles", false)
+</head>
+<body class="main_body">
+
+    <div class="layui-layout layui-layout-admin">
+
+        <div class="layui-header">
+            <div class="layui-logo">@projectName</div>
+            <!-- 头部区域 左侧菜单栏 -->
+            <ul class="layui-nav layui-layout-left">
+                <!-- 显示/隐藏菜单 -->
+                <li class="layui-nav-item layadmin-flexible" lay-unselect>
+                    <a href="javascript:;" layadmin-event="flexible" title="@Localizer["Menu:HideOrShow"]">
+                        <i class="layui-icon layui-icon-shrink-right" id="hideMenu"></i>
+                    </a>
+                </li>
+                @(await Component.InvokeAsync<MainNavbarMenuViewComponent>())
+            </ul>
+            <!-- 头部区域 右侧工具栏 -->
+            <ul class="layui-nav top_menu">
+                <li class="layui-nav-item" id="userInfo">
+                    <a href="javascript:;">
+                        <i class="layui-icon" style="width: 35px;height: 35px;">&#xe614;</i>
+                        <cite class="adminName">@Localizer["Menu:Settings"]</cite>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd pc>
+                            <a href="javascript:;" class="functionSetting">
+                                <i class="layui-icon">&#xe716;</i>
+                                <cite>@Localizer["Menu:FeatureSetting"]</cite>
+                            </a>
+                        </dd>
+                        <dd pc>
+                            <a href="javascript:;" class="changeSkin">
+                                <i class="layui-icon">&#xe66a;</i>
+                                <cite>@Localizer["Menu:ChangeSkin"]</cite>
+                            </a>
+                        </dd>
+                        <dd>
+                            <a href="javascript:;" class="clearCache">
+                                <i class="layui-icon" data-icon="&#xe640;">&#xe640;</i>
+                                <cite>@Localizer["Menu:CleanCache"]</cite>
+                            </a>
+                        </dd>
+                    </dl>
+                </li>
+                @(await Component.InvokeAsync<MainNavbarToolbarViewComponent>())
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <!-- 左侧导航区域 垂直导航 -->
+            <div class="layui-side-scroll">
+                <ul class="layui-nav layui-nav-tree" lay-filter="side-left-nav">
+                    @(await Component.InvokeAsync<SideNavBarViewComponent>())
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body  layui-form">
+            <!-- 内容主体区域 -->
+            <div class="layui-tab mag0" lay-filter="bodyTab" id="top_tabs_box">
+                <ul class="layui-tab-title top_tab" id="top_tabs">
+                    @if (mainTabPage != null)
+                    {
+                        <li class="layui-this" lay-id="100000">
+                            <i class="layui-icon">&#xe68e;</i>
+                            <cite>@Localizer["Page:Home"]</cite>
+                        </li>
+                    }
+                </ul>
+                <ul class="layui-nav closeBox">
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">
+                            <i class="layui-icon caozuo">&#xe643;</i>@Localizer["Page:Operation"]
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd>
+                                <a href="javascript:;" class="refresh refreshThis">
+                                    <i class="layui-icon"></i>@Localizer["Page:Refresh"]
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" class="closePageOther">
+                                    <i class="seraph icon-prohibit"></i>@Localizer["Page:CloseOther"]
+                                </a>
+                            </dd>
+                            <dd>
+                                <a href="javascript:;" class="closePageAll">
+                                    <i class="seraph icon-guanbi"></i>@Localizer["Page:CloseAll"]
+                                </a>
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+                <div class="layui-tab-content clildFrame">
+                    @if (mainTabPage != null)
+                    {
+                        <div class="layui-tab-item layui-show">
+                            <iframe src="@mainTabPage" data-id="100000" style='top: 10px;'></iframe>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-footer">
+            <!-- 底部固定区域 -->
+            @footerInfo
+        </div>
+
+    </div>
+
+    <abp-script-bundle name="@LayuiThemeBundles.Scripts.Global" />
+
+    <script type="text/javascript" src="~/Abp/ApplicationConfigurationScript"></script>
+    <script type="text/javascript" src="~/Abp/ServiceProxyScript"></script>
+    <script>
+        var resizefunc = [];
+    </script>
+    @await RenderSectionAsync("scripts", false)
+
+</body>
+</html>

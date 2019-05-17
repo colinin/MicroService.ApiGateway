@@ -1,0 +1,16 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Uplon.Themes.Uplon.Components.Menu
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Uplon.Themes.Uplon.Components.Toolbar
+
+
+<ul class="list-inline float-right mb-0">
+    @(await Component.InvokeAsync<MainNavbarToolbarViewComponent>())
+</ul>
+
+<ul class="list-inline menu-left nav nav-pills mb-0">
+    <li class="float-left">
+        <button class="button-menu-mobile open-left waves-light waves-effect">
+            <i class="zmdi ion-navicon-round"></i>
+        </button>
+    </li>
+    @(await Component.InvokeAsync<MainNavbarMenuViewComponent>())
+</ul>

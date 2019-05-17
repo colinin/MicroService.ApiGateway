@@ -1,0 +1,15 @@
+﻿{
+  "culture": "zh-Hans",
+  "texts": {
+    "Menu:HideOrShow": "显示/隐藏菜单",
+    "Menu:Settings": "系统设置",
+    "Menu:FeatureSetting": "功能设定",
+    "Menu:ChangeSkin": "更换皮肤",
+    "Menu:CleanCache": "清除缓存",
+    "Page:Home": "首页",
+    "Page:Operation": "页面操作",
+    "Page:Refresh": "刷新当前",
+    "Page:CloseOther": "关闭其他",
+    "Page:CloseAll": "关闭全部"
+  }
+}

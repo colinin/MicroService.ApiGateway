@@ -1,0 +1,36 @@
+﻿@using Localization.Resources.AbpUi
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.MultiTenancy
+@using Volo.Abp.UI.Navigation
+@using Volo.Abp.Users
+@inject ICurrentUser CurrentUser
+@inject ICurrentTenant CurrentTenant
+@inject IHtmlLocalizer<AbpUiResource> L
+@model ApplicationMenu
+
+<li class="layui-nav-item">
+    <a href="javascript:;">
+        <i class="layui-icon">&#xe66f;</i>
+        <cite> @CurrentUser.UserName</cite>
+    </a>
+    @if (Model.Items.Any())
+    {
+        <dl class="layui-nav-child">
+            @foreach (var menuItem in Model.Items)
+            {
+                var elementId = string.IsNullOrEmpty(menuItem.ElementId) ? string.Empty : $"id=\"{menuItem.ElementId}\"";
+                var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+                var disabled = menuItem.IsDisabled ? "disabled" : string.Empty;
+                <dd class="@disabled @cssClass" id="Menu_@(Model.Name)" @Html.Raw(elementId) @Html.Raw(elementId)>
+                    <a href="@(menuItem.Url ?? "")">
+                        @if (!menuItem.Icon.IsNullOrWhiteSpace())
+                        {
+                            <img src="@menuItem.Icon" class="layui-nav-img">
+                        }
+                        @menuItem.DisplayName
+                    </a>
+                </dd>
+            }
+        </dl>
+    }
+</li>

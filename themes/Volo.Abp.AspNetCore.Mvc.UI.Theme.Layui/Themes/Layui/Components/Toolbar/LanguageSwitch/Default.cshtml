@@ -1,0 +1,18 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Themes.Layui.Components.Toolbar.LanguageSwitch
+@model LanguageSwitchViewComponentModel
+
+<li class="layui-nav-item">
+    <a href="javascript:;">
+        <i class="fa fa-language" aria-hidden="true"></i>
+        <cite> @Model.CurrentLanguage.DisplayName</cite>
+    </a>
+    <dl class="layui-nav-child">
+        @if (Model.OtherLanguages.Any())
+        {
+            @foreach (var language in Model.OtherLanguages)
+            {
+                <dd><a href="/Abp/Languages/Switch?culture=@(language.CultureName)&uiCulture=@(language.UiCultureName)">@language.DisplayName</a></dd>
+            }
+        }
+    </dl>
+</li>

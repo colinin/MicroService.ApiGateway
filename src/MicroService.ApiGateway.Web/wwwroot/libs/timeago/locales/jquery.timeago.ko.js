@@ -1,0 +1,13 @@
+	<DimensionPropertyCacheSize>4000000</DimensionPropertyCacheSize>
+			<AllowSEFiltering>1</AllowSEFiltering>
+			<AllowOptimizedResponse>1</AllowOptimizedResponse>
+			<AllowNonXMLIslands>1</AllowNonXMLIslands>
+			<IgnoreNullRolapRows>1</IgnoreNullRolapRows>
+			<UseVBANet>1</UseVBANet>
+			<DisableStrongAttributeRelationships>0</DisableStrongAttributeRelationships>
+			<CalculatedVisualTotalStyleForSubselects>0</CalculatedVisualTotalStyleForSubselects>
+			<EnableCalculatedMemberUsageForCalculationLRU>1</EnableCalculatedMemberUsageForCalculationLRU>
+			<CalculationLRUSize>20</CalculationLRUSize>
+			<CalculationLRUMinSize>60</CalculationLRUMinSize>
+			<CalculationLRUMaxSize>3000</CalculationLRUMaxSize>
+			<Disa

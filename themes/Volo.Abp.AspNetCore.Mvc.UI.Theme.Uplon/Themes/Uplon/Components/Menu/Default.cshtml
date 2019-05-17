@@ -1,0 +1,44 @@
+﻿@using Volo.Abp.UI.Navigation
+@model ApplicationMenu
+@foreach (var menuItem in Model.Items)
+{
+    var elementId = string.IsNullOrEmpty(menuItem.ElementId) ? string.Empty : $"id=\"{menuItem.ElementId}\"";
+    var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+    var disabled = menuItem.IsDisabled ? "disabled" : string.Empty;
+    if (menuItem.IsLeaf)
+    {
+        <li class="float-left" @(menuItem.IsDisabled ? "hidden" : "")>
+            <button class="button-menu-mobile dropdown-toggle tool-left-menu @cssClass @disabled" MenuUrl="@(menuItem.Url ?? "#")" id="Menu_@(menuItem.Name)" @Html.Raw(elementId)>
+                @if (!menuItem.Icon.IsNullOrWhiteSpace())
+                {
+                    <i class="zmdi @menuItem.Icon">@menuItem.DisplayName</i>
+                }
+                else
+                {
+                    <span>@menuItem.DisplayName</span>
+                }
+            </button>
+        </li>
+    }
+    else
+    {
+        <li class="float-left" @(menuItem.IsDisabled ? "hidden" : "")>
+            <button class="button-menu-mobile dropdown-toggle tool-left-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @if (!menuItem.Icon.IsNullOrWhiteSpace())
+                {
+                    <i class="zmdi @menuItem.Icon">@menuItem.DisplayName</i>
+                }
+                else
+                {
+                    <span>@menuItem.DisplayName</span>
+                }
+            </button>
+            <div class="dropdown-menu">
+                @foreach (var childMenuItem in menuItem.Items)
+                {
+                    @await Html.PartialAsync("~/Themes/Uplon/Components/Menu/_MenuItem.cshtml", childMenuItem)
+                }
+            </div>
+        </li>
+    }
+}

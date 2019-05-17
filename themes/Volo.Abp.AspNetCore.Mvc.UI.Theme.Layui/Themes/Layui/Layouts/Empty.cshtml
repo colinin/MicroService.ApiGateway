@@ -1,0 +1,39 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.AntiForgery
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Bundling
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Themes.Layui.Components.PageAlerts
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Components
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IBrandingProvider BrandingProvider
+@{
+    Layout = null;
+    AbpAntiForgeryManager.SetCookie();
+    var containerClass = ViewBag.FluidLayout == true ? "container-fluid" : "container"; //TODO: Better and type-safe options
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>@(ViewBag.Title == null ? BrandingProvider.AppName : ViewBag.Title)</title>
+
+    <abp-style-bundle name="@LayuiThemeBundles.Styles.Global" />
+
+    @await RenderSectionAsync("styles", false)
+</head>
+<body class="layui-card-body">
+
+    @RenderBody()
+
+    <abp-script-bundle name="@LayuiThemeBundles.Scripts.Global" />
+
+    <script type="text/javascript" src="~/Abp/ApplicationConfigurationScript"></script>
+    <script type="text/javascript" src="~/Abp/ServiceProxyScript"></script>
+
+    @await RenderSectionAsync("scripts", false)
+
+</body>
+</html>

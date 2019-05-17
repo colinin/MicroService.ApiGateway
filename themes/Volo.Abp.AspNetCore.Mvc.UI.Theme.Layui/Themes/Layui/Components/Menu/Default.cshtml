@@ -1,0 +1,38 @@
+﻿@using Volo.Abp.UI.Navigation
+@model ApplicationMenu
+@foreach (var menuItem in Model.Items)
+{
+    var elementId = string.IsNullOrEmpty(menuItem.ElementId) ? string.Empty : $"id=\"{menuItem.ElementId}\"";
+    var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+    var disabled = menuItem.IsDisabled ? "disabled" : string.Empty;
+    if (menuItem.IsLeaf)
+    {
+        <li class="layui-nav-item @disabled @cssClass" id="Menu_@(Model.Name)" @Html.Raw(elementId)>
+            <a href="javascript:;" address="@(menuItem.Url ?? "")">
+                @if (!menuItem.Icon.IsNullOrWhiteSpace())
+                {
+                    <img src="@menuItem.Icon" class="layui-nav-img">
+                }
+                <cite>@menuItem.DisplayName</cite>
+            </a>
+        </li>
+    }
+    else
+    {
+        <li class="layui-nav-item @disabled @cssClass" id="Menu_@(Model.Name)" @Html.Raw(elementId)>
+            <a href="javascript:;" address="@(menuItem.Url ?? "")">
+                @if (!menuItem.Icon.IsNullOrWhiteSpace())
+                {
+                    <img src="@menuItem.Icon" class="layui-nav-img">
+                }
+                <cite>@menuItem.DisplayName</cite>
+            </a>
+            <dl class="layui-nav-child">
+                @foreach (var childMenuItem in menuItem.Items)
+                {
+                    @await Html.PartialAsync("~/Themes/Layui/Components/Menu/_MenuItem.cshtml", childMenuItem)
+                }
+            </dl>
+        </li>
+    }
+}

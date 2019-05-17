@@ -1,0 +1,8 @@
+﻿{
+  "version": "0.1.0",
+  "name": "MicroService.ApiGateway",
+  "private": true,
+  "dependencies": {
+    "@abp/aspnetcore.mvc.ui.theme.shared": "^0.4.9"
+  }
+}

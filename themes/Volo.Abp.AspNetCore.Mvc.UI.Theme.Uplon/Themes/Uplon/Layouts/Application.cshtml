@@ -1,0 +1,90 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.AntiForgery
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Uplon
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Uplon.Bundling
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Uplon.Themes.Uplon.Components.MainNavbar
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Uplon.Themes.Uplon.Components.PageAlerts
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Uplon.Themes.Uplon.Components.SideNavBar
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Components
+@inject IAbpAntiForgeryManager AbpAntiForgeryManager
+@inject IBrandingProvider BrandingProvider
+@{
+    Layout = null;
+    AbpAntiForgeryManager.SetCookie();
+    var containerClass = ViewBag.FluidLayout == true ? "container-fluid" : "container";
+    var bodyClass = string.IsNullOrWhiteSpace(ViewBag.BodyThemes) ? "" : ViewBag.BodyThemes;
+    var projectName = ViewBag.Title == null ? BrandingProvider.AppName : ViewBag.Title;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>@projectName</title>
+    <link rel="shortcut icon" href="@BrandingProvider.LogoUrl"/>
+
+    <abp-style-bundle name="@UplonThemeBundles.Styles.Global" />
+
+    @await RenderSectionAsync("styles", false)
+</head>
+<body class="fixed-left">
+
+
+    <!-- Page -->
+    <div id="wrapper">
+
+        <div class="topbar">
+
+            <!-- Logo -->
+            <div class="topbar-left">
+                <a href="#" class="logo">
+                    <i class="zmdi fa-home"></i>
+                    <span>@projectName</span>
+                </a>
+            </div>
+
+            <!-- Toolbar -->
+            <nav class="navbar-custom">
+                @(await Component.InvokeAsync<MainNavbarViewComponent>())
+                @(await Component.InvokeAsync<PageAlertsViewComponent>())
+            </nav>
+
+        </div>
+
+        <!-- Left Sidebar -->
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <div id="sidebar-menu">
+                    <ul>
+                        @(await Component.InvokeAsync<SideNavBarViewComponent>())
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-page">
+            <div class="content">
+                <div class="@containerClass">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">2019 - 2019 Colin.</footer>
+
+    </div>
+
+    <abp-script-bundle name="@UplonThemeBundles.Scripts.Global" />
+
+    <script type="text/javascript" src="~/Abp/ApplicationConfigurationScript"></script>
+    <script type="text/javascript" src="~/Abp/ServiceProxyScript"></script>
+    <script>
+        var resizefunc = [];
+    </script>
+    @await RenderSectionAsync("scripts", false)
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Startui.Themes.Startui.Components.Brand
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Startui.Themes.Startui.Components.Menu
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Startui.Themes.Startui.Components.Toolbar
+
+<div class="site-header-content">
+    <div class="site-header-content-in">
+        @*工具栏*@
+        <div class="site-header-shown">
+            @(await Component.InvokeAsync<MainNavbarToolbarViewComponent>())
+        </div>
+        @*菜单栏*@
+        <div class="site-header-collapsed">
+            <div class="site-header-collapsed-in" id="main-navbar-collapse">
+                @(await Component.InvokeAsync<MainNavbarMenuViewComponent>())
+            </div>
+        </div>
+
+    </div>
+</div>

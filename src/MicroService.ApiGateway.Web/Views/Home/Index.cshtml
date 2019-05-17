@@ -1,0 +1,19 @@
+﻿@page
+@using MicroService.ApiGateway.Pages
+@using MicroService.ApiGateway.Views.Home
+@using Volo.Abp.AspNetCore.Mvc.UI.Theming
+@inject IThemeManager ThemeManager
+@inherits WebServicePageBase
+@model IndexModel
+@{
+    Layout = ThemeManager.CurrentTheme.GetApplicationLayout();
+}
+@section styles {
+
+}
+@section scripts{
+    <script src="~/pages/home/index.js"></script>
+}
+@{
+    ViewBag.FooterInfo = "Colin Copyright 2019";
+}

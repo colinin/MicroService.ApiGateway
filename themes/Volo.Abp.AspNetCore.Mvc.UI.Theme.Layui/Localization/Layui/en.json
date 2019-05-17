@@ -1,0 +1,15 @@
+﻿{
+  "culture": "en",
+  "texts": {
+    "Menu:HideOrShow": "Show/Hide menu",
+    "Menu:Settings": "Settings",
+    "Menu:FeatureSetting": "Frature setting",
+    "Menu:ChangeSkin": "Change skin",
+    "Menu:CleanCache": "Clean cache",
+    "Page:Home": "Home",
+    "Page:Operation": "Page operation",
+    "Page:Refresh": "Refresh current",
+    "Page:CloseOther": "Close other page",
+    "Page:CloseAll": "Close all page"
+  }
+}

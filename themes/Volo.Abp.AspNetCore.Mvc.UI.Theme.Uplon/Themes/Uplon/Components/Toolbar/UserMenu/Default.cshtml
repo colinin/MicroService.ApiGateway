@@ -1,0 +1,32 @@
+﻿@using Localization.Resources.AbpUi
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.MultiTenancy
+@using Volo.Abp.UI.Navigation
+@using Volo.Abp.Users
+@inject ICurrentUser CurrentUser
+@inject ICurrentTenant CurrentTenant
+@inject IHtmlLocalizer<AbpUiResource> L
+@model ApplicationMenu
+
+<li class="list-inline-item dropdown notification-list">
+    <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-toggle="dropdown" href="#" role="button"
+       aria-haspopup="false" aria-expanded="false">
+        <i class="zmdi icon-user"></i>
+        <span>@CurrentUser.UserName</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right profile-dropdown " aria-labelledby="Preview">
+        @if (Model.Items.Any())
+        {
+            @foreach (var menuItem in Model.Items)
+            {
+                var elementId = string.IsNullOrEmpty(menuItem.ElementId) ? string.Empty : $"id=\"{menuItem.ElementId}\"";
+                var cssClass = string.IsNullOrEmpty(menuItem.CssClass) ? string.Empty : menuItem.CssClass;
+                var disabled = menuItem.IsDisabled ? "disabled" : string.Empty;
+                <a href="@(menuItem.Url ?? "#")" class="dropdown-item notify-item @cssClass @disabled" @Html.Raw(elementId)>
+                    <i class="zmdi @menuItem.Icon"></i>
+                    <span>@menuItem.DisplayName</span>
+                </a>
+            }
+        }
+    </div>
+</li>

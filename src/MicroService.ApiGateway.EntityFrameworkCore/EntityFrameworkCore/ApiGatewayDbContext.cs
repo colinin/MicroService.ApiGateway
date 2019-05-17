@@ -1,0 +1,51 @@
+﻿using MicroService.ApiGateway.Entites.Ocelot;
+using MicroService.ApiGateway.Settings;
+using Microsoft.EntityFrameworkCore;
+using Volo.Abp.Data;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.SettingManagement.EntityFrameworkCore;
+
+namespace MicroService.ApiGateway.EntityFrameworkCore
+{
+    [ConnectionStringName("Default")]
+    public class ApiGatewayDbContext : AbpDbContext<ApiGatewayDbContext>
+    {
+
+        public virtual DbSet<ReRoute> ReRoutes { get; set; }
+
+        public virtual DbSet<GlobalConfiguration> GlobalConfigurations { get; set; }
+
+        public virtual DbSet<DynamicReRoute> DynamicReRoutes { get; set; }
+
+        public virtual DbSet<AuthenticationOptions> AuthenticationOptions { get; set; }
+        public virtual DbSet<CacheOptions> CacheOptions { get; set; }
+        public virtual DbSet<Headers> Headers { get; set; }
+        public virtual DbSet<HostAndPort> HostAndPorts { get; set; }
+        public virtual DbSet<HttpHandlerOptions> HttpHandlerOptions { get; set; }
+        public virtual DbSet<LoadBalancerOptions> LoadBalancerOptions { get; set; }
+        public virtual DbSet<QoSOptions> QoSOptions { get; set; }
+        public virtual DbSet<RateLimitOptions> RateLimitOptions { get; set; }
+        public virtual DbSet<RateLimitRule> RateLimitRules { get; set; }
+        public virtual DbSet<SecurityOptions> SecurityOptions { get; set; }
+        public virtual DbSet<ServiceDiscoveryProvider> ServiceDiscoveryProviders { get; set; }
+
+        public ApiGatewayDbContext(DbContextOptions<ApiGatewayDbContext> options)
+            : base(options)
+        {
+
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ConfigureSettingManagement();
+
+            modelBuilder.ConfigureApiGateway(options =>
+            {
+                options.TablePrefix = ApiGatewaySettings.DefaultDbTablePrefix;
+                options.Schema = ApiGatewaySettings.DefaultDbSchema;
+            });
+        }
+    }
+}

@@ -1,0 +1,42 @@
+﻿@using Volo.Abp.UI.Navigation
+@model ApplicationMenuItem
+@{
+    var elementId = string.IsNullOrEmpty(Model.ElementId) ? string.Empty : $"id=\"{Model.ElementId}\"";
+    var cssClass = string.IsNullOrEmpty(Model.CssClass) ? string.Empty : Model.CssClass;
+    var disabled = Model.IsDisabled ? "disabled" : string.Empty;
+}
+@if (Model.IsLeaf)
+{
+    <dd class="@cssClass @disabled" @elementId>
+        <a href="javascript:;" address="@(Model.Url ?? "")">
+            @if (!Model.Icon.IsNullOrWhiteSpace())
+            {
+                <img src="@Model.Icon" class="layui-nav-img">
+            }
+            <cite>@Model.DisplayName</cite>
+        </a>
+    </dd>
+}
+else
+{
+    <dd>
+        <ul>
+            <li class="layui-nav-item @cssClass @disabled" @elementId>
+                <a href="javascript:;" address="@(Model.Url ?? "")">
+                    @if (!Model.Icon.IsNullOrWhiteSpace())
+                    {
+                        <img src="@Model.Icon" class="layui-nav-img">
+                    }
+                    <cite>@Model.DisplayName</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    @foreach (var childMenuItem in Model.Items)
+                    {
+                        @await Html.PartialAsync("~/Themes/Layui/Components/SideNavBar/_SideBarItem.cshtml", childMenuItem)
+                    }
+                </dl>
+            </li>
+        </ul>
+    </dd>
+
+}

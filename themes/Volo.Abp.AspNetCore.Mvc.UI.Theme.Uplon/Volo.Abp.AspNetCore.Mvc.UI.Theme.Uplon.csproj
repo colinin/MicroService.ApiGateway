@@ -1,0 +1,159 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\_ViewImports.cshtml" />
+    <Content Remove="Themes\Uplon\Components\Brand\Default.cshtml" />
+    <Content Remove="Themes\Uplon\Components\MainNavbar\Default.cshtml" />
+    <Content Remove="Themes\Uplon\Components\Menu\Default.cshtml" />
+    <Content Remove="Themes\Uplon\Components\Menu\_MenuItem.cshtml" />
+    <Content Remove="Themes\Uplon\Components\PageAlerts\Default.cshtml" />
+    <Content Remove="Themes\Uplon\Components\SideNavBar\Default.cshtml" />
+    <Content Remove="Themes\Uplon\Components\SideNavBar\_SideBarItem.cshtml" />
+    <Content Remove="Themes\Uplon\Components\Toolbar\Default.cshtml" />
+    <Content Remove="Themes\Uplon\Components\Toolbar\LanguageSwitch\Default.cshtml" />
+    <Content Remove="Themes\Uplon\Components\Toolbar\UserMenu\Default.cshtml" />
+    <Content Remove="Themes\Uplon\Layouts\Account.cshtml" />
+    <Content Remove="Themes\Uplon\Layouts\Application.cshtml" />
+    <Content Remove="Themes\Uplon\Layouts\Empty.cshtml" />
+    <Content Remove="Themes\Uplon\_ViewImports.cshtml" />
+    <Content Remove="Views\_ViewImports.cshtml" />
+    <Content Remove="wwwroot\css\layout.css" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.eot" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.svg" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.ttf" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.woff" />
+    <Content Remove="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <Content Remove="wwwroot\fonts\FontAwesome.otf" />
+    <Content Remove="wwwroot\fonts\ionicons.eot" />
+    <Content Remove="wwwroot\fonts\ionicons.svg" />
+    <Content Remove="wwwroot\fonts\ionicons.ttf" />
+    <Content Remove="wwwroot\fonts\ionicons.woff" />
+    <Content Remove="wwwroot\fonts\Material-Design-Iconic-Font.eot" />
+    <Content Remove="wwwroot\fonts\Material-Design-Iconic-Font.svg" />
+    <Content Remove="wwwroot\fonts\Material-Design-Iconic-Font.ttf" />
+    <Content Remove="wwwroot\fonts\Material-Design-Iconic-Font.woff" />
+    <Content Remove="wwwroot\fonts\Material-Design-Iconic-Font.woff2" />
+    <Content Remove="wwwroot\fonts\Simple-Line-Icons.eot" />
+    <Content Remove="wwwroot\fonts\Simple-Line-Icons.svg" />
+    <Content Remove="wwwroot\fonts\Simple-Line-Icons.ttf" />
+    <Content Remove="wwwroot\fonts\Simple-Line-Icons.woff" />
+    <Content Remove="wwwroot\fonts\Simple-Line-Icons.woff2" />
+    <Content Remove="wwwroot\js\detect.js" />
+    <Content Remove="wwwroot\js\fastclick.js" />
+    <Content Remove="wwwroot\js\layout-app.js" />
+    <Content Remove="wwwroot\js\layout-core.js" />
+    <Content Remove="wwwroot\js\slimscroll.js" />
+    <Content Remove="wwwroot\plugins\charts\c3\c3.css" />
+    <Content Remove="wwwroot\plugins\charts\c3\c3.js" />
+    <Content Remove="wwwroot\plugins\charts\d3\d3.js" />
+    <Content Remove="wwwroot\plugins\charts\d3\d3.min.js" />
+    <Content Remove="wwwroot\plugins\datatables\css\select.bootstrap4.min.css" />
+    <Content Remove="wwwroot\plugins\datatables\js\dataTables.select.min.js" />
+    <Content Remove="wwwroot\plugins\datatables\js\multitables.js" />
+    <Content Remove="wwwroot\plugins\jstree\32px.png" />
+    <Content Remove="wwwroot\plugins\jstree\jquery.tree.js" />
+    <Content Remove="wwwroot\plugins\jstree\jstree.js" />
+    <Content Remove="wwwroot\plugins\jstree\jstree.min.js" />
+    <Content Remove="wwwroot\plugins\jstree\style.css" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default-dark\32px.png" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default-dark\40px.png" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default-dark\style.css" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default-dark\style.min.css" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default-dark\throbber.gif" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default\32px.png" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default\40px.png" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default\style.css" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default\style.min.css" />
+    <Content Remove="wwwroot\plugins\jstree\themes\default\throbber.gif" />
+    <Content Remove="wwwroot\plugins\jstree\throbber.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\_ViewImports.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\Brand\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\MainNavbar\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\Menu\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\Menu\_MenuItem.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\PageAlerts\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\SideNavBar\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\SideNavBar\_SideBarItem.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\Toolbar\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\Toolbar\LanguageSwitch\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Components\Toolbar\UserMenu\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Layouts\Account.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Layouts\Application.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\Layouts\Empty.cshtml" />
+    <EmbeddedResource Include="Themes\Uplon\_ViewImports.cshtml" />
+    <EmbeddedResource Include="Views\_ViewImports.cshtml" />
+    <EmbeddedResource Include="wwwroot\css\layout.css" />
+    <EmbeddedResource Include="wwwroot\fonts\fontawesome-webfont.eot" />
+    <EmbeddedResource Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <EmbeddedResource Include="wwwroot\fonts\fontawesome-webfont.ttf" />
+    <EmbeddedResource Include="wwwroot\fonts\fontawesome-webfont.woff" />
+    <EmbeddedResource Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <EmbeddedResource Include="wwwroot\fonts\FontAwesome.otf" />
+    <EmbeddedResource Include="wwwroot\fonts\ionicons.eot" />
+    <EmbeddedResource Include="wwwroot\fonts\ionicons.svg" />
+    <EmbeddedResource Include="wwwroot\fonts\ionicons.ttf" />
+    <EmbeddedResource Include="wwwroot\fonts\ionicons.woff" />
+    <EmbeddedResource Include="wwwroot\fonts\Material-Design-Iconic-Font.eot" />
+    <EmbeddedResource Include="wwwroot\fonts\Material-Design-Iconic-Font.svg" />
+    <EmbeddedResource Include="wwwroot\fonts\Material-Design-Iconic-Font.ttf" />
+    <EmbeddedResource Include="wwwroot\fonts\Material-Design-Iconic-Font.woff" />
+    <EmbeddedResource Include="wwwroot\fonts\Material-Design-Iconic-Font.woff2" />
+    <EmbeddedResource Include="wwwroot\fonts\Simple-Line-Icons.eot" />
+    <EmbeddedResource Include="wwwroot\fonts\Simple-Line-Icons.svg" />
+    <EmbeddedResource Include="wwwroot\fonts\Simple-Line-Icons.ttf" />
+    <EmbeddedResource Include="wwwroot\fonts\Simple-Line-Icons.woff" />
+    <EmbeddedResource Include="wwwroot\fonts\Simple-Line-Icons.woff2" />
+    <EmbeddedResource Include="wwwroot\js\detect.js" />
+    <EmbeddedResource Include="wwwroot\js\fastclick.js" />
+    <EmbeddedResource Include="wwwroot\js\layout-app.js" />
+    <EmbeddedResource Include="wwwroot\js\layout-core.js" />
+    <EmbeddedResource Include="wwwroot\js\slimscroll.js" />
+    <EmbeddedResource Include="wwwroot\plugins\charts\c3\c3.css" />
+    <EmbeddedResource Include="wwwroot\plugins\charts\c3\c3.js" />
+    <EmbeddedResource Include="wwwroot\plugins\charts\d3\d3.js" />
+    <EmbeddedResource Include="wwwroot\plugins\charts\d3\d3.min.js" />
+    <EmbeddedResource Include="wwwroot\plugins\datatables\css\select.bootstrap4.min.css" />
+    <EmbeddedResource Include="wwwroot\plugins\datatables\js\dataTables.select.min.js" />
+    <EmbeddedResource Include="wwwroot\plugins\datatables\js\multitables.js" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\32px.png" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\jquery.tree.js" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\jstree.js" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\jstree.min.js" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\style.css" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default-dark\32px.png" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default-dark\40px.png" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default-dark\style.css" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default-dark\style.min.css" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default-dark\throbber.gif" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default\32px.png" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default\40px.png" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default\style.css" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default\style.min.css" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\themes\default\throbber.gif" />
+    <EmbeddedResource Include="wwwroot\plugins\jstree\throbber.gif" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\plugins\jstree\jstree.js" />
+    <None Include="wwwroot\plugins\jstree\jstree.min.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="0.16.0" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="0.16.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,317 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Localization\Layui\en.json" />
+    <Content Remove="Localization\Layui\zh-Hans.json" />
+    <Content Remove="Pages\_ViewImports.cshtml" />
+    <Content Remove="Themes\Layui\Components\Brand\Default.cshtml" />
+    <Content Remove="Themes\Layui\Components\Menu\Default.cshtml" />
+    <Content Remove="Themes\Layui\Components\Menu\_MenuItem.cshtml" />
+    <Content Remove="Themes\Layui\Components\PageAlerts\Default.cshtml" />
+    <Content Remove="Themes\Layui\Components\SideNavBar\Default.cshtml" />
+    <Content Remove="Themes\Layui\Components\SideNavBar\_SideBarItem.cshtml" />
+    <Content Remove="Themes\Layui\Components\Toolbar\Default.cshtml" />
+    <Content Remove="Themes\Layui\Components\Toolbar\LanguageSwitch\Default.cshtml" />
+    <Content Remove="Themes\Layui\Components\Toolbar\UserMenu\Default.cshtml" />
+    <Content Remove="Themes\Layui\Layouts\Account.cshtml" />
+    <Content Remove="Themes\Layui\Layouts\Application.cshtml" />
+    <Content Remove="Themes\Layui\Layouts\Empty.cshtml" />
+    <Content Remove="Themes\Layui\_ViewImports.cshtml" />
+    <Content Remove="Views\_ViewImports.cshtml" />
+    <Content Remove="wwwroot\css\layout.css" />
+    <Content Remove="wwwroot\js\bodyTab.js" />
+    <Content Remove="wwwroot\js\cache.js" />
+    <Content Remove="wwwroot\js\layout.js" />
+    <Content Remove="wwwroot\lib\layui\css\layui.css" />
+    <Content Remove="wwwroot\lib\layui\css\layui.mobile.css" />
+    <Content Remove="wwwroot\lib\layui\css\modules\code.css" />
+    <Content Remove="wwwroot\lib\layui\css\modules\laydate\default\laydate.css" />
+    <Content Remove="wwwroot\lib\layui\css\modules\layer\default\icon-ext.png" />
+    <Content Remove="wwwroot\lib\layui\css\modules\layer\default\icon.png" />
+    <Content Remove="wwwroot\lib\layui\css\modules\layer\default\layer.css" />
+    <Content Remove="wwwroot\lib\layui\css\modules\layer\default\loading-0.gif" />
+    <Content Remove="wwwroot\lib\layui\css\modules\layer\default\loading-1.gif" />
+    <Content Remove="wwwroot\lib\layui\css\modules\layer\default\loading-2.gif" />
+    <Content Remove="wwwroot\lib\layui\css\modules\tableFilter\tableFilter.css" />
+    <Content Remove="wwwroot\lib\layui\font\iconfont.eot" />
+    <Content Remove="wwwroot\lib\layui\font\iconfont.svg" />
+    <Content Remove="wwwroot\lib\layui\font\iconfont.ttf" />
+    <Content Remove="wwwroot\lib\layui\font\iconfont.woff" />
+    <Content Remove="wwwroot\lib\layui\images\face\0.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\1.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\10.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\11.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\12.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\13.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\14.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\15.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\16.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\17.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\18.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\19.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\2.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\20.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\21.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\22.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\23.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\24.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\25.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\26.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\27.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\28.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\29.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\3.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\30.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\31.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\32.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\33.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\34.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\35.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\36.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\37.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\38.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\39.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\4.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\40.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\41.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\42.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\43.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\44.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\45.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\46.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\47.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\48.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\49.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\5.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\50.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\51.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\52.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\53.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\54.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\55.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\56.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\57.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\58.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\59.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\6.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\60.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\61.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\62.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\63.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\64.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\65.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\66.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\67.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\68.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\69.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\7.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\70.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\71.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\8.gif" />
+    <Content Remove="wwwroot\lib\layui\images\face\9.gif" />
+    <Content Remove="wwwroot\lib\layui\layui.all.js" />
+    <Content Remove="wwwroot\lib\layui\layui.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\carousel.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\code.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\colorpicker.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\element.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\flow.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\form.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\jquery.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\laydate.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\layedit.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\layer.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\laypage.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\laytpl.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\mobile.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\rate.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\slider.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\table.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\tableFilter.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\tree.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\upload.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\util.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\Layui\en.json" />
+    <EmbeddedResource Include="Localization\Layui\zh-Hans.json" />
+    <EmbeddedResource Include="Pages\_ViewImports.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Components\Brand\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Components\Menu\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Components\Menu\_MenuItem.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Components\PageAlerts\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Components\SideNavBar\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Components\SideNavBar\_SideBarItem.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Components\Toolbar\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Components\Toolbar\LanguageSwitch\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Components\Toolbar\UserMenu\Default.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Layouts\Account.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Layouts\Application.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\Layouts\Empty.cshtml" />
+    <EmbeddedResource Include="Themes\Layui\_ViewImports.cshtml" />
+    <EmbeddedResource Include="Views\_ViewImports.cshtml" />
+    <EmbeddedResource Include="wwwroot\css\layout.css" />
+    <EmbeddedResource Include="wwwroot\js\bodyTab.js" />
+    <EmbeddedResource Include="wwwroot\js\cache.js" />
+    <EmbeddedResource Include="wwwroot\js\layout.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\layui.css" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\layui.mobile.css" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\code.css" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\laydate\default\laydate.css" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\layer\default\icon-ext.png" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\layer\default\icon.png" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\layer\default\layer.css" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\layer\default\loading-0.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\layer\default\loading-1.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\layer\default\loading-2.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\tableFilter\tableFilter.css" />
+    <EmbeddedResource Include="wwwroot\lib\layui\font\iconfont.eot" />
+    <EmbeddedResource Include="wwwroot\lib\layui\font\iconfont.svg" />
+    <EmbeddedResource Include="wwwroot\lib\layui\font\iconfont.ttf" />
+    <EmbeddedResource Include="wwwroot\lib\layui\font\iconfont.woff" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\0.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\1.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\10.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\11.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\12.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\13.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\14.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\15.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\16.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\17.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\18.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\19.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\2.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\20.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\21.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\22.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\23.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\24.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\25.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\26.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\27.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\28.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\29.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\3.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\30.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\31.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\32.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\33.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\34.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\35.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\36.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\37.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\38.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\39.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\4.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\40.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\41.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\42.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\43.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\44.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\45.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\46.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\47.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\48.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\49.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\5.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\50.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\51.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\52.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\53.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\54.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\55.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\56.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\57.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\58.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\59.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\6.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\60.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\61.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\62.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\63.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\64.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\65.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\66.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\67.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\68.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\69.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\7.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\70.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\71.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\8.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\images\face\9.gif" />
+    <EmbeddedResource Include="wwwroot\lib\layui\layui.all.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\layui.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\carousel.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\code.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\colorpicker.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\element.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\flow.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\form.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\jquery.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\laydate.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\layedit.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\layer.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\laypage.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\laytpl.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\mobile.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\rate.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\slider.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\table.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\tableFilter.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\tree.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\upload.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\util.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="0.16.0" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="0.16.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\layui\font\iconfont.svg" />
+    <None Include="wwwroot\lib\layui\layui.all.js" />
+    <None Include="wwwroot\lib\layui\layui.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\carousel.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\code.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\colorpicker.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\element.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\flow.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\form.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\jquery.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\laydate.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\layedit.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\layer.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\laypage.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\laytpl.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\mobile.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\rate.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\slider.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\table.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\tree.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\upload.js" />
+    <None Include="wwwroot\lib\layui\lay\modules\util.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\plugins\" />
+  </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties Localization_4Layui_4zh-Hans_1json__JSONSchema="http://json.schemastore.org/appveyor" /></VisualStudio></ProjectExtensions>
+
+</Project>
