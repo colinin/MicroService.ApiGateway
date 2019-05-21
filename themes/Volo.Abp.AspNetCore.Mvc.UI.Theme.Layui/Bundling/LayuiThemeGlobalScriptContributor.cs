@@ -6,7 +6,7 @@ namespace Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Bundling
     {
         public override void ConfigureBundle(BundleConfigurationContext context)
         {
-            context.Files.Add("/lib/layui/layui.js");
+            //context.Files.Add("/lib/layui/layui.js");
             context.Files.Add("/js/cache.js");
             context.Files.Add("/js/layout.js");
         }

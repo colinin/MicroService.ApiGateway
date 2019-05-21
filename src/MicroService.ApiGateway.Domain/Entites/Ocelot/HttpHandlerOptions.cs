@@ -4,7 +4,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 {
     public class HttpHandlerOptions : Entity<int>
     {
-        public virtual int ItemId { get; private set; }
+        public virtual long ItemId { get; private set; }
 
         public virtual bool AllowAutoRedirect { get; private set; }
 
@@ -19,49 +19,28 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 
         }
 
-        public HttpHandlerOptions(int itemId)
+        public HttpHandlerOptions(long itemId)
         {
             ItemId = itemId;
         }
 
-        public void EnableAllowAutoRedirect()
+        public void ApplyAllowAutoRedirect(bool allowAutoRedirect)
         {
-            AllowAutoRedirect = true;
+            AllowAutoRedirect = allowAutoRedirect;
+        }
+        public void ApplyCookieContainer(bool useCookieContainer)
+        {
+            UseCookieContainer = useCookieContainer;
         }
 
-        public void DisableAllowAutoRedirect()
+        public void ApplyHttpTracing(bool httpTracing)
         {
-            AllowAutoRedirect = false;
+            UseTracing = httpTracing;
         }
 
-        public void EnableCookieContainer()
+        public void ApplyHttpProxy(bool httpProxy)
         {
-            UseCookieContainer = true;
-        }
-
-        public void DisableCookieContainer()
-        {
-            UseCookieContainer = false;
-        }
-
-        public void EnableTracing()
-        {
-            UseTracing = true;
-        }
-
-        public void DisableTracing()
-        {
-            UseTracing = false;
-        }
-
-        public void EnableProxy()
-        {
-            UseProxy = true;
-        }
-
-        public void DisableProxy()
-        {
-            UseProxy = false;
+            UseProxy = httpProxy;
         }
     }
 }

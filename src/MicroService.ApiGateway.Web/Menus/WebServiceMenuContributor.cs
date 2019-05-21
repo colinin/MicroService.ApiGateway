@@ -41,15 +41,12 @@ namespace MicroService.ApiGateway.Menus
         private async Task ConfigureSideMenuAsync(MenuConfigurationContext context)
         {
             var l = context.ServiceProvider.GetRequiredService<IStringLocalizer<ApiGatewayResource>>();
-            var makeMenu = new ApplicationMenuItem("WebService.Menu.Make", l["Side:Make"], "#");
-            makeMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Make.Custom", l["Side:Make:Custom"], "/CustomMade"));
+            var makeMenu = new ApplicationMenuItem("WebService.Menu.Ocelot", l["Side:Ocelot"], "#");
+            makeMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.Global", l["Side:Ocelot:Global"], "/Ocelot/Configuration/Global"));
 
+            makeMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.ReRoutes", l["Side:Ocelot:ReRoutes"], "/Ocelot/Configuration/ReRoutes"));
 
-            var baiduChartsMenu = new ApplicationMenuItem("WebService.Menu.Baidu", l["Side:Baidu"], "#");
-            baiduChartsMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Baidu.ECharts", l["Side:Baidu:ECharts"], "/BaiduECharts/Index"));
-
-
-            context.Menu.Items.AddRange(new List<ApplicationMenuItem> { makeMenu , baiduChartsMenu });
+            context.Menu.Items.AddRange(new List<ApplicationMenuItem> { makeMenu });
 
             await Task.CompletedTask;
         }

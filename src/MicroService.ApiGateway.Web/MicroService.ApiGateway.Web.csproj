@@ -50,6 +50,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DotnetCore\cap\Volo.Abp.CAP\Volo.Abp.CAP.csproj" />
     <ProjectReference Include="..\..\themes\Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui\Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.csproj" />
     <ProjectReference Include="..\MicroService.ApiGateway.Application\MicroService.ApiGateway.Application.csproj" />
     <ProjectReference Include="..\MicroService.ApiGateway.EntityFrameworkCore\MicroService.ApiGateway.EntityFrameworkCore.csproj" />

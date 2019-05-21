@@ -2,6 +2,7 @@
 {
     public class GlobalConfigurationDto
     {
+        public long ItemId { get;  set; }
         public string RequestIdKey { get; set; }
 
         public ServiceDiscoveryProviderDto ServiceDiscoveryProvider { get; set; }
@@ -17,5 +18,14 @@
         public string DownstreamScheme { get; set; }
 
         public HttpHandlerOptionsDto HttpHandlerOptions { get; set; }
+
+        public GlobalConfigurationDto()
+        {
+            ServiceDiscoveryProvider = new ServiceDiscoveryProviderDto();
+            RateLimitOptions = new RateLimitOptionsDto();
+            QoSOptions = new QosOptionsDto();
+            LoadBalancerOptions = new LoadBalancerOptionsDto();
+            HttpHandlerOptions = new HttpHandlerOptionsDto();
+        }
     }
 }

@@ -31,12 +31,9 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<string>("AuthenticationProviderKey")
                         .HasMaxLength(100);
 
-                    b.Property<int>("ReRouteId");
+                    b.Property<long>("ReRouteId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReRouteId")
-                        .IsUnique();
 
                     b.ToTable("AbpApiGatewayAuthOptions");
                 });
@@ -47,17 +44,14 @@ namespace MicroService.ApiGateway.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ReRouteId");
+                    b.Property<long>("ReRouteId");
 
                     b.Property<string>("Region")
                         .HasMaxLength(256);
 
-                    b.Property<int>("TtlSeconds");
+                    b.Property<int?>("TtlSeconds");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReRouteId")
-                        .IsUnique();
 
                     b.ToTable("AbpApiGatewayCacheOptions");
                 });
@@ -72,7 +66,7 @@ namespace MicroService.ApiGateway.Migrations
                         .IsConcurrencyToken()
                         .HasColumnName("ConcurrencyStamp");
 
-                    b.Property<int>("DunamicReRouteId");
+                    b.Property<long>("DynamicReRouteId");
 
                     b.Property<string>("ExtraProperties")
                         .HasColumnName("ExtraProperties");
@@ -105,7 +99,6 @@ namespace MicroService.ApiGateway.Migrations
                         .HasColumnName("ConcurrencyStamp");
 
                     b.Property<string>("DownstreamScheme")
-                        .IsRequired()
                         .HasMaxLength(100);
 
                     b.Property<string>("ExtraProperties")
@@ -120,7 +113,7 @@ namespace MicroService.ApiGateway.Migrations
                         .HasColumnName("IsDeleted")
                         .HasDefaultValue(false);
 
-                    b.Property<int>("ItemId");
+                    b.Property<long>("ItemId");
 
                     b.Property<int?>("LoadBalancerOptionsId");
 
@@ -157,7 +150,7 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<string>("Key")
                         .HasMaxLength(50);
 
-                    b.Property<int>("ReRouteId");
+                    b.Property<long>("ReRouteId");
 
                     b.Property<string>("Value")
                         .HasMaxLength(256);
@@ -173,11 +166,14 @@ namespace MicroService.ApiGateway.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Host");
+                    b.Property<string>("Host")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<int>("Port");
+                    b.Property<int?>("Port")
+                        .IsRequired();
 
-                    b.Property<int>("ReRouteId");
+                    b.Property<long>("ReRouteId");
 
                     b.HasKey("Id");
 
@@ -192,7 +188,7 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.Property<bool>("AllowAutoRedirect");
 
-                    b.Property<int>("ItemId");
+                    b.Property<long>("ItemId");
 
                     b.Property<bool>("UseCookieContainer");
 
@@ -211,9 +207,9 @@ namespace MicroService.ApiGateway.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Expiry");
+                    b.Property<int?>("Expiry");
 
-                    b.Property<int>("ItemId");
+                    b.Property<long>("ItemId");
 
                     b.Property<string>("Key")
                         .HasMaxLength(100);
@@ -232,13 +228,13 @@ namespace MicroService.ApiGateway.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("DurationOfBreak");
+                    b.Property<int?>("DurationOfBreak");
 
-                    b.Property<int>("ExceptionsAllowedBeforeBreaking");
+                    b.Property<int?>("ExceptionsAllowedBeforeBreaking");
 
-                    b.Property<int>("ItemId");
+                    b.Property<long>("ItemId");
 
-                    b.Property<int>("TimeoutValue");
+                    b.Property<int?>("TimeoutValue");
 
                     b.HasKey("Id");
 
@@ -252,19 +248,25 @@ namespace MicroService.ApiGateway.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ClientIdHeader")
-                        .HasMaxLength(50);
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasDefaultValue("ClientId");
 
                     b.Property<bool>("DisableRateLimitHeaders");
 
-                    b.Property<int>("HttpStatusCode");
+                    b.Property<int?>("HttpStatusCode")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(429);
 
-                    b.Property<int>("ItemId");
+                    b.Property<long>("ItemId");
 
                     b.Property<string>("QuotaExceededMessage")
                         .HasMaxLength(256);
 
                     b.Property<string>("RateLimitCounterPrefix")
-                        .HasMaxLength(50);
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(50)
+                        .HasDefaultValue("ocelot");
 
                     b.HasKey("Id");
 
@@ -282,19 +284,16 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.Property<bool>("EnableRateLimiting");
 
-                    b.Property<long>("Limit");
+                    b.Property<long?>("Limit");
 
                     b.Property<string>("Period")
                         .HasMaxLength(50);
 
-                    b.Property<double>("PeriodTimespan");
+                    b.Property<double?>("PeriodTimespan");
 
-                    b.Property<int>("ReRouteId");
+                    b.Property<long>("ReRouteId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReRouteId")
-                        .IsUnique();
 
                     b.ToTable("AbpApiGatewayRateLimitRule");
                 });
@@ -314,13 +313,18 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<string>("AddQueriesToRequest")
                         .HasMaxLength(1000);
 
+                    b.Property<int?>("AuthenticationOptionsId");
+
+                    b.Property<int?>("CacheOptionsId");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnName("ConcurrencyStamp");
 
-                    b.Property<bool?>("DangerousAcceptAnyServerCertificateValidator");
+                    b.Property<bool>("DangerousAcceptAnyServerCertificateValidator");
 
-                    b.Property<string>("DelegatingHandlers");
+                    b.Property<string>("DelegatingHandlers")
+                        .HasMaxLength(1000);
 
                     b.Property<string>("DownstreamHeaderTransform")
                         .HasMaxLength(1000);
@@ -349,17 +353,23 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.Property<int?>("QoSOptionsId");
 
-                    b.Property<int>("ReRouteId");
+                    b.Property<int?>("RateLimitOptionsId");
 
-                    b.Property<bool?>("ReRouteIsCaseSensitive");
+                    b.Property<long>("ReRouteId");
 
-                    b.Property<string>("ReRouteName");
+                    b.Property<bool>("ReRouteIsCaseSensitive");
+
+                    b.Property<string>("ReRouteName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<string>("RequestIdKey")
                         .HasMaxLength(100);
 
                     b.Property<string>("RouteClaimsRequirement")
                         .HasMaxLength(1000);
+
+                    b.Property<int?>("SecurityOptionsId");
 
                     b.Property<string>("ServiceName")
                         .HasMaxLength(100);
@@ -382,11 +392,22 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AuthenticationOptionsId");
+
+                    b.HasIndex("CacheOptionsId");
+
                     b.HasIndex("HttpHandlerOptionsId");
 
                     b.HasIndex("LoadBalancerOptionsId");
 
                     b.HasIndex("QoSOptionsId");
+
+                    b.HasIndex("RateLimitOptionsId");
+
+                    b.HasIndex("SecurityOptionsId");
+
+                    b.HasIndex("DownstreamPathTemplate", "UpstreamPathTemplate")
+                        .IsUnique();
 
                     b.ToTable("AbpApiGatewayReRoute");
                 });
@@ -403,12 +424,9 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<string>("IPBlockedList")
                         .HasMaxLength(1000);
 
-                    b.Property<int>("ReRouteId");
+                    b.Property<long>("ReRouteId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReRouteId")
-                        .IsUnique();
 
                     b.ToTable("AbpApiGatewaySecurityOptions");
                 });
@@ -425,14 +443,14 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<string>("Host")
                         .HasMaxLength(50);
 
-                    b.Property<int>("ItemId");
+                    b.Property<long>("ItemId");
 
                     b.Property<string>("Namespace")
                         .HasMaxLength(128);
 
-                    b.Property<int>("PollingInterval");
+                    b.Property<int?>("PollingInterval");
 
-                    b.Property<int>("Port");
+                    b.Property<int?>("Port");
 
                     b.Property<string>("Token")
                         .HasMaxLength(256);
@@ -471,22 +489,6 @@ namespace MicroService.ApiGateway.Migrations
                     b.ToTable("AbpSettings");
                 });
 
-            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.AuthenticationOptions", b =>
-                {
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute")
-                        .WithOne("AuthenticationOptions")
-                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.AuthenticationOptions", "ReRouteId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.CacheOptions", b =>
-                {
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute")
-                        .WithOne("CacheOptions")
-                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.CacheOptions", "ReRouteId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.DynamicReRoute", b =>
                 {
                     b.HasOne("MicroService.ApiGateway.Entites.Ocelot.RateLimitRule", "RateLimitRule")
@@ -517,16 +519,16 @@ namespace MicroService.ApiGateway.Migrations
                         .HasForeignKey("ServiceDiscoveryProviderId");
                 });
 
-            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.RateLimitRule", b =>
-                {
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute")
-                        .WithOne("RateLimitOptions")
-                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.RateLimitRule", "ReRouteId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.ReRoute", b =>
                 {
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.AuthenticationOptions", "AuthenticationOptions")
+                        .WithMany()
+                        .HasForeignKey("AuthenticationOptionsId");
+
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.CacheOptions", "CacheOptions")
+                        .WithMany()
+                        .HasForeignKey("CacheOptionsId");
+
                     b.HasOne("MicroService.ApiGateway.Entites.Ocelot.HttpHandlerOptions", "HttpHandlerOptions")
                         .WithMany()
                         .HasForeignKey("HttpHandlerOptionsId");
@@ -538,14 +540,14 @@ namespace MicroService.ApiGateway.Migrations
                     b.HasOne("MicroService.ApiGateway.Entites.Ocelot.QoSOptions", "QoSOptions")
                         .WithMany()
                         .HasForeignKey("QoSOptionsId");
-                });
 
-            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.SecurityOptions", b =>
-                {
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute")
-                        .WithOne("SecurityOptions")
-                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.SecurityOptions", "ReRouteId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.RateLimitRule", "RateLimitOptions")
+                        .WithMany()
+                        .HasForeignKey("RateLimitOptionsId");
+
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.SecurityOptions", "SecurityOptions")
+                        .WithMany()
+                        .HasForeignKey("SecurityOptionsId");
                 });
 #pragma warning restore 612, 618
         }

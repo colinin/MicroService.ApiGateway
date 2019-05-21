@@ -49,6 +49,8 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.ToTable(options.TablePrefix + "HostAndPort", options.Schema);
 
                 e.Property(p => p.ReRouteId).IsRequired();
+                e.Property(p => p.Host).IsRequired().HasMaxLength(50);
+                e.Property(p => p.Port).IsRequired();
             });
 
             builder.Entity<HttpHandlerOptions>(e =>
@@ -82,6 +84,10 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.Property(p => p.ClientIdHeader).HasMaxLength(50);
                 e.Property(p => p.QuotaExceededMessage).HasMaxLength(256);
                 e.Property(p => p.RateLimitCounterPrefix).HasMaxLength(50);
+
+                e.Property(p => p.HttpStatusCode).HasDefaultValue(429);
+                e.Property(p => p.ClientIdHeader).HasDefaultValue("ClientId");
+                e.Property(p => p.RateLimitCounterPrefix).HasDefaultValue("ocelot");
             });
 
             builder.Entity<RateLimitRule>(e =>
@@ -118,7 +124,7 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
             {
                 e.ToTable(options.TablePrefix + "DynamicReRoute", options.Schema);
 
-                e.Property(p => p.DunamicReRouteId).IsRequired();
+                e.Property(p => p.DynamicReRouteId).IsRequired();
                 e.Property(p => p.ServiceName).IsRequired().HasMaxLength(100);
             });
 
@@ -129,7 +135,7 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.Property(p => p.ItemId).IsRequired();
                 e.Property(p => p.RequestIdKey).HasMaxLength(100);
                 e.Property(p => p.BaseUrl).IsRequired().HasMaxLength(256);
-                e.Property(p => p.DownstreamScheme).IsRequired().HasMaxLength(100);
+                e.Property(p => p.DownstreamScheme).HasMaxLength(100);
             });
 
             builder.Entity<ReRoute>(e =>
@@ -137,6 +143,7 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.ToTable(options.TablePrefix + "ReRoute", options.Schema);
 
                 e.Property(p => p.ReRouteId).IsRequired();
+                e.Property(p => p.ReRouteName).IsRequired().HasMaxLength(50);
                 e.Property(p => p.RequestIdKey).HasMaxLength(100);
                 e.Property(p => p.DownstreamScheme).HasMaxLength(100);
                 e.Property(p => p.DownstreamPathTemplate).IsRequired().HasMaxLength(100);
@@ -153,6 +160,9 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.Property(x => x.RouteClaimsRequirement).HasMaxLength(1000);
                 e.Property(x => x.AddQueriesToRequest).HasMaxLength(1000);
                 e.Property(x => x.DownstreamHostAndPorts).HasMaxLength(1000);
+                e.Property(x => x.DelegatingHandlers).HasMaxLength(1000);
+
+                e.HasIndex(i => new { i.DownstreamPathTemplate, i.UpstreamPathTemplate }).IsUnique();
 
                 e.ConfigureConcurrencyStamp();
             });

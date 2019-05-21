@@ -7,7 +7,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         /// <summary>
         /// 路由ID
         /// </summary>
-        public virtual int ReRouteId { get; protected set; }
+        public virtual long ReRouteId { get; protected set; }
         /// <summary>
         /// 路由名称
         /// </summary>
@@ -47,7 +47,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         public virtual string AddQueriesToRequest { get; protected set; }
         public virtual string RequestIdKey { get; set; }
         public virtual CacheOptions CacheOptions { get; protected set; }
-        public virtual bool? ReRouteIsCaseSensitive { get; set; }
+        public virtual bool ReRouteIsCaseSensitive { get; set; }
         public virtual string ServiceName { get; set; }
         public virtual string DownstreamScheme { get; set; }
         public virtual QoSOptions QoSOptions { get; protected set; }
@@ -61,7 +61,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         public virtual string Key { get; set; }
         public virtual int? Priority { get; set; }
         public virtual int? Timeout { get; set; }
-        public virtual bool? DangerousAcceptAnyServerCertificateValidator { get; set; }
+        public virtual bool DangerousAcceptAnyServerCertificateValidator { get; set; }
         public virtual SecurityOptions SecurityOptions { get; protected set; }
 
         protected ReRoute()
@@ -69,7 +69,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 
         }
 
-        public ReRoute(int rerouteId, string routeName, string downPath, string upPath, string upMethod)
+        public ReRoute(long rerouteId, string routeName, string downPath, string upPath, string upMethod)
         {
             ReRouteId = rerouteId;
             ReRouteName = routeName;

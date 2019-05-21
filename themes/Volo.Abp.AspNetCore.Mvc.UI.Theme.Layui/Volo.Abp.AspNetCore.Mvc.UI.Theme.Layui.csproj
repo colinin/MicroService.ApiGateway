@@ -6,7 +6,15 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
+    <Version>0.16.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\plugins\**" />
+    <Content Remove="wwwroot\plugins\**" />
+    <EmbeddedResource Remove="wwwroot\plugins\**" />
+    <None Remove="wwwroot\plugins\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Localization\Layui\en.json" />
@@ -26,10 +34,27 @@
     <Content Remove="Themes\Layui\Layouts\Empty.cshtml" />
     <Content Remove="Themes\Layui\_ViewImports.cshtml" />
     <Content Remove="Views\_ViewImports.cshtml" />
+    <Content Remove="wwwroot\css\inputTags\inputTags.css" />
     <Content Remove="wwwroot\css\layout.css" />
+    <Content Remove="wwwroot\fonts\font_677836_jwq362m0tt.eot" />
+    <Content Remove="wwwroot\fonts\font_677836_jwq362m0tt.svg" />
+    <Content Remove="wwwroot\fonts\font_677836_jwq362m0tt.ttf" />
+    <Content Remove="wwwroot\fonts\font_677836_jwq362m0tt.woff" />
+    <Content Remove="wwwroot\fonts\font_677836_jwq362m0tt.woff2" />
     <Content Remove="wwwroot\js\bodyTab.js" />
     <Content Remove="wwwroot\js\cache.js" />
+    <Content Remove="wwwroot\js\ext\bodyTab.js" />
+    <Content Remove="wwwroot\js\ext\cache.js" />
+    <Content Remove="wwwroot\js\ext\excel.js" />
+    <Content Remove="wwwroot\js\ext\FileSaver.js" />
+    <Content Remove="wwwroot\js\ext\inputTags.js" />
+    <Content Remove="wwwroot\js\ext\soulTable.js" />
+    <Content Remove="wwwroot\js\ext\tableChild.js" />
+    <Content Remove="wwwroot\js\ext\tableFilter.js" />
+    <Content Remove="wwwroot\js\ext\xlsx.js" />
     <Content Remove="wwwroot\js\layout.js" />
+    <Content Remove="wwwroot\css\soulTable\animate.min.css" />
+    <Content Remove="wwwroot\css\soulTable\soulTable.css" />
     <Content Remove="wwwroot\lib\layui\css\layui.css" />
     <Content Remove="wwwroot\lib\layui\css\layui.mobile.css" />
     <Content Remove="wwwroot\lib\layui\css\modules\code.css" />
@@ -135,7 +160,7 @@
     <Content Remove="wwwroot\lib\layui\lay\modules\rate.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\slider.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\table.js" />
-    <Content Remove="wwwroot\lib\layui\lay\modules\tableFilter.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\tableFilter\tableFilter.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\tree.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\upload.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\util.js" />
@@ -159,10 +184,25 @@
     <EmbeddedResource Include="Themes\Layui\Layouts\Empty.cshtml" />
     <EmbeddedResource Include="Themes\Layui\_ViewImports.cshtml" />
     <EmbeddedResource Include="Views\_ViewImports.cshtml" />
+    <EmbeddedResource Include="wwwroot\css\inputTags\inputTags.css" />
     <EmbeddedResource Include="wwwroot\css\layout.css" />
-    <EmbeddedResource Include="wwwroot\js\bodyTab.js" />
+    <EmbeddedResource Include="wwwroot\js\ext\bodyTab.js" />
     <EmbeddedResource Include="wwwroot\js\cache.js" />
+    <EmbeddedResource Include="wwwroot\js\ext\inputTags.js" />
     <EmbeddedResource Include="wwwroot\js\layout.js" />
+    <EmbeddedResource Include="wwwroot\css\soulTable\animate.min.css" />
+    <EmbeddedResource Include="wwwroot\fonts\font_677836_jwq362m0tt.eot" />
+    <EmbeddedResource Include="wwwroot\fonts\font_677836_jwq362m0tt.svg" />
+    <EmbeddedResource Include="wwwroot\fonts\font_677836_jwq362m0tt.ttf" />
+    <EmbeddedResource Include="wwwroot\fonts\font_677836_jwq362m0tt.woff" />
+    <EmbeddedResource Include="wwwroot\fonts\font_677836_jwq362m0tt.woff2" />
+    <EmbeddedResource Include="wwwroot\css\soulTable\soulTable.css" />
+    <EmbeddedResource Include="wwwroot\js\ext\excel.js" />
+    <EmbeddedResource Include="wwwroot\js\ext\FileSaver.js" />
+    <EmbeddedResource Include="wwwroot\js\ext\soulTable.js" />
+    <EmbeddedResource Include="wwwroot\js\ext\tableChild.js" />
+    <EmbeddedResource Include="wwwroot\js\ext\tableFilter.js" />
+    <EmbeddedResource Include="wwwroot\js\ext\xlsx.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\css\layui.css" />
     <EmbeddedResource Include="wwwroot\lib\layui\css\layui.mobile.css" />
     <EmbeddedResource Include="wwwroot\lib\layui\css\modules\code.css" />
@@ -268,7 +308,7 @@
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\rate.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\slider.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\table.js" />
-    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\tableFilter.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\tableFilter\tableFilter.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\tree.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\upload.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\util.js" />
@@ -278,37 +318,6 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="0.16.0" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="0.16.0" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <None Include="wwwroot\lib\layui\font\iconfont.svg" />
-    <None Include="wwwroot\lib\layui\layui.all.js" />
-    <None Include="wwwroot\lib\layui\layui.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\carousel.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\code.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\colorpicker.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\element.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\flow.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\form.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\jquery.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\laydate.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\layedit.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\layer.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\laypage.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\laytpl.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\mobile.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\rate.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\slider.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\table.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\tree.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\upload.js" />
-    <None Include="wwwroot\lib\layui\lay\modules\util.js" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="wwwroot\plugins\" />
   </ItemGroup>
 
 

@@ -4,7 +4,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 {
     public class SecurityOptions : Entity<int>
     {
-        public virtual int ReRouteId { get; private set; }
+        public virtual long ReRouteId { get; private set; }
 
         public virtual string IPAllowedList { get; private set; }
 
@@ -14,7 +14,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         {
 
         }
-        public SecurityOptions(int rerouteId)
+        public SecurityOptions(long rerouteId)
         {
             ReRouteId = rerouteId;
         }

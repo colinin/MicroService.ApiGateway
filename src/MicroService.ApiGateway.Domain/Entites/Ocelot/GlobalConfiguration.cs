@@ -6,7 +6,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 {
     public class GlobalConfiguration : AggregateRoot<int>, ISoftDelete, IActivation
     {
-        public virtual int ItemId { get; protected set; }
+        public virtual long ItemId { get; protected set; }
         public virtual string RequestIdKey { get; set; }
         public virtual ServiceDiscoveryProvider ServiceDiscoveryProvider { get; protected set; }
 
@@ -30,35 +30,11 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 
         }
 
-        public GlobalConfiguration(int itemId)
+        public GlobalConfiguration(long itemId, string baseUrl)
         {
             ItemId = itemId;
+            BaseUrl = baseUrl;
             Init();
-        }
-
-        public void SetServiceDiscoveryProvider(ServiceDiscoveryProvider serviceDiscoveryProvider)
-        {
-            ServiceDiscoveryProvider = serviceDiscoveryProvider;
-        }
-
-        public void SetRateLimitOptions(RateLimitOptions limitOptions)
-        {
-            RateLimitOptions = limitOptions;
-        }
-
-        public void SetQoSOptions(QoSOptions options)
-        {
-            QoSOptions = options;
-        }
-
-        public void SetLoadBalancerOptions(LoadBalancerOptions options)
-        {
-            LoadBalancerOptions = options;
-        }
-
-        public void SetHttpHandlerOptions(HttpHandlerOptions options)
-        {
-            HttpHandlerOptions = options;
         }
 
         private void Init()

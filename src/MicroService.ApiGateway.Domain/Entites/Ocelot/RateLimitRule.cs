@@ -4,7 +4,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 {
     public class RateLimitRule : Entity<int>
     {
-        public virtual int ReRouteId { get; private set; }
+        public virtual long ReRouteId { get; private set; }
         /// <summary>
         /// 客户端白名单列表,多个以分号分隔
         /// </summary>
@@ -18,29 +18,24 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         /// <summary>
         /// 速率极限周期
         /// </summary>
-        public virtual double PeriodTimespan { get; private set; }
+        public virtual double? PeriodTimespan { get; private set; }
         /// <summary>
         /// 客户端在定义的时间内可以发出的最大请求数
         /// </summary>
-        public virtual long Limit { get; private set; }
+        public virtual long? Limit { get; private set; }
 
         protected RateLimitRule()
         {
 
         }
-        public RateLimitRule(int rerouteId)
+        public RateLimitRule(long rerouteId)
         {
             ReRouteId = rerouteId;
         }
 
-        public void EnableRateLimit()
+        public void ApplyRateLimit(bool enableRateLimiting)
         {
-            EnableRateLimiting = true;
-        }
-
-        public void DisableRateLimit()
-        {
-            EnableRateLimiting = false;
+            EnableRateLimiting = enableRateLimiting;
         }
 
         public void AddClientWhileList(params string[] clientWhileList)

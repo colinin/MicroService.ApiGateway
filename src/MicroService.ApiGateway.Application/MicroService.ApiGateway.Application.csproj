@@ -14,4 +14,8 @@
     <ProjectReference Include="..\MicroService.ApiGateway.Domain\MicroService.ApiGateway.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Ocelot\Dto\Create\" />
+  </ItemGroup>
+
 </Project>

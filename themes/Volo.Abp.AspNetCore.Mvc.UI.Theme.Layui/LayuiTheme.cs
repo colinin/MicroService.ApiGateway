@@ -1,4 +1,5 @@
-﻿using Volo.Abp.AspNetCore.Mvc.UI.Theming;
+﻿using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Themes.Layui;
+using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.DependencyInjection;
 
 namespace Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui
@@ -12,14 +13,12 @@ namespace Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui
         {
             switch (name)
             {
-                case StandardLayouts.Application:
-                    return "~/Themes/Layui/Layouts/Application.cshtml";
-                case StandardLayouts.Account:
-                    return "~/Themes/Layui/Layouts/Account.cshtml";
-                case StandardLayouts.Empty:
+                case LayuiLayouts.Application:
                     return "~/Themes/Layui/Layouts/Empty.cshtml";
+                case LayuiLayouts.Main:
+                    return "~/Themes/Layui/Layouts/Application.cshtml";
                 default:
-                    return fallbackToDefault ? "~/Themes/Layui/Layouts/Application.cshtml" : null;
+                    return fallbackToDefault ? "~/Themes/Layui/Layouts/Empty.cshtml" : null;
             }
         }
     }

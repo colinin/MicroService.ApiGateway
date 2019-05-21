@@ -31,7 +31,7 @@ namespace MicroService.ApiGateway.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ItemId = table.Column<int>(nullable: false),
-                    Host = table.Column<string>(maxLength: 50, nullable: true),
+                    Host = table.Column<string>(maxLength: 50, nullable: false),
                     Port = table.Column<int>(nullable: false),
                     Type = table.Column<string>(maxLength: 128, nullable: true),
                     Token = table.Column<string>(maxLength: 256, nullable: true),
@@ -66,7 +66,7 @@ namespace MicroService.ApiGateway.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ReRouteId = table.Column<int>(nullable: false),
-                    Host = table.Column<string>(nullable: true),
+                    Host = table.Column<string>(maxLength: 50, nullable: false),
                     Port = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -114,11 +114,11 @@ namespace MicroService.ApiGateway.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ItemId = table.Column<int>(nullable: false),
-                    ClientIdHeader = table.Column<string>(maxLength: 50, nullable: true),
+                    ClientIdHeader = table.Column<string>(maxLength: 50, nullable: true, defaultValue: "ClientId"),
                     QuotaExceededMessage = table.Column<string>(maxLength: 256, nullable: true),
-                    RateLimitCounterPrefix = table.Column<string>(maxLength: 50, nullable: true),
+                    RateLimitCounterPrefix = table.Column<string>(maxLength: 50, nullable: true, defaultValue: "ocelot"),
                     DisableRateLimitHeaders = table.Column<bool>(nullable: false),
-                    HttpStatusCode = table.Column<int>(nullable: false)
+                    HttpStatusCode = table.Column<int>(nullable: false, defaultValue: 429)
                 },
                 constraints: table =>
                 {
@@ -149,7 +149,7 @@ namespace MicroService.ApiGateway.Migrations
                     ExtraProperties = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     ReRouteId = table.Column<int>(nullable: false),
-                    ReRouteName = table.Column<string>(nullable: true),
+                    ReRouteName = table.Column<string>(maxLength: 50, nullable: false),
                     DownstreamPathTemplate = table.Column<string>(maxLength: 100, nullable: false),
                     UpstreamPathTemplate = table.Column<string>(maxLength: 100, nullable: false),
                     UpstreamHttpMethod = table.Column<string>(maxLength: 50, nullable: false),
@@ -167,7 +167,7 @@ namespace MicroService.ApiGateway.Migrations
                     LoadBalancerOptionsId = table.Column<int>(nullable: true),
                     HttpHandlerOptionsId = table.Column<int>(nullable: true),
                     DownstreamHostAndPorts = table.Column<string>(maxLength: 1000, nullable: true),
-                    DelegatingHandlers = table.Column<string>(nullable: true),
+                    DelegatingHandlers = table.Column<string>(maxLength: 1000, nullable: true),
                     UpstreamHost = table.Column<string>(maxLength: 100, nullable: true),
                     Key = table.Column<string>(maxLength: 100, nullable: true),
                     Priority = table.Column<int>(nullable: true),
@@ -347,7 +347,7 @@ namespace MicroService.ApiGateway.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ExtraProperties = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
-                    DunamicReRouteId = table.Column<int>(nullable: false),
+                    DynamicReRouteId = table.Column<int>(nullable: false),
                     ServiceName = table.Column<string>(maxLength: 100, nullable: false),
                     RateLimitRuleId = table.Column<int>(nullable: true)
                 },

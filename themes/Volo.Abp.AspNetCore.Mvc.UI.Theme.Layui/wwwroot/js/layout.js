@@ -3,17 +3,17 @@
  *  网上找的js代码,原作者是谁不清楚,如果涉及到版权,请联系本人清理,谢谢
  * 
  */
-var tab, layer
+var tab
 
 layui.config({
-    base: "/js/"
+    base: "/js/ext/"
 }).extend({
     "bodyTab": "bodyTab"
 });
-
 layui.use(['bodyTab', 'form', 'element', 'layer', 'jquery'], function () {
     let form = layui.form,
         element = layui.element,
+        layer = layui.layer,
         $ = layui.$;
     layer = parent.layer === undefined ? layui.layer : top.layer;
     tab = layui.bodyTab({

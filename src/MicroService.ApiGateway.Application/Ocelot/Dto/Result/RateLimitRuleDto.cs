@@ -10,9 +10,9 @@ namespace MicroService.ApiGateway.Ocelot.Dto
 
         public string Period { get; set; }
 
-        public double PeriodTimespan { get; set; }
+        public double? PeriodTimespan { get; set; }
 
-        public long Limit { get; set; }
+        public long? Limit { get; set; }
         public RateLimitRuleDto()
         {
             ClientWhitelist = new List<string>();

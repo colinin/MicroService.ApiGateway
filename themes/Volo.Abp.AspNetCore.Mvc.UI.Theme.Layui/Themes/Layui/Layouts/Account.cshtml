@@ -42,7 +42,7 @@
         <abp-row>
             <abp-column size-md="_4" offset-md="_4">
                 @if (MultiTenancyOptions.Value.IsEnabled &&
-                    (TenantResolveResultAccessor.Result?.AppliedResolvers?.Contains(CookieTenantResolveContributor.ContributorName) == true))
+                   (TenantResolveResultAccessor.Result?.AppliedResolvers?.Contains(CookieTenantResolveContributor.ContributorName) == true))
                 {
                     <div class="tenant-switch-box" style="background-color: #eee; margin-bottom: 20px; color: #000; padding: 10px; text-align: center;">
                         <span style="color: #666;">@MultiTenancyStringLocalizer["Tenant"]: </span>
@@ -64,6 +64,7 @@
             </abp-column>
         </abp-row>
     </div>
+    <script type="text/javascript" src="~/lib/layui/layui.js"></script>
 
     <abp-script-bundle name="@LayuiThemeBundles.Scripts.Global" />
 

@@ -2,11 +2,12 @@
 @using MicroService.ApiGateway.Pages
 @using MicroService.ApiGateway.Views.Home
 @using Volo.Abp.AspNetCore.Mvc.UI.Theming
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Themes.Layui
 @inject IThemeManager ThemeManager
 @inherits WebServicePageBase
 @model IndexModel
 @{
-    Layout = ThemeManager.CurrentTheme.GetApplicationLayout();
+    Layout = ThemeManager.CurrentTheme.GetLayout(LayuiLayouts.Main);
 }
 @section styles {
 

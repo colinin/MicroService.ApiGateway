@@ -15,7 +15,7 @@ namespace MicroService.ApiGateway.Ocelot.Dto
         public Dictionary<string, string> AddQueriesToRequest { get; set; }
         public string RequestIdKey { get; set; }
         public CacheOptionsDto FileCacheOptions { get; set; }
-        public bool? ReRouteIsCaseSensitive { get; set; }
+        public bool ReRouteIsCaseSensitive { get; set; }
         public string ServiceName { get; set; }
         public string DownstreamScheme { get; set; }
         public QosOptionsDto QoSOptions { get; set; }
@@ -29,7 +29,7 @@ namespace MicroService.ApiGateway.Ocelot.Dto
         public List<string> DelegatingHandlers { get; set; }
         public int? Priority { get; set; }
         public int? Timeout { get; set; }
-        public bool? DangerousAcceptAnyServerCertificateValidator { get; set; }
+        public bool DangerousAcceptAnyServerCertificateValidator { get; set; }
         public SecurityOptionsDto SecurityOptions { get; set; }
 
         public ReRouteDto()

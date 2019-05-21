@@ -3,7 +3,6 @@
  *  网上找的js代码,原作者是谁不清楚,如果涉及到版权,请联系本人清理,谢谢
  * 
  */
-
 var cacheStr = window.sessionStorage.getItem("cache");
 layui.use(['form','jquery',"layer"],function() {
     var form = layui.form,

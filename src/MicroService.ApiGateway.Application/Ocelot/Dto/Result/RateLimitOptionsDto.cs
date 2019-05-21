@@ -6,6 +6,6 @@
         public string QuotaExceededMessage { get; set; }
         public string RateLimitCounterPrefix { get; set; }
         public bool DisableRateLimitHeaders { get; set; }
-        public int HttpStatusCode { get; set; }
+        public int? HttpStatusCode { get; set; }
     }
 }

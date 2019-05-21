@@ -18,7 +18,7 @@ namespace MicroService.ApiGateway.Ocelot
 
         public async Task<DynamicReRoute> GetByItemIdAsync(int itemId)
         {
-            return await GetQueryable().Where(x => x.DunamicReRouteId.Equals(itemId)).FirstOrDefaultAsync();
+            return await GetQueryable().Where(x => x.DynamicReRouteId.Equals(itemId)).FirstOrDefaultAsync();
         }
     }
 }

@@ -7,6 +7,6 @@ namespace MicroService.ApiGateway.Repositories
     public interface IGlobalConfigRepository : IBasicRepository<GlobalConfiguration, int>
     {
         Task<GlobalConfiguration> GetOneAsync();
-        Task<GlobalConfiguration> GetByItemIdAsync(int itemId);
+        Task<GlobalConfiguration> GetByItemIdAsync(long itemId);
     }
 }

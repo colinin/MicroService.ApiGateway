@@ -60,7 +60,11 @@ namespace Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui
                             .AddBaseBundles(StandardBundles.Styles.Global)
                             .AddContributors(typeof(LayuiThemeGlobalStyleContributor));
                     })
-                    .Add(LayuiThemeBundles.Styles.TableFilter, bundle => bundle.AddFiles("/lib/layui/css/modules/tableFilter/tableFilter.css"));
+                    .Add(LayuiThemeBundles.Styles.TableFilter, bundle => bundle.AddFiles("/lib/layui/css/modules/tableFilter/tableFilter.css"))
+                    .Add(LayuiThemeBundles.Styles.InputTags, bundle => bundle.AddFiles("/css/inputTags/inputTags.css"))
+                    .Add(LayuiThemeBundles.Styles.SoulTable, bundle => bundle.AddFiles(
+                        "/css/soulTable/animate.min.css", "/css/soulTable/soulTable.css"
+                    ));
 
                 options
                     .ScriptBundles
@@ -70,7 +74,12 @@ namespace Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui
                             .AddBaseBundles(StandardBundles.Scripts.Global)
                             .AddContributors(typeof(LayuiThemeGlobalScriptContributor));
                     })
-                    .Add(LayuiThemeBundles.Scripts.TableFilter, bundle => bundle.AddFiles("/lib/layui/lay/modules/tableFilter.js"));
+                    .Add(LayuiThemeBundles.Scripts.TableFilter, bundle => bundle.AddFiles("/lib/layui/lay/modules/tableFilter/tableFilter.js"))
+                    .Add(LayuiThemeBundles.Scripts.SoulTable, bundle => bundle.AddFiles(
+                        "/js/ext/excel.js", "/js/ext/xlsx.js",
+                        "/js/ext/FileSaver.js", "/js/ext/tableChild.js",
+                        "/js/ext/tableFilter.js", "/js/ext/soulTable.js"
+                    ));
             });
         }
     }

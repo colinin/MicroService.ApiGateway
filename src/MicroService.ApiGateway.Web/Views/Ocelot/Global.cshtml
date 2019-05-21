@@ -1,0 +1,137 @@
+﻿@using MicroService.ApiGateway.Ocelot.Dto
+@model GlobalConfigurationDto
+@section styles {
+    <link type="text/css" rel="stylesheet" href="~/css/ocelot/global.css" />
+}
+@section scripts{
+    <script src="~/js/ocelot/global.js"></script>
+}
+    <form class="layui-form layui-form-pane" asp-route="Ocelot/Configuration/Global" method="post">
+        <input type="hidden" asp-for="ItemId" />
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>基础配置</legend>
+            <hr class="layui-bg-blue">
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">访问路径</label>
+                <div class="layui-input-inline ocelot-line-input">
+                    <input type="text" autocomplete="off" required asp-for="BaseUrl" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">访问标识</label>
+                <div class="layui-input-inline  ocelot-line-input">
+                    <input type="text" autocomplete="off" asp-for="RequestIdKey" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>服务质量</legend>
+            <hr class="layui-bg-blue">
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">最大允许异常请求</label>
+                <div class="layui-input-inline ocelot-line-input">
+                    <input type="text" autocomplete="off" asp-for="QoSOptions.ExceptionsAllowedBeforeBreaking" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">熔断时间(秒)</label>
+                <div class="layui-input-inline  ocelot-line-input">
+                    <input type="text" autocomplete="off" asp-for="QoSOptions.DurationOfBreak" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">超时时间</label>
+                <div class="layui-input-inline  ocelot-line-input">
+                    <input type="text" autocomplete="off" asp-for="QoSOptions.TimeoutValue" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>流量控制</legend>
+            <hr class="layui-bg-blue">
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">客户端请求头</label>
+                <div class="layui-input-inline ocelot-line-input">
+                    <input type="text" autocomplete="off" asp-for="RateLimitOptions.ClientIdHeader" class="layui-input" >
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">过载错误消息</label>
+                <div class="layui-input-inline  ocelot-line-input">
+                    <input type="text" autocomplete="off" asp-for="RateLimitOptions.QuotaExceededMessage" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">HTTP错误代码</label>
+                <div class="layui-input-inline ocelot-line-input">
+                    <input type="text" autocomplete="off" asp-for="RateLimitOptions.HttpStatusCode" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline  ocelot-line-input">
+                    <input type="checkbox" asp-for="RateLimitOptions.DisableRateLimitHeaders" title="禁用HTTP头">
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>HTTP处理器</legend>
+            <hr class="layui-bg-blue">
+        </fieldset>
+        <div class="layui-form-item">
+            <label class="layui-form-label ocelot-line">其他选项</label>
+            <div class="layui-input-block">
+                <input type="checkbox" asp-for="HttpHandlerOptions.AllowAutoRedirect" title="HTTP重定向">
+                <input type="checkbox" asp-for="HttpHandlerOptions.UseCookieContainer" title="Cookie容器">
+                <input type="checkbox" asp-for="HttpHandlerOptions.UseProxy" title="HTTP代理">
+                <input type="checkbox" asp-for="HttpHandlerOptions.UseTracing" title="HTTP追踪">
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>负载均衡</legend>
+            <hr class="layui-bg-blue">
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">使用算法</label>
+                <div class="layui-input-inline  ocelot-line-input">
+                    <select lay-filter="aihao" asp-for="LoadBalancerOptions.Type">
+                        <option value="LeastConnection" selected="">总是发往空闲服务器</option>
+                        <option value="RoundRobin">请求轮询发送</option>
+                        <option value="NoLoadBalance">请求发往首个服务器</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+            <legend>服务发现</legend>
+            <hr class="layui-bg-blue">
+        </fieldset>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">主机地址</label>
+                <div class="layui-input-inline ocelot-line-input">
+                    <input type="text" autocomplete="off" asp-for="ServiceDiscoveryProvider.Host" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label ocelot-line">端口</label>
+                <div class="layui-input-inline  ocelot-line-input">
+                    <input type="text" autocomplete="off" asp-for="ServiceDiscoveryProvider.Port" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+                <div class="layui-footer ocelot-footer" style="left: 0; text-align: center">
+                    <button class="layui-btn" lay-submit="" lay-filter="btnSava">立即提交</button>
+                </div>
+            </div>
+        </div>
+
+    </form>

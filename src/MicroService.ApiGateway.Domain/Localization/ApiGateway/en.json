@@ -3,6 +3,9 @@
   "texts": {
     "Menu:Home": "Home",
     "Menu:Logout": "Logout",
-    "Welcome": "Welcome"
+    "Welcome": "Welcome",
+    "Side:Ocelot": "Ocelot ApiGateway",
+    "Side:Ocelot:Global": "Global Config",
+    "Side:Ocelot:ReRoutes": "ReRoute Config"
   }
 }

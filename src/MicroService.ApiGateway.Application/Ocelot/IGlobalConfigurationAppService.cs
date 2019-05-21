@@ -7,5 +7,9 @@ namespace MicroService.ApiGateway.Ocelot
     public interface IGlobalConfigurationAppService : IApplicationService
     {
         Task<GlobalConfigurationDto> GetAsync();
+
+        Task<GlobalConfigurationDto> CreateAsync(GlobalConfigurationDto configurationDto);
+
+        Task<GlobalConfigurationDto> UpdateAsync(GlobalConfigurationDto configurationDto);
     }
 }

@@ -4,18 +4,18 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 {
     public class DynamicReRoute : AggregateRoot<int>
     {
-        public virtual int DunamicReRouteId { get; private set; }
+        public virtual long DynamicReRouteId { get; private set; }
         public virtual string ServiceName { get; private set; }
         public virtual RateLimitRule RateLimitRule { get; private set; }
         protected DynamicReRoute()
         {
 
         }
-        public DynamicReRoute(int dynamicReRouteId, string serviceName)
+        public DynamicReRoute(long dynamicReRouteId, string serviceName)
         {
-            DunamicReRouteId = dynamicReRouteId;
+            DynamicReRouteId = dynamicReRouteId;
             ServiceName = serviceName;
-            RateLimitRule = new RateLimitRule(DunamicReRouteId);
+            RateLimitRule = new RateLimitRule(DynamicReRouteId);
         }
 
         public void SetRateLimitRule(RateLimitRule limitRule)
