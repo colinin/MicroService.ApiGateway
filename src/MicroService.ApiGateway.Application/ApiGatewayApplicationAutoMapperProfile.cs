@@ -1,15 +1,17 @@
 ﻿using AutoMapper;
 using MicroService.ApiGateway.Entites.Ocelot;
 using MicroService.ApiGateway.Ocelot.Dto;
+using MicroService.ApiGateway.Snowflake;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using Volo.Abp.DependencyInjection;
 
 namespace MicroService.ApiGateway
 {
-    public class ApiGatewayApplicationAutoMapperProfile : Profile
+    public class ApiGatewayApplicationAutoMapperProfile : Profile, ISingletonDependency
     {
-        public ApiGatewayApplicationAutoMapperProfile()
+        public ApiGatewayApplicationAutoMapperProfile(ISnowflakeIdGenerator snowflakeIdGenerator)
         {
             //Configure your AutoMapper mapping configuration here...
 
@@ -44,6 +46,13 @@ namespace MicroService.ApiGateway
                 .ForMember(dto => dto.UpstreamHttpMethod, map => map.MapFrom(m => MapperList(m.UpstreamHttpMethod)))
                 .ForMember(dto => dto.DownstreamHostAndPorts, map => map.MapFrom(m => MapperJson<HostAndPort>(m.DownstreamHostAndPorts)))
                 .ForMember(dto => dto.FileCacheOptions, map => map.MapFrom(m => m.CacheOptions));
+
+            CreateMap<ReRouteDto, ReRoute>()
+                .ForCtorParam("rerouteId", x => x.MapFrom(m => snowflakeIdGenerator.NextId()))
+                .ForCtorParam("routeName", x => x.MapFrom(m => m.ReRouteName))
+                .ForCtorParam("downPath", x => x.MapFrom(m => m.DownstreamPathTemplate))
+                .ForCtorParam("upPath", x => x.MapFrom(m => m.UpstreamPathTemplate))
+                .ForCtorParam("upMethod", x => x.MapFrom(m => m.UpstreamHttpMethod.JoinAsString(";")));
         }
 
         private Dictionary<string, string> MapperDictionary(string sourceString)

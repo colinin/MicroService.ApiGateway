@@ -46,7 +46,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
             }
         }
 
-        public void SetPeriodTimespan(string period, double timeSpan, long limit)
+        public void SetPeriodTimespan(string period, double? timeSpan, long? limit)
         {
             Period = period;
             PeriodTimespan = timeSpan;

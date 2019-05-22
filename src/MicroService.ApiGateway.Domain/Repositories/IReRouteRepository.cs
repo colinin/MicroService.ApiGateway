@@ -9,7 +9,7 @@ namespace MicroService.ApiGateway.Repositories
     {
         Task<ReRoute> GetByNameAsync(string routeName);
 
-        Task<ReRoute> GetByReRouteIdAsync(int routeId);
+        Task<ReRoute> GetByReRouteIdAsync(long routeId);
 
         Task<(List<ReRoute> routes, long total)> GetPagedListAsync(int skipCount = 1, int maxResultCount = 100);
     }

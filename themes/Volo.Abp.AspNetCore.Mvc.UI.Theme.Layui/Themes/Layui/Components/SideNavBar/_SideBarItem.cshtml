@@ -8,7 +8,7 @@
 @if (Model.IsLeaf)
 {
     <dd class="@cssClass @disabled" @elementId>
-        <a href="javascript:;" address="@(Model.Url ?? "")">
+        <a address="@(Model.Url ?? "")">
             @if (!Model.Icon.IsNullOrWhiteSpace())
             {
                 <img src="@Model.Icon" class="layui-nav-img">

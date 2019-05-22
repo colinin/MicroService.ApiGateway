@@ -150,7 +150,13 @@
         switch (obj.event) {
             case 'add':
                 /// TODO:增加路由
-                layer.msg('添加');
+                layer.open({
+                    type: 2,
+                    title: '增加路由',
+                    scrollbar: false,
+                    area: ['1024px', '700px'],
+                    content: 'ReRoute' //iframe的url
+                }); 
                 break;
             case 'edit':
                 layer.msg('编辑');

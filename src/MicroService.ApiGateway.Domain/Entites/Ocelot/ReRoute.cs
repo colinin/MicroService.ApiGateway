@@ -72,11 +72,16 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         public ReRoute(long rerouteId, string routeName, string downPath, string upPath, string upMethod)
         {
             ReRouteId = rerouteId;
+            ModifyRouteInfo(routeName, downPath, upPath, upMethod);
+            InitlizaReRoute();
+        }
+
+        public void ModifyRouteInfo(string routeName, string downPath, string upPath, string upMethod)
+        {
             ReRouteName = routeName;
             DownstreamPathTemplate = downPath;
             UpstreamPathTemplate = upPath;
             UpstreamHttpMethod = upMethod;
-            InitlizaReRoute();
         }
 
         public void AddRequestHeader(Headers headers)
@@ -113,42 +118,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         {
             DownstreamHostAndPorts += $"{hostAndPort.Host}:{hostAndPort.Port};";
         }
-
-        public void SetQoSOptions(QoSOptions options)
-        {
-            QoSOptions = options;
-        }
-
-        public void SetCacheOptions(CacheOptions options)
-        {
-            CacheOptions = options;
-        }
-
-        public void SetLoadBalancerOptions(LoadBalancerOptions options)
-        {
-            LoadBalancerOptions = options;
-        }
-
-        public void SetRateLimitOptions(RateLimitRule limitRule)
-        {
-            RateLimitOptions = limitRule;
-        }
-
-        public void SetAuthenticationOptions(AuthenticationOptions options)
-        {
-            AuthenticationOptions = options;
-        }
-
-        public void SetHttpHandlerOptions(HttpHandlerOptions options)
-        {
-            HttpHandlerOptions = options;
-        }
-
-        public void SetSecurityOptions(SecurityOptions options)
-        {
-            SecurityOptions = options;
-        }
-
+        
         private void InitlizaReRoute()
         {
             QoSOptions = new QoSOptions(ReRouteId);

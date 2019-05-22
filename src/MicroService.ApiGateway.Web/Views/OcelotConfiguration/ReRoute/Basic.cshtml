@@ -1,0 +1,39 @@
+﻿@using MicroService.ApiGateway.Ocelot.Dto
+@model ReRouteDto
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">路由名称</label>
+        <div class="layui-input-inline ocelot-line-input">
+            <input type="text" autocomplete="off" required asp-for="ReRouteName" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">服务名称</label>
+        <div class="layui-input-inline  ocelot-line-input">
+            <input type="text" autocomplete="off" asp-for="ServiceName" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">上游路径</label>
+        <div class="layui-input-inline  ocelot-line-input">
+            <input type="text" autocomplete="off" asp-for="UpstreamPathTemplate" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">下游路径</label>
+        <div class="layui-input-inline  ocelot-line-input">
+            <input type="text" autocomplete="off" asp-for="DownstreamPathTemplate" class="layui-input">
+        </div>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">上游请求方式</label>
+    <div class="layui-input-block ocelot-block">
+        <taginput type="text" autocomplete="off" tag-id="UpstreamHttpMethod" tag-class="layui-input"
+                tag-items="@Model.UpstreamHttpMethod" tag-placeholder="输入" tag-required="true" />
+    </div>
+</div>
+
+@addTagHelper *, MicroService.ApiGateway.Web

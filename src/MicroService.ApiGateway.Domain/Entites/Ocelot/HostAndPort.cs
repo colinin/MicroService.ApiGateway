@@ -18,7 +18,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
             ReRouteId = rerouteId;
         }
 
-        public void SetHostAndPort(string host, int port)
+        public void SetHostAndPort(string host, int? port)
         {
             Host = host;
             Port = port;

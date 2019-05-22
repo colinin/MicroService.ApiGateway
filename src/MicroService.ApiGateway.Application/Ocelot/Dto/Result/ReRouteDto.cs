@@ -4,6 +4,8 @@ namespace MicroService.ApiGateway.Ocelot.Dto
 {
     public class ReRouteDto
     {
+        public long ReRouteId { get; set; }
+        public string ReRouteName { get; set; }
         public string DownstreamPathTemplate { get; set; }
         public string UpstreamPathTemplate { get; set; }
         public List<string> UpstreamHttpMethod { get; set; }

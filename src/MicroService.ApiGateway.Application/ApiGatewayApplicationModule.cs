@@ -1,6 +1,7 @@
 ﻿using Volo.Abp.Application;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace MicroService.ApiGateway
 {
@@ -15,7 +16,11 @@ namespace MicroService.ApiGateway
         {
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddProfile<ApiGatewayApplicationAutoMapperProfile>();
+                options.Configurators.Add(ctx =>
+                {
+                    var mapperProfile = ctx.ServiceProvider.GetService<ApiGatewayApplicationAutoMapperProfile>();
+                    ctx.MapperConfiguration.AddProfile(mapperProfile);
+                });
             });
         }
     }
