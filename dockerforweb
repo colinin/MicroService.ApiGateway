@@ -1,0 +1,19 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 as build-env
+MAINTAINER Colin
+WORKDIR /web
+
+COPY MicroService/. /web
+
+WORKDIR /web/ApiGateway/src/MicroService.ApiGateway.Web
+
+RUN dotnet restore
+
+RUN dotnet publish -c Debug -o ../../publish
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+copy --from=build-env /web/ApiGateway/publish /app
+
+EXPOSE 80/tcp
+
+ENTRYPOINT ["dotnet", "MicroService.ApiGateway.Web.dll"]
