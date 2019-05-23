@@ -61,13 +61,13 @@ namespace MicroService.ApiGateway
 
             if (!string.IsNullOrWhiteSpace(sourceString))
             {
-                var headers = sourceString.Split(";").ToList();
+                var headers = sourceString.Split(';').ToList();
 
                 if (headers != null && headers.Count > 0)
                 {
                     foreach (var header in headers)
                     {
-                        var current = header.Split(":");
+                        var current = header.Split(':');
                         if (current != null && current.Length == 2)
                         {
                             dictionary.Add(current[0], current[1]);
@@ -83,7 +83,7 @@ namespace MicroService.ApiGateway
             var list = new List<string>();
             if (!string.IsNullOrWhiteSpace(sourceString))
             {
-                list = sourceString.Split(";").ToList();
+                list = sourceString.Split(';').ToList();
             }
             return list;
         }

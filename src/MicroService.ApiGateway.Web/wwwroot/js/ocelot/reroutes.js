@@ -165,7 +165,8 @@
                 layer.msg('删除选择');
                 break;
             case 'removeAll':
-                layer.msg('删除所有');
+                abp.message.info("删除所有");
+                //layer.msg('删除所有');
                 break;
         };
     });

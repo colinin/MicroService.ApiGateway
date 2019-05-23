@@ -60,6 +60,7 @@ namespace Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui
                             .AddBaseBundles(StandardBundles.Styles.Global)
                             .AddContributors(typeof(LayuiThemeGlobalStyleContributor));
                     })
+                    .Add(LayuiThemeBundles.Styles.Empty, bundle => bundle.AddContributors(typeof(LayuiThemeEmptyStyleContributor)))
                     .Add(LayuiThemeBundles.Styles.TableFilter, bundle => bundle.AddFiles("/lib/layui/css/modules/tableFilter/tableFilter.css"))
                     .Add(LayuiThemeBundles.Styles.InputTags, bundle => bundle.AddFiles("/css/inputTags/inputTags.css"))
                     .Add(LayuiThemeBundles.Styles.SoulTable, bundle => bundle.AddFiles(
@@ -74,6 +75,7 @@ namespace Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui
                             .AddBaseBundles(StandardBundles.Scripts.Global)
                             .AddContributors(typeof(LayuiThemeGlobalScriptContributor));
                     })
+                    .Add(LayuiThemeBundles.Scripts.Empty, bundle => bundle.AddContributors(typeof(LayuiThemeEmptyScriptContributor)))
                     .Add(LayuiThemeBundles.Scripts.TableFilter, bundle => bundle.AddFiles("/lib/layui/lay/modules/tableFilter/tableFilter.js"))
                     .Add(LayuiThemeBundles.Scripts.SoulTable, bundle => bundle.AddFiles(
                         "/js/ext/excel.js", "/js/ext/xlsx.js",

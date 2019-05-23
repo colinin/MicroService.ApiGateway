@@ -5,8 +5,10 @@ using MicroService.ApiGateway.EntityFrameworkCore;
 using MicroService.ApiGateway.Localization.MicroService.ApiGateway;
 using MicroService.ApiGateway.Menus;
 using MicroService.ApiGateway.Ocelot.Configuration.Repository;
+using MicroService.ApiGateway.Web.Razor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Razor.Language;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -71,6 +73,8 @@ namespace MicroService.ApiGateway
             ConfigureBundling();
 
             context.Services.AddSingleton<IFileConfigurationRepository, EfCoreFileConfigurationRepository>();
+
+            
         }
 
         private void ConfigureBundling()
@@ -79,11 +83,13 @@ namespace MicroService.ApiGateway
             {
                 options
                     .StyleBundles
-                    .Add(WebServiceBundles.Styles.DateTimePicker, bundle => bundle.AddFiles("/libs/datetimepicker/css/bootstrap-datepicker3.min.css"));
+                    .Add(WebServiceBundles.Styles.DateTimePicker, bundle => bundle.AddFiles("/libs/datetimepicker/css/bootstrap-datepicker3.min.css"))
+                    .Add(WebServiceBundles.Styles.TagsInput, bundle => bundle.AddFiles("/libs/bootstrap/css/bootstrap.tagsinput.css"));
 
                 options
                     .ScriptBundles
                     .Add(WebServiceBundles.Scripts.Echarts, bundle => bundle.AddFiles("/libs/echarts/4.2.1/echarts.min.js"))
+                    .Add(WebServiceBundles.Scripts.TagsInput, bundle => bundle.AddFiles("/libs/bootstrap/js/bootstrap.tagsinput.js"))
                     .Add(WebServiceBundles.Scripts.JavaScriptLinq, bundle => bundle.AddFiles("/libs/linq/linq.min.js"))
                     .Add(WebServiceBundles.Scripts.DateTimePicker, bundle => bundle.AddFiles(
                         "/libs/datetimepicker/bootstrap-datepicker.min.js", "/libs/datetimepicker/locales/bootstrap-datepicker.zh-CN.min.js"));

@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers;
 
-namespace MicroService.ApiGateway.Web.TagHelpers
+namespace Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.TagHelpers
 {
     [HtmlTargetElement("taginput", Attributes = "tag-items")]
     public class TagInputTagHelper : AbpTagHelper

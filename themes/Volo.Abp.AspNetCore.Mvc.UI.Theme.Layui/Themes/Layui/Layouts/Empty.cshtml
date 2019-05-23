@@ -20,7 +20,7 @@
 
     <title>@(ViewBag.Title == null ? BrandingProvider.AppName : ViewBag.Title)</title>
 
-    <abp-style-bundle name="@LayuiThemeBundles.Styles.Global" />
+    <abp-style-bundle name="@LayuiThemeBundles.Styles.Empty" />
 
     @await RenderSectionAsync("styles", false)
 </head>
@@ -29,7 +29,7 @@
     @RenderBody()
     <script type="text/javascript" src="~/lib/layui/layui.js"></script>
 
-    <abp-script-bundle name="@LayuiThemeBundles.Scripts.Global" />
+    <abp-script-bundle name="@LayuiThemeBundles.Scripts.Empty" />
 
     <script type="text/javascript" src="~/Abp/ApplicationConfigurationScript"></script>
     <script type="text/javascript" src="~/Abp/ServiceProxyScript"></script>

@@ -1,38 +1,46 @@
 ﻿@using MicroService.ApiGateway.Ocelot.Dto
-@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Bundling;
+@using MicroService.ApiGateway.Bundling
+@using Volo.Abp.AspNetCore.Mvc.UI.Theming
+@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.Themes.Layui
+@inject IThemeManager ThemeManager
 @model ReRouteDto
 @section styles {
+    <abp-style-bundle name="@WebServiceBundles.Styles.TagsInput"></abp-style-bundle>
     <link type="text/css" rel="stylesheet" href="~/css/ocelot/global.css" />
-    <abp-style-bundle name="@LayuiThemeBundles.Styles.InputTags"></abp-style-bundle>
 }
 @section scripts{
     <script src="~/js/ocelot/reroute.js"></script>
+    <abp-script-bundle name="@WebServiceBundles.Scripts.TagsInput"></abp-script-bundle>
 }
-    <form class="layui-form layui-form-pane" asp-controller="Ocelot/Configuration" asp-action="ReRoute" method="post">
-        <input type="hidden" asp-for="ReRouteId" />
-        <div class="layui-tab" lay-filter="docDemoTabBrief">
-            <ul class="layui-tab-title">
-                <li class="layui-this">基本设置</li>
-                <li>服务质量</li>
-                <li>安全选项</li>
-            </ul>
-            <div class="layui-tab-content" style="height: 100px;">
-                <div class="layui-tab-item layui-show" role="tabpanel">
-                    @await Html.PartialAsync("ReRoute/Basic")
-                </div>
-                <div class="layui-tab-item" role="tabpanel">
-                    @await Html.PartialAsync("ReRoute/Qos")
-                </div>
-                <div class="layui-tab-item" role="tabpanel">
-                    @await Html.PartialAsync("ReRoute/Security")
-                </div>
+@{
+    Layout = ThemeManager.CurrentTheme.GetLayout(LayuiLayouts.Empty);
+}
+
+<form class="layui-form layui-form-pane" asp-route="Ocelot/Configuration/ReRoute" method="post">
+    <input type="hidden" asp-for="ReRouteId" />
+    <div class="layui-tab" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">基本设置</li>
+            <li>服务质量</li>
+            <li>安全选项</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+            <div class="layui-tab-item layui-show" role="tabpanel">
+                @await Html.PartialAsync("ReRoute/Basic")
+            </div>
+            <div class="layui-tab-item" role="tabpanel">
+                @await Html.PartialAsync("ReRoute/Qos")
+            </div>
+            <div class="layui-tab-item" role="tabpanel">
+                @await Html.PartialAsync("ReRoute/Security")
             </div>
         </div>
-        <div class="layui-form-item layui-layout-admin">
-            <div class="layui-input-block">
-                <div class="layui-footer ocelot-footer" style="left: 0; text-align: center">
-                    <button class="layui-btn" lay-submit="" lay-filter="btnSava">立即保存</button>
-                </div>
+    </div>
+    <div class="layui-form-item layui-layout-admin">
+        <div class="layui-input-block">
+            <div class="layui-footer ocelot-footer" style="left: 0; text-align: center">
+                <button class="layui-btn" lay-submit="" lay-filter="btnSava">立即保存</button>
             </div>
         </div>
-    </form>
+    </div>
+</form>
