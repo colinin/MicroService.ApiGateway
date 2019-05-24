@@ -1,4 +1,5 @@
 appsettings.json
+package-lock.json
 obj
 bin
 node_modules
