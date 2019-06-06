@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Domain.Entities;
+﻿using System.Collections.Generic;
+using Volo.Abp.Domain.Entities;
 
 namespace MicroService.ApiGateway.Entites.Ocelot
 {
@@ -17,18 +18,15 @@ namespace MicroService.ApiGateway.Entites.Ocelot
             ReRouteId = rerouteId;
         }
 
-        public void SetOptions(string key, params string[] allowScopes)
+        public void ApplyAuthOptions(string key, List<string> allowScopes)
         {
             AuthenticationProviderKey = key;
-            AddAllowScopes(allowScopes);
+            SetAllowScopes(allowScopes);
         }
 
-        public void AddAllowScopes(params string[] allowScopes)
+        public void SetAllowScopes(List<string> allowScopes)
         {
-            foreach (var scope in allowScopes)
-            {
-                AuthenticationProviderKey += scope + ";";
-            }
+            AllowedScopes = allowScopes.JoinAsString(",");
         }
     }
 }

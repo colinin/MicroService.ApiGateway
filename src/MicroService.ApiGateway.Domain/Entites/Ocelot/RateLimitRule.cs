@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Domain.Entities;
+﻿using System.Collections.Generic;
+using Volo.Abp.Domain.Entities;
 
 namespace MicroService.ApiGateway.Entites.Ocelot
 {
@@ -38,12 +39,9 @@ namespace MicroService.ApiGateway.Entites.Ocelot
             EnableRateLimiting = enableRateLimiting;
         }
 
-        public void AddClientWhileList(params string[] clientWhileList)
+        public void SetClientWhileList(List<string> clientWhileList)
         {
-            foreach(var clientWhile in clientWhileList)
-            {
-                ClientWhitelist += clientWhile + ";";
-            }
+            ClientWhitelist = clientWhileList.JoinAsString(",");
         }
 
         public void SetPeriodTimespan(string period, double? timeSpan, long? limit)

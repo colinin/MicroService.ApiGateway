@@ -76,16 +76,16 @@ namespace MicroService.ApiGateway.Ocelot
             globalConfiguration.HttpHandlerOptions.ApplyHttpProxy(configurationDto.HttpHandlerOptions.UseProxy);
             globalConfiguration.HttpHandlerOptions.ApplyHttpTracing(configurationDto.HttpHandlerOptions.UseTracing);
             
-            globalConfiguration.QoSOptions.SetQosOption(configurationDto.QoSOptions.ExceptionsAllowedBeforeBreaking, configurationDto.QoSOptions.DurationOfBreak,
+            globalConfiguration.QoSOptions.ApplyQosOptions(configurationDto.QoSOptions.ExceptionsAllowedBeforeBreaking, configurationDto.QoSOptions.DurationOfBreak,
                 configurationDto.QoSOptions.TimeoutValue);
 
             if (!configurationDto.RateLimitOptions.DisableRateLimitHeaders)
             {
-                globalConfiguration.RateLimitOptions.SetRateLimitOptions(configurationDto.RateLimitOptions.ClientIdHeader, configurationDto.RateLimitOptions.QuotaExceededMessage,
+                globalConfiguration.RateLimitOptions.ApplyRateLimitOptions(configurationDto.RateLimitOptions.ClientIdHeader, configurationDto.RateLimitOptions.QuotaExceededMessage,
                     configurationDto.RateLimitOptions.HttpStatusCode);
             }
             
-            globalConfiguration.LoadBalancerOptions.SetLoadBalancerOptions(configurationDto.LoadBalancerOptions.Type, configurationDto.LoadBalancerOptions.Key,
+            globalConfiguration.LoadBalancerOptions.ApplyLoadBalancerOptions(configurationDto.LoadBalancerOptions.Type, configurationDto.LoadBalancerOptions.Key,
                 configurationDto.LoadBalancerOptions.Expiry);
         }
     }

@@ -65,11 +65,11 @@
     <Content Remove="wwwroot\lib\layui\css\modules\layer\default\loading-0.gif" />
     <Content Remove="wwwroot\lib\layui\css\modules\layer\default\loading-1.gif" />
     <Content Remove="wwwroot\lib\layui\css\modules\layer\default\loading-2.gif" />
-    <Content Remove="wwwroot\lib\layui\css\modules\tableFilter\tableFilter.css" />
     <Content Remove="wwwroot\lib\layui\font\iconfont.eot" />
     <Content Remove="wwwroot\lib\layui\font\iconfont.svg" />
     <Content Remove="wwwroot\lib\layui\font\iconfont.ttf" />
     <Content Remove="wwwroot\lib\layui\font\iconfont.woff" />
+    <Content Remove="wwwroot\lib\layui\font\iconfont.woff2" />
     <Content Remove="wwwroot\lib\layui\images\face\0.gif" />
     <Content Remove="wwwroot\lib\layui\images\face\1.gif" />
     <Content Remove="wwwroot\lib\layui\images\face\10.gif" />
@@ -160,7 +160,7 @@
     <Content Remove="wwwroot\lib\layui\lay\modules\rate.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\slider.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\table.js" />
-    <Content Remove="wwwroot\lib\layui\lay\modules\tableFilter\tableFilter.js" />
+    <Content Remove="wwwroot\lib\layui\lay\modules\transfer.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\tree.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\upload.js" />
     <Content Remove="wwwroot\lib\layui\lay\modules\util.js" />
@@ -213,11 +213,11 @@
     <EmbeddedResource Include="wwwroot\lib\layui\css\modules\layer\default\loading-0.gif" />
     <EmbeddedResource Include="wwwroot\lib\layui\css\modules\layer\default\loading-1.gif" />
     <EmbeddedResource Include="wwwroot\lib\layui\css\modules\layer\default\loading-2.gif" />
-    <EmbeddedResource Include="wwwroot\lib\layui\css\modules\tableFilter\tableFilter.css" />
     <EmbeddedResource Include="wwwroot\lib\layui\font\iconfont.eot" />
     <EmbeddedResource Include="wwwroot\lib\layui\font\iconfont.svg" />
     <EmbeddedResource Include="wwwroot\lib\layui\font\iconfont.ttf" />
     <EmbeddedResource Include="wwwroot\lib\layui\font\iconfont.woff" />
+    <EmbeddedResource Include="wwwroot\lib\layui\font\iconfont.woff2" />
     <EmbeddedResource Include="wwwroot\lib\layui\images\face\0.gif" />
     <EmbeddedResource Include="wwwroot\lib\layui\images\face\1.gif" />
     <EmbeddedResource Include="wwwroot\lib\layui\images\face\10.gif" />
@@ -308,10 +308,15 @@
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\rate.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\slider.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\table.js" />
-    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\tableFilter\tableFilter.js" />
+    <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\transfer.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\tree.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\upload.js" />
     <EmbeddedResource Include="wwwroot\lib\layui\lay\modules\util.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\layui\font\iconfont.woff2" />
+    <None Include="wwwroot\lib\layui\lay\modules\transfer.js" />
   </ItemGroup>
 
 

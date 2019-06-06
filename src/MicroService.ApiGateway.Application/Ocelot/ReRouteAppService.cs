@@ -13,6 +13,7 @@ namespace MicroService.ApiGateway.Ocelot
     public class ReRouteAppService : ApplicationService, IReRouteAppService
     {
         private readonly IReRouteRepository _reRouteRepository;
+
         public ReRouteAppService(
             IReRouteRepository reRouteRepository)
         {
@@ -49,7 +50,7 @@ namespace MicroService.ApiGateway.Ocelot
             reRoute.UpstreamHost = routeDto.UpstreamHost;
 
             reRoute.ModifyRouteInfo(routeDto.ReRouteName, routeDto.DownstreamPathTemplate, 
-                routeDto.UpstreamPathTemplate, routeDto.UpstreamHttpMethod.JoinAsString(";"));
+                routeDto.UpstreamPathTemplate, routeDto.UpstreamHttpMethod, routeDto.DownstreamHostAndPorts);
             ApplyReRouteOptions(reRoute, routeDto);
 
             reRoute = await _reRouteRepository.UpdateAsync(reRoute, true);
@@ -59,8 +60,13 @@ namespace MicroService.ApiGateway.Ocelot
 
         [HttpGet]
         [Route("Get")]
-        public async Task<ReRouteDto> GetAsync(int routeId)
+        public async Task<ReRouteDto> GetAsync(long routeId)
         {
+            if(routeId == 0)
+            {
+                return new ReRouteDto();
+            }
+
             var reRoute = await _reRouteRepository.GetByReRouteIdAsync(routeId);
 
             return ObjectMapper.Map<ReRoute, ReRouteDto>(reRoute);
@@ -79,7 +85,7 @@ namespace MicroService.ApiGateway.Ocelot
         [Route("GetList")]
         public async Task<ListResultDto<ReRouteDto>> GetListAsync()
         {
-            var reroutes = await _reRouteRepository.GetListAsync();
+            var reroutes = await _reRouteRepository.GetListAsync(true);
 
             return new ListResultDto<ReRouteDto>(ObjectMapper.Map<List<ReRoute>, List<ReRouteDto>>(reroutes));
         }
@@ -95,97 +101,32 @@ namespace MicroService.ApiGateway.Ocelot
 
         protected virtual void ApplyReRouteOptions(ReRoute reRoute, ReRouteDto routeDto)
         {
+            reRoute.SetDownstreamHeader(routeDto.DownstreamHeaderTransform);
+            reRoute.SetQueriesParamter(routeDto.AddQueriesToRequest);
+            reRoute.SetRequestClaims(routeDto.AddClaimsToRequest);
+            reRoute.SetRequestHeader(routeDto.AddHeadersToRequest);
+            reRoute.SetRouteClaims(routeDto.RouteClaimsRequirement);
+            reRoute.SetUpstreamHeader(routeDto.UpstreamHeaderTransform);
 
+            reRoute.AuthenticationOptions.ApplyAuthOptions(routeDto.AuthenticationOptions.AuthenticationProviderKey, routeDto.AuthenticationOptions.AllowedScopes);
 
-            reRoute.AuthenticationOptions.SetOptions(routeDto.AuthenticationOptions.AuthenticationProviderKey, routeDto.AuthenticationOptions.AllowedScopes.ToArray());
-
-            reRoute.CacheOptions.SetCacheOption(routeDto.FileCacheOptions.TtlSeconds, routeDto.FileCacheOptions.Region);
+            reRoute.CacheOptions.ApplyCacheOption(routeDto.FileCacheOptions.TtlSeconds, routeDto.FileCacheOptions.Region);
 
             reRoute.HttpHandlerOptions.ApplyAllowAutoRedirect(routeDto.HttpHandlerOptions.AllowAutoRedirect);
             reRoute.HttpHandlerOptions.ApplyCookieContainer(routeDto.HttpHandlerOptions.UseCookieContainer);
             reRoute.HttpHandlerOptions.ApplyHttpProxy(routeDto.HttpHandlerOptions.UseProxy);
             reRoute.HttpHandlerOptions.ApplyHttpTracing(routeDto.HttpHandlerOptions.UseTracing);
 
-            reRoute.LoadBalancerOptions.SetLoadBalancerOptions(routeDto.LoadBalancerOptions.Type, routeDto.LoadBalancerOptions.Key, routeDto.LoadBalancerOptions.Expiry);
+            reRoute.LoadBalancerOptions.ApplyLoadBalancerOptions(routeDto.LoadBalancerOptions.Type, routeDto.LoadBalancerOptions.Key, routeDto.LoadBalancerOptions.Expiry);
 
-            reRoute.QoSOptions.SetQosOption(routeDto.QoSOptions.ExceptionsAllowedBeforeBreaking, routeDto.QoSOptions.DurationOfBreak, routeDto.QoSOptions.TimeoutValue);
+            reRoute.QoSOptions.ApplyQosOptions(routeDto.QoSOptions.ExceptionsAllowedBeforeBreaking, routeDto.QoSOptions.DurationOfBreak, routeDto.QoSOptions.TimeoutValue);
 
             reRoute.RateLimitOptions.ApplyRateLimit(routeDto.RateLimitOptions.EnableRateLimiting);
             reRoute.RateLimitOptions.SetPeriodTimespan(routeDto.RateLimitOptions.Period, routeDto.RateLimitOptions.PeriodTimespan, routeDto.RateLimitOptions.Limit);
-            reRoute.RateLimitOptions.AddClientWhileList(routeDto.RateLimitOptions.ClientWhitelist.ToArray());
+            reRoute.RateLimitOptions.SetClientWhileList(routeDto.RateLimitOptions.ClientWhitelist);
 
-            reRoute.SecurityOptions.AddAllowIpList(routeDto.SecurityOptions.IPAllowedList.ToArray());
-            reRoute.SecurityOptions.AddBlockIpList(routeDto.SecurityOptions.IPBlockedList.ToArray());
-
-            if(routeDto.DownstreamHeaderTransform != null)
-            {
-                foreach(var kvalue in routeDto.DownstreamHeaderTransform)
-                {
-                    var headers = new Headers(reRoute.ReRouteId);
-                    headers.SetHeader(kvalue.Key, kvalue.Value);
-                    reRoute.AddDownStreamHeader(headers);
-                }
-            }
-
-            if (routeDto.DownstreamHostAndPorts != null)
-            {
-                foreach (var hostAndPortDto in routeDto.DownstreamHostAndPorts)
-                {
-                    var hostAndPort = new HostAndPort(reRoute.ReRouteId);
-                    hostAndPort.SetHostAndPort(hostAndPortDto.Host, hostAndPortDto.Port);
-                    reRoute.AddDownStreamHostAndPort(hostAndPort);
-                }
-            }
-
-            if (routeDto.AddClaimsToRequest != null)
-            {
-                foreach (var kvalue in routeDto.AddClaimsToRequest)
-                {
-                    var headers = new Headers(reRoute.ReRouteId);
-                    headers.SetHeader(kvalue.Key, kvalue.Value);
-                    reRoute.AddRequestClaim(headers);
-                }
-            }
-
-            if (routeDto.AddHeadersToRequest != null)
-            {
-                foreach (var kvalue in routeDto.AddHeadersToRequest)
-                {
-                    var headers = new Headers(reRoute.ReRouteId);
-                    headers.SetHeader(kvalue.Key, kvalue.Value);
-                    reRoute.AddRequestHeader(headers);
-                }
-            }
-
-            if (routeDto.AddQueriesToRequest != null)
-            {
-                foreach (var kvalue in routeDto.AddQueriesToRequest)
-                {
-                    var headers = new Headers(reRoute.ReRouteId);
-                    headers.SetHeader(kvalue.Key, kvalue.Value);
-                    reRoute.AddRequestQueries(headers);
-                }
-            }
-
-            if (routeDto.RouteClaimsRequirement != null)
-            {
-                foreach (var kvalue in routeDto.RouteClaimsRequirement)
-                {
-                    var headers = new Headers(reRoute.ReRouteId);
-                    headers.SetHeader(kvalue.Key, kvalue.Value);
-                    reRoute.AddRequirementCalim(headers);
-                }
-            }
-
-            if (routeDto.UpstreamHeaderTransform != null)
-            {
-                foreach (var kvalue in routeDto.UpstreamHeaderTransform)
-                {
-                    var headers = new Headers(reRoute.ReRouteId);
-                    headers.SetHeader(kvalue.Key, kvalue.Value);
-                    reRoute.AddUpStreamHeader(headers);
-                }
-            }
+            reRoute.SecurityOptions.SetAllowIpList(routeDto.SecurityOptions.IPAllowedList);
+            reRoute.SecurityOptions.SetBlockIpList(routeDto.SecurityOptions.IPBlockedList);
         }
     }
 }

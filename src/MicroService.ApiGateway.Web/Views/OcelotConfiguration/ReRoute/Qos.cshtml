@@ -1,3 +1,35 @@
-﻿@using MicroService.ApiGateway.Ocelot.Dto
-@model ReRouteDto
+﻿<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">负载均衡算法</label>
+        <div class="layui-input-inline">
+            <select name="Type">
+                <option value="LeastConnection">总是发往空闲服务器</option>
+                <option value="RoundRobin">请求轮询发送</option>
+                <option value="NoLoadBalance">请求发往首个服务器</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">最大异常请求</label>
+        <div class="layui-input-line ocelot-block">
+            <input type="text" name="ExceptionsAllowedBeforeBreaking" class="layui-input ocelot-line-input" autocomplete="off"
+                   id="ExceptionsAllowedBeforeBreaking" lay-verfy="number">
+        </div>
+    </div>
+</div>
 
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">熔断时间(单位:s)</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="DurationOfBreak" class="layui-input" autocomplete="off"
+               id="DurationOfBreak" lay-verfy="number">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">超时时间(单位:s)</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="TimeoutValue" class="layui-input" autocomplete="off"
+               id="TimeoutValue" lay-verfy="number">
+    </div>
+</div>

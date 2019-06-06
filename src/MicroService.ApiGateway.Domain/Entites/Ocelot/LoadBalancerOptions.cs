@@ -18,7 +18,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
             ItemId = itemId;
         }
 
-        public void SetLoadBalancerOptions(string type, string key, int? expiry)
+        public void ApplyLoadBalancerOptions(string type, string key, int? expiry)
         {
             Type = type;
             Key = key;

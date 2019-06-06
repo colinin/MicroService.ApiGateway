@@ -1,0 +1,39 @@
+﻿<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">客户端白名单</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="ClientWhitelist" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
+               id="ClientWhitelist" placeholder="格式 127.0.0.1">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">最大允许次数</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="Limit" class="layui-input" autocomplete="off"
+               id="Limit" lay-verfy="number">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">重试时间(单位:s)</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="PeriodTimespan" class="layui-input" autocomplete="off"
+               id="PeriodTimespan" lay-verfy="number">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">限制时段</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="Period" class="layui-input" autocomplete="off"
+               id="Period" placeholder="示例 1s, 5m, 1h, 1d">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">限流配置</label>
+    <div class="layui-input-inline ocelot-line-input">
+        <input type="checkbox" id="EnableRateLimiting" name="EnableRateLimiting" title="启用流量控制">
+    </div>
+</div>
+

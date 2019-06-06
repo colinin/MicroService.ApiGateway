@@ -22,7 +22,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
             Initl();
         }
 
-        public void SetRateLimitOptions(string clientHeader, string excepMessage, int? httpStatusCode = 429)
+        public void ApplyRateLimitOptions(string clientHeader, string excepMessage, int? httpStatusCode = 429)
         {
             DisableRateLimitHeaders = true;
             ClientIdHeader = clientHeader;

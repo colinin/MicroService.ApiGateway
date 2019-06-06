@@ -6,6 +6,7 @@
         elem: '#ReRoutesTable'
         , id: "routeTable"
         , toolbar: '#toolbarOpera'
+        , height: '740px'
         , page: true
         , limit: 100
         , limits: [50, 100, 200, 500, 1000]
@@ -23,8 +24,9 @@
         }
         , url: '../../ReRoute/GetPagedList'
         , cols: [[
-            { type: 'checkbox', fixed: 'left' }
-            , { field: 'upstreamPathTemplate', title: '上游请求地址', width: 130, unresize: true}
+            { type: 'radio', fixed: 'left' }
+            , { field: 'reRouteName', title: '路由名称', width: 130 }
+            , { field: 'upstreamPathTemplate', title: '上游请求地址', width: 130 }
             , {
                 field: 'upstreamHttpMethod',
                 title: '上游请求方式',
@@ -91,9 +93,9 @@
             , {
                 field: 'enableRateLimiting',
                 title: '是否限流',
-                width: 100,
+                width: 150,
                 templet: function (d) {
-                    return '<input type="checkbox" title="是否限流" {{ d.rateLimitOptions.enableRateLimiting ? "checked" : "" }}>';
+                    return '<input type="checkbox" disabled title="是否限流"  {{ d.rateLimitOptions.enableRateLimiting ? "checked" : "" }}>';
                 }
             }
             , {
@@ -115,23 +117,7 @@
         }
     });
 
-    table.on('row(reroute)', function (obj) {
-        obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');//选中行样式
-        obj.tr.find('input[type="checkbox"]').prop("checked", true);
-        var index = obj.tr.data('index')
-        var thisData = table.cache.tableName;//tableName 表名
-        //重置数据单选属性
-        layui.each(thisData, function (i, item) {
-            if (index === i) {
-                item.LAY_CHECKED = true;
-            } else {
-                delete item.LAY_CHECKED;
-            }
-        });
-        form.render('checkbox');
-    });
-
-    table.on('checkbox(reroute)', function (obj) {
+    table.on('radio(reroute)', function (obj) {
         var checkStatus = table.checkStatus('routeTable');
         if (checkStatus.data.length === 1) {
             $('.layui-btn-disabled').removeAttr('disabled');
@@ -146,28 +132,60 @@
     });
 
     table.on('toolbar(reroute)', function (obj) {
-        var checkStatus = table.checkStatus(obj.config.id);
+        var checkStatus = table.checkStatus('routeTable');
         switch (obj.event) {
+            case 'refresh':
+                refreshReRouteTable(1);
+                break;
             case 'add':
                 /// TODO:增加路由
                 layer.open({
                     type: 2,
                     title: '增加路由',
                     scrollbar: false,
-                    area: ['1024px', '700px'],
-                    content: 'ReRoute' //iframe的url
+                    area: ['920px', '600px'],
+                    content: 'ReRoute'
                 }); 
                 break;
             case 'edit':
-                layer.msg('编辑');
+                layer.open({
+                    type: 2,
+                    title: '编辑路由',
+                    scrollbar: false,
+                    area: ['920px', '600px'],
+                    content: 'ReRoute',
+                    success: function (layero, index) {
+                        var body = layer.getChildFrame('body', index);
+                        body.find('#ReRouteId').val(checkStatus.data[0].reRouteId);
+                    }
+                }); 
                 break;
             case 'remove':
-                layer.msg('删除选择');
+                abp.message.confirm("请确认是否继续", '将删除选定的路由', function (result) {
+                    if (result) {
+                        // TODO: 删除选择的路由
+                    }
+                });
                 break;
             case 'removeAll':
-                abp.message.info("删除所有");
+                abp.message.confirm("请确认是否继续", '将删除所有路由', function (result) {
+                    if (result) {
+                        // TODO: 删除所有路由
+                    }
+                });
                 //layer.msg('删除所有');
                 break;
         };
     });
+
+    function refreshReRouteTable(pageNumber) {
+        if (!pageNumber) {
+            pageNumber = 1;
+        }
+        reRouteTable.reload({
+            page: {
+                curr: pageNumber
+            }
+        });
+    }
 });

@@ -1,20 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using Volo.Abp.MicroService.Json.Newtonsoft;
 
 namespace MicroService.ApiGateway.Ocelot.Dto
 {
     public class ReRouteDto
     {
+        public int Id { get; set; }
+        
+        [JsonConverter(typeof(AbpHexLongConverter))]
         public long ReRouteId { get; set; }
+        public string ConcurrencyStamp { get; set; }
         public string ReRouteName { get; set; }
         public string DownstreamPathTemplate { get; set; }
         public string UpstreamPathTemplate { get; set; }
-        public List<string> UpstreamHttpMethod { get; set; }
-        public Dictionary<string, string> AddHeadersToRequest { get; set; }
-        public Dictionary<string, string> UpstreamHeaderTransform { get; set; }
-        public Dictionary<string, string> DownstreamHeaderTransform { get; set; }
-        public Dictionary<string, string> AddClaimsToRequest { get; set; }
-        public Dictionary<string, string> RouteClaimsRequirement { get; set; }
-        public Dictionary<string, string> AddQueriesToRequest { get; set; }
+        public string UpstreamHttpMethod { get; set; }
+        public string AddHeadersToRequest { get; set; }
+        public string UpstreamHeaderTransform { get; set; }
+        public string DownstreamHeaderTransform { get; set; }
+        public string AddClaimsToRequest { get; set; }
+        public string RouteClaimsRequirement { get; set; }
+        public string AddQueriesToRequest { get; set; }
         public string RequestIdKey { get; set; }
         public CacheOptionsDto FileCacheOptions { get; set; }
         public bool ReRouteIsCaseSensitive { get; set; }
@@ -25,10 +31,10 @@ namespace MicroService.ApiGateway.Ocelot.Dto
         public RateLimitRuleDto RateLimitOptions { get; set; }
         public AuthenticationOptionsDto AuthenticationOptions { get; set; }
         public HttpHandlerOptionsDto HttpHandlerOptions { get; set; }
-        public List<HostAndPortDto> DownstreamHostAndPorts { get; set; }
+        public string DownstreamHostAndPorts { get; set; }
         public string UpstreamHost { get; set; }
         public string Key { get; set; }
-        public List<string> DelegatingHandlers { get; set; }
+        public string DelegatingHandlers { get; set; }
         public int? Priority { get; set; }
         public int? Timeout { get; set; }
         public bool DangerousAcceptAnyServerCertificateValidator { get; set; }
@@ -36,15 +42,6 @@ namespace MicroService.ApiGateway.Ocelot.Dto
 
         public ReRouteDto()
         {
-            UpstreamHttpMethod = new List<string>();
-            DownstreamHostAndPorts = new List<HostAndPortDto>();
-            DelegatingHandlers = new List<string>();
-            AddHeadersToRequest = new Dictionary<string, string>();
-            UpstreamHeaderTransform = new Dictionary<string, string>();
-            DownstreamHeaderTransform = new Dictionary<string, string>();
-            AddClaimsToRequest = new Dictionary<string, string>();
-            RouteClaimsRequirement = new Dictionary<string, string>();
-            AddQueriesToRequest = new Dictionary<string, string>();
             FileCacheOptions = new CacheOptionsDto();
             QoSOptions = new QosOptionsDto();
             LoadBalancerOptions = new LoadBalancerOptionsDto();

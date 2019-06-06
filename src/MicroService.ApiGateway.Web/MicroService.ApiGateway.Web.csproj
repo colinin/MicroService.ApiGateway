@@ -59,6 +59,7 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
+    <Folder Include="TagHelpers\Bootstrap\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
 

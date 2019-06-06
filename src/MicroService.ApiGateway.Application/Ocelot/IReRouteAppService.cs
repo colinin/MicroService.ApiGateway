@@ -14,7 +14,7 @@ namespace MicroService.ApiGateway.Ocelot
 
         Task<ReRouteDto> GetByRouteNameAsync(string routeName);
 
-        Task<ReRouteDto> GetAsync(int routeId);
+        Task<ReRouteDto> GetAsync(long routeId);
 
         Task<ReRouteDto> CreateAsync(ReRouteDto routeDto);
 

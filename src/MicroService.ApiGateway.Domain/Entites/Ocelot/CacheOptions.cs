@@ -17,7 +17,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
             ReRouteId = rerouteId;
         }
 
-        public void SetCacheOption(int? ttl, string region)
+        public void ApplyCacheOption(int? ttl, string region)
         {
             TtlSeconds = ttl;
             Region = region;

@@ -24,26 +24,11 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         /// 下游Http方法列表,分号间隔
         /// </summary>
         public virtual string UpstreamHttpMethod { get; protected set; }
-        /// <summary>
-        /// 下游请求头
-        /// </summary>
         public virtual string AddHeadersToRequest { get; protected set; }
-        /// <summary>
-        /// 上游请求头变更
-        /// </summary>
         public virtual string UpstreamHeaderTransform { get; protected set; }
-        /// <summary>
-        /// 下游请求头变更
-        /// </summary>
         public virtual string DownstreamHeaderTransform { get; protected set; }
-        /// <summary>
-        /// 添加请求令牌
-        /// </summary>
         public virtual string AddClaimsToRequest { get; protected set; }
         public virtual string RouteClaimsRequirement { get; protected set; }
-        /// <summary>
-        /// 添加请求参数
-        /// </summary>
         public virtual string AddQueriesToRequest { get; protected set; }
         public virtual string RequestIdKey { get; set; }
         public virtual CacheOptions CacheOptions { get; protected set; }
@@ -69,56 +54,52 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 
         }
 
-        public ReRoute(long rerouteId, string routeName, string downPath, string upPath, string upMethod)
+        public ReRoute(long rerouteId, string routeName, string downPath, string upPath, string upMethod, string downHost)
         {
             ReRouteId = rerouteId;
-            ModifyRouteInfo(routeName, downPath, upPath, upMethod);
+            ModifyRouteInfo(routeName, downPath, upPath, upMethod, downHost);
             InitlizaReRoute();
         }
 
-        public void ModifyRouteInfo(string routeName, string downPath, string upPath, string upMethod)
+        public void ModifyRouteInfo(string routeName, string downPath, string upPath, string upMethod, string downHost)
         {
             ReRouteName = routeName;
             DownstreamPathTemplate = downPath;
             UpstreamPathTemplate = upPath;
             UpstreamHttpMethod = upMethod;
+            DownstreamHostAndPorts = downHost;
         }
 
-        public void AddRequestHeader(Headers headers)
+        public void SetQueriesParamter(string value)
         {
-            AddHeadersToRequest += $"{headers.Key}:{headers.Value};";
+            AddQueriesToRequest = value;
         }
 
-        public void AddUpStreamHeader(Headers headers)
+        public void SetRouteClaims(string value)
         {
-            UpstreamHeaderTransform += $"{headers.Key}:{headers.Value};";
+            RouteClaimsRequirement = value;
         }
 
-        public void AddDownStreamHeader(Headers headers)
+        public void SetRequestClaims(string value)
         {
-            DownstreamHeaderTransform += $"{headers.Key}:{headers.Value};";
+            AddClaimsToRequest = value;
         }
 
-        public void AddRequestClaim(Headers headers)
+        public void SetDownstreamHeader(string value)
         {
-            AddClaimsToRequest += $"{headers.Key}:{headers.Value};";
+            DownstreamHeaderTransform = value;
         }
 
-        public void AddRequirementCalim(Headers headers)
+        public void SetUpstreamHeader(string value)
         {
-            RouteClaimsRequirement += $"{headers.Key}:{headers.Value};";
+            UpstreamHeaderTransform = value;
         }
 
-        public void AddRequestQueries(Headers headers)
+        public void SetRequestHeader(string value)
         {
-            AddQueriesToRequest += $"{headers.Key}:{headers.Value};";
+            AddHeadersToRequest = value;
         }
 
-        public void AddDownStreamHostAndPort(HostAndPort hostAndPort)
-        {
-            DownstreamHostAndPorts += $"{hostAndPort.Host}:{hostAndPort.Port};";
-        }
-        
         private void InitlizaReRoute()
         {
             QoSOptions = new QoSOptions(ReRouteId);

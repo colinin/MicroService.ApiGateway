@@ -1,23 +1,26 @@
 ﻿using MicroService.ApiGateway.Ocelot;
 using MicroService.ApiGateway.Ocelot.Dto;
 using Microsoft.AspNetCore.Mvc;
+using Ocelot.Configuration.Repository;
 using System.Threading.Tasks;
-using Volo.Abp.AspNetCore.Mvc;
 
 namespace MicroService.ApiGateway.Controllers.OcelotView
 {
-    [Route("Ocelot/Configuration")]
-    public class OcelotConfigurationController : AbpController
+    [Route("[controller]")]
+    public class OcelotConfigurationController : OcelotControllerBase
     {
         private readonly IGlobalConfigurationAppService _globalConfigurationAppService;
         private readonly IReRouteAppService _reRouteAppService;
+        private readonly IFileConfigurationRepository _fileConfigurationRepository;
 
         public OcelotConfigurationController(
             IGlobalConfigurationAppService globalConfigurationAppService,
-            IReRouteAppService reRouteAppService)
+            IReRouteAppService reRouteAppService,
+            IFileConfigurationRepository fileConfigurationRepository)
         {
             _globalConfigurationAppService = globalConfigurationAppService;
             _reRouteAppService = reRouteAppService;
+            _fileConfigurationRepository = fileConfigurationRepository;
         }
         [HttpGet]
         [Route("Global")]
@@ -25,7 +28,7 @@ namespace MicroService.ApiGateway.Controllers.OcelotView
         {
             var model = await _globalConfigurationAppService.GetAsync();
             model = model ?? new GlobalConfigurationDto();
-            return View("/Views/OcelotConfiguration/Global.cshtml", model);
+            return View(model);
         }
 
         [HttpPost]
@@ -47,32 +50,21 @@ namespace MicroService.ApiGateway.Controllers.OcelotView
         [Route("ReRoutes")]
         public async Task<IActionResult> ReRoutes()
         {
-            return await Task.FromResult(View("/Views/OcelotConfiguration/ReRoutes.cshtml"));
+            return await Task.FromResult(View());
         }
-
+        
         [HttpGet]
         [Route("ReRoute")]
-        public async Task<IActionResult> ReRoute()
+        public async Task<IActionResult> ReRoute(long routeId)
         {
-            return await Task.FromResult(View("/Views/OcelotConfiguration/ReRoute.cshtml", new ReRouteDto()));
-        }
+            if(routeId == 0)
+            {
+                return await Task.FromResult(View(new ReRouteDto()));
+            }
 
-        [HttpGet]
-        [Route("ReRouteById")]
-        public async Task<IActionResult> ReRoute(int reRouteId)
-        {
-            var reRouteDto = await _reRouteAppService.GetAsync(reRouteId);
+            var reRouteDto = await _reRouteAppService.GetAsync(routeId);
 
-            return await Task.FromResult(View("/Views/OcelotConfiguration/ReRoute.cshtml", reRouteDto));
-        }
-
-        [HttpGet]
-        [Route("ReRouteByName")]
-        public async Task<IActionResult> ReRoute(string routeName)
-        {
-            var reRouteDto = await _reRouteAppService.GetByRouteNameAsync(routeName);
-
-            return await Task.FromResult(View("/Views/OcelotConfiguration/ReRoute.cshtml", reRouteDto));
+            return await Task.FromResult(View(reRouteDto));
         }
 
         [HttpPost]
@@ -81,7 +73,7 @@ namespace MicroService.ApiGateway.Controllers.OcelotView
         {
             ReRouteDto reRouteDto;
 
-            if (routeDto.ReRouteId != 0)
+            if (routeDto.ReRouteId == 0)
             {
                 reRouteDto = await _reRouteAppService.CreateAsync(routeDto);
             }
@@ -90,7 +82,14 @@ namespace MicroService.ApiGateway.Controllers.OcelotView
                 reRouteDto = await _reRouteAppService.UpdateAsync(routeDto);
             }
 
-            return RedirectToAction(nameof(ReRoute), reRouteDto.ReRouteId);
+            return RedirectToAction("ReRoute", "OcelotConfiguration", new { routeId = reRouteDto.ReRouteId });
+        }
+
+        [HttpGet]
+        [Route("GetSource")]
+        public async Task<IActionResult> GetSource()
+        {
+            return Json(await  _fileConfigurationRepository.Get());
         }
     }
 }

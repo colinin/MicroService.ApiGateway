@@ -1,7 +1,11 @@
-﻿namespace MicroService.ApiGateway.Ocelot.Dto
+﻿using Newtonsoft.Json;
+using Volo.Abp.MicroService.Json.Newtonsoft;
+
+namespace MicroService.ApiGateway.Ocelot.Dto
 {
     public class GlobalConfigurationDto
     {
+        [JsonConverter(typeof(AbpHexLongConverter))]
         public long ItemId { get;  set; }
         public string RequestIdKey { get; set; }
 

@@ -1,3 +1,32 @@
-﻿@using MicroService.ApiGateway.Ocelot.Dto
-@model ReRouteDto
+﻿<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">授权标识</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="AuthenticationProviderKey" class="layui-input" autocomplete="off"
+               id="AuthenticationProviderKey">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">授权范围</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="AllowedScopes" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
+               id="AllowedScopes" placeholder="格式 profile">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">IP白名单</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="IpAllowedList" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
+               id="IpAllowedList" placeholder="格式 127.0.0.1">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">IP黑名单</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="IpBlockedList" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
+               id="IpBlockedList" placeholder="格式 127.0.0.1">
+    </div>
+</div>
 

@@ -1,22 +1,14 @@
-﻿@using MicroService.ApiGateway.Ocelot.Dto
-@model ReRouteDto
-@{
-    var items = new List<string>();
-    items.Add("测试一");
-    items.Add("测试二");
-}
-
-<div class="layui-form-item">
+﻿<div class="layui-form-item">
     <div class="layui-inline">
         <label class="layui-form-label ocelot-line">路由名称</label>
         <div class="layui-input-inline ocelot-line-input">
-            <input type="text" autocomplete="off" l-verfy="required" asp-for="ReRouteName" class="layui-input">
+            <input type="text" autocomplete="off" lay-verify="required" id="ReRouteName" name="ReRouteName" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
         <label class="layui-form-label ocelot-line">服务名称</label>
         <div class="layui-input-inline  ocelot-line-input">
-            <input type="text" autocomplete="off" l-verfy="required" asp-for="ServiceName" class="layui-input">
+            <input type="text" autocomplete="off" id="ServiceName" name="ServiceName" class="layui-input">
         </div>
     </div>
 </div>
@@ -25,13 +17,28 @@
     <div class="layui-inline">
         <label class="layui-form-label ocelot-line">上游路径</label>
         <div class="layui-input-inline  ocelot-line-input">
-            <input type="text" autocomplete="off" l-verfy="required" asp-for="UpstreamPathTemplate" class="layui-input">
+            <input type="text" autocomplete="off" lay-verify="required" id="UpstreamPathTemplate" name="UpstreamPathTemplate" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
         <label class="layui-form-label ocelot-line">下游路径</label>
         <div class="layui-input-inline  ocelot-line-input">
-            <input type="text" autocomplete="off" l-verfy="required" asp-for="DownstreamPathTemplate" class="layui-input">
+            <input type="text" autocomplete="off" lay-verify="required" id="DownstreamPathTemplate" name="DownstreamPathTemplate" class="layui-input">
+        </div>
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">下游协议</label>
+        <div class="layui-input-inline ocelot-line-input">
+            <input type="text" name="DownstreamScheme" id="DownstreamScheme" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">请求标识</label>
+        <div class="layui-input-inline  ocelot-line-input">
+            <input type="text" name="RequestIdKey" id="RequestIdKey" autocomplete="off" class="layui-input">
         </div>
     </div>
 </div>
@@ -39,10 +46,22 @@
 <div class="layui-form-item">
     <label class="layui-form-label ocelot-line">上游请求方式</label>
     <div class="layui-input-block ocelot-block">
-        <b-taginput b-tag-items="@items" id="UpstreamHttpMethodItems" class="layui-input"
-                   lay-verify="required" name="UpstreamHttpMethodItems" placeholder="可选:POST;GET;PATCH;PUT" />
+        <input name="UpstreamHttpMethod" id="UpstreamHttpMethod" tgclass="ocelot-line-input" class="tags-input"
+               placeholder="格式 可选:POST;GET;PATCH;PUT" />
+    </div>
+</div>
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">下游请求地址</label>
+    <div class="layui-input-block ocelot-block">
+        <input name="DownstreamHostAndPorts" id="DownstreamHostAndPorts" tgclass="ocelot-line-input" class="tags-input"
+               lay-verify="required" placeholder="格式 localhost:8080">
+    </div>
+</div>
 
-        @*<taginput type="text" autocomplete="off" tag-id="UpstreamHttpMethod" tag-class="layui-input"
-            tag-items="@Model.UpstreamHttpMethod" tag-placeholder="输入" tag-required="true" />*@
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">SSL相关</label>
+    <div class="layui-input-inline ocelot-line-input">
+        <input type="checkbox" id="CertificateValidator" name="CertificateValidator" title="忽略SSL警告">
     </div>
 </div>

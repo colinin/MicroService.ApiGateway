@@ -22,7 +22,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
             ItemId = itemId;
         }
 
-        public void SetQosOption(int? exceptionBreaking, int? duration, int? timeout)
+        public void ApplyQosOptions(int? exceptionBreaking, int? duration, int? timeout)
         {
             ExceptionsAllowedBeforeBreaking = exceptionBreaking;
             DurationOfBreak = duration;

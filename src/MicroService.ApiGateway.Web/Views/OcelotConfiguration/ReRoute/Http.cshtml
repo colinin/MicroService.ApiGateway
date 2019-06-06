@@ -1,0 +1,39 @@
+﻿<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">上游请求头</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="UpstreamHeaderTransform" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
+            id="UpstreamHeaderTransform" placeholder="格式 Content-type:application/json">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">下游请求头</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="DownstreamHeaderTransform" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
+             id="DownstreamHeaderTransform" placeholder="格式 Content-type:application/json">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">添加请求头</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" name="AddHeadersToRequest" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
+             id="AddHeadersToRequest" placeholder="格式 Content-type:application/json">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">添加身份信息</label>
+    <div class="layui-input-block ocelot-block">
+        <input type="text" id="AddClaimsToRequest" name="AddClaimsToRequest" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
+            placeholder="格式 UserId:Claims[sub] > value[1] > |">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">添加请求参数</label>
+    <div class="layui-input-block ocelot-block">
+        <input name="AddQueriesToRequest" id="AddQueriesToRequest" class="tags-input" tgclass="ocelot-line-input"
+               placeholder="格式 key:value">
+    </div>
+</div>

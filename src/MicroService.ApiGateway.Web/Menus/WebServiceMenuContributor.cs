@@ -42,9 +42,9 @@ namespace MicroService.ApiGateway.Menus
         {
             var l = context.ServiceProvider.GetRequiredService<IStringLocalizer<ApiGatewayResource>>();
             var makeMenu = new ApplicationMenuItem("WebService.Menu.Ocelot", l["Side:Ocelot"], "#");
-            makeMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.Global", l["Side:Ocelot:Global"], "/Ocelot/Configuration/Global"));
+            makeMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.Global", l["Side:Ocelot:Global"], "/OcelotConfiguration/Global"));
 
-            makeMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.ReRoutes", l["Side:Ocelot:ReRoutes"], "/Ocelot/Configuration/ReRoutes"));
+            makeMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.ReRoutes", l["Side:Ocelot:ReRoutes"], "/OcelotConfiguration/ReRoutes"));
 
             context.Menu.Items.AddRange(new List<ApplicationMenuItem> { makeMenu });
 

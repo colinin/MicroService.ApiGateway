@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
+using Volo.Abp.MicroService.Json.Newtonsoft;
 
 namespace MicroService.ApiGateway.Ocelot.Dto
 {

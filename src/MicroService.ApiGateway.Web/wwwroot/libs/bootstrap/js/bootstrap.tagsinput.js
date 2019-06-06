@@ -48,12 +48,14 @@
 
 		this.isSelect = (element.tagName === 'SELECT');
 		this.multiple = (this.isSelect && element.hasAttribute('multiple'));
-		this.objectItems = options && options.itemValue;
+        this.objectItems = options && options.itemValue;
+        this.classText = element.hasAttribute('tgclass') ? this.$element.attr('tgclass') : '';
+        this.nameText = element.hasAttribute('name') ? this.$element.attr('name') : '';
 		this.placeholderText = element.hasAttribute('placeholder') ? this.$element.attr('placeholder') : '';
 		this.inputSize = Math.max(1, this.placeholderText.length);
 
 		this.$container = $('<div class="bootstrap-tagsinput"></div>');
-		this.$input = $('<input type="text" placeholder="' + this.placeholderText + '"/>').appendTo(this.$container);
+        this.$input = $('<input type="text" name="' + this.nameText + '" class="' + this.classText + '" placeholder="' + this.placeholderText + '"/>').appendTo(this.$container);
 
 		this.$element.before(this.$container);
 

@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Domain.Entities;
+﻿using System.Collections.Generic;
+using Volo.Abp.Domain.Entities;
 
 namespace MicroService.ApiGateway.Entites.Ocelot
 {
@@ -18,20 +19,14 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         {
             ReRouteId = rerouteId;
         }
-        public void AddAllowIpList(params string[] allowIpList)
+        public void SetAllowIpList(List<string> allowIpList)
         {
-            foreach(var ip in allowIpList)
-            {
-                IPAllowedList += ip + ";" ;
-            }
+            IPAllowedList = allowIpList.JoinAsString(",");
         }
 
-        public void AddBlockIpList(params string[] blockIpList)
+        public void SetBlockIpList(List<string> blockIpList)
         {
-            foreach (var ip in blockIpList)
-            {
-                IPBlockedList += ip + ";";
-            }
+            IPBlockedList = blockIpList.JoinAsString(",");
         }
     }
 }
