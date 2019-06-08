@@ -6,6 +6,7 @@
     "Welcome": "欢迎",
     "Side:Ocelot": "Ocelot网关",
     "Side:Ocelot:Global": "全局配置",
-    "Side:Ocelot:ReRoutes": "路由配置"
+    "Side:Ocelot:ReRoutes": "路由配置",
+    "Side:Ocelot:Source": "配置文件"
   }
 }

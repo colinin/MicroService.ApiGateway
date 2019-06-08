@@ -6,6 +6,7 @@
     "Welcome": "Welcome",
     "Side:Ocelot": "Ocelot ApiGateway",
     "Side:Ocelot:Global": "Global Config",
-    "Side:Ocelot:ReRoutes": "ReRoute Config"
+    "Side:Ocelot:ReRoutes": "ReRoute Config",
+    "Side:Ocelot:Source": "Ocelot source"
   }
 }

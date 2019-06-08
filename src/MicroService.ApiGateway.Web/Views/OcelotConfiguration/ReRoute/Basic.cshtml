@@ -50,6 +50,7 @@
                placeholder="格式 可选:POST;GET;PATCH;PUT" />
     </div>
 </div>
+
 <div class="layui-form-item">
     <label class="layui-form-label ocelot-line">下游请求地址</label>
     <div class="layui-input-block ocelot-block">
@@ -58,10 +59,18 @@
     </div>
 </div>
 
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">路由鉴权标识</label>
+    <div class="layui-input-block ocelot-block">
+        <input name="RouteClaimsRequirement" id="RouteClaimsRequirement" tgclass="ocelot-line-input" class="tags-input"
+               placeholder="格式 RoleId:10">
+    </div>
+</div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">SSL相关</label>
-    <div class="layui-input-inline ocelot-line-input">
-        <input type="checkbox" id="CertificateValidator" name="CertificateValidator" title="忽略SSL警告">
+    <label class="layui-form-label ocelot-line">其他选项</label>
+    <div class="layui-input-block">
+        <input type="checkbox" name="CertificateValidator" title="忽略SSL警告">
+        <input type="checkbox" name="CaseSensitive" title="区分大小写">
     </div>
 </div>

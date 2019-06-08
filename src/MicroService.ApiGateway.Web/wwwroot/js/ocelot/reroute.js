@@ -9,11 +9,12 @@
     let _reRouteEditService;
 
     form.on('submit(btnSave)', function (data) {
-        _reRouteEditService = $('#ReRouteId').val() == 0
+        console.log(data.field);
+        _reRouteEditService = data.field.ReRouteId == 0
             ? _reRouteRoot.create
             : _reRouteRoot.update;
         let submitDto = {
-            reRouteId: $('#ReRouteId').val(),
+            reRouteId: data.field.ReRouteId,
             reRouteName: data.field.ReRouteName,
             downstreamPathTemplate: data.field.DownstreamPathTemplate,
             upstreamPathTemplate: data.field.UpstreamPathTemplate,
@@ -23,24 +24,24 @@
             downstreamHeaderTransform: data.field.DownstreamHeaderTransform,
             downstreamHostAndPorts: data.field.DownstreamHostAndPorts,
             addClaimsToRequest: data.field.AddClaimsToRequest,
-            routeClaimsRequirement: "",
+            routeClaimsRequirement: data.field.RouteClaimsRequirement,
             addQueriesToRequest: data.field.AddQueriesToRequest,
             requestIdKey: data.field.RequestIdKey,
-            reRouteIsCaseSensitive: true,
+            reRouteIsCaseSensitive: data.field.CaseSensitive === 'on',
             serviceName: data.field.ServiceName,
             downstreamScheme: data.field.DownstreamScheme,
             httpHandlerOptions: {
-                allowAutoRedirect: true,
-                useCookieContainer: true,
-                useTracing: true,
-                useProxy: true
+                allowAutoRedirect: data.field.AllowAutoRedirect === "on",
+                useCookieContainer: data.field.UseCookieContainer === "on",
+                useTracing: data.field.UseTracing === "on",
+                useProxy: data.field.UseProxy === "on"
             },
             loadBalancerOptions: {
                 type: data.field.Type
             },
             rateLimitOptions: {
                 clientWhitelist: data.field.ClientWhitelist.split(","),
-                enableRateLimiting: $("input[name='EnableRateLimiting']:checked").val() === "on",
+                enableRateLimiting: data.field.EnableRateLimiting === "on",
                 limit: data.field.Limit,
                 period: data.field.Period,
                 periodTimespan: data.field.PeriodTimespan
@@ -58,7 +59,7 @@
                 allowedScopes: data.field.AllowedScopes.split(","),
                 authenticationProviderKey: data.field.AuthenticationProviderKey
             },
-            dangerousAcceptAnyServerCertificateValidator: $("input[name='CertificateValidator']:checked").val() === "on"
+            dangerousAcceptAnyServerCertificateValidator: data.field.CertificateValidator === "on"
         };
 
         _reRouteEditService(submitDto).done(function (result) {
@@ -87,12 +88,18 @@
                     'DownstreamScheme': result.downstreamScheme,
                     'RequestIdKey': result.requestIdKey,
                     'CertificateValidator': result.dangerousAcceptAnyServerCertificateValidator,
+                    'CaseSensitive': result.reRouteIsCaseSensitive,
+                    'RouteClaimsRequirement': result.routeClaimsRequirement,
                     //http
                     'UpstreamHeaderTransform': result.upstreamHeaderTransform,
                     'DownstreamHeaderTransform': result.downstreamHeaderTransform,
                     'AddHeadersToRequest': result.addHeadersToRequest,
                     'AddClaimsToRequest': result.addClaimsToRequest,
                     'AddQueriesToRequest': result.addQueriesToRequest,
+                    'AllowAutoRedirect': result.httpHandlerOptions.allowAutoRedirect,
+                    'UseCookieContainer': result.httpHandlerOptions.useCookieContainer,
+                    'UseProxy': result.httpHandlerOptions.useProxy,
+                    'UseTracing': result.httpHandlerOptions.useTracing,
                     //ratelimit
                     'ClientWhitelist': result.rateLimitOptions.clientWhitelist.join(','),
                     'EnableRateLimiting': result.rateLimitOptions.enableRateLimiting,

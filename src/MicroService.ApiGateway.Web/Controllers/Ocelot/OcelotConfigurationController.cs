@@ -86,10 +86,11 @@ namespace MicroService.ApiGateway.Controllers.OcelotView
         }
 
         [HttpGet]
-        [Route("GetSource")]
-        public async Task<IActionResult> GetSource()
+        [Route("Source")]
+        public async Task<IActionResult> Source()
         {
-            return Json(await  _fileConfigurationRepository.Get());
+            var ocelotConfiguration = await _fileConfigurationRepository.Get();
+            return View(ocelotConfiguration);
         }
     }
 }

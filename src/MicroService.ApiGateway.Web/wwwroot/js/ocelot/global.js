@@ -47,13 +47,13 @@
                 clientIdHeader: data.field.ClientIdHeader,
                 quotaExceededMessage: data.field.QuotaExceededMessage,
                 httpStatusCode: data.field.HttpStatusCode,
-                disableRateLimitHeaders: $("input[name='DisableRateLimitHeaders']:checked").val() === "on"
+                disableRateLimitHeaders: data.field.DisableRateLimitHeaders === "on"
             },
             httpHandlerOptions: {
-                allowAutoRedirect: $("input[name='AllowAutoRedirect']:checked").val() === "on",
-                useCookieContainer: $("input[name='UseCookieContainer']:checked").val() === "on",
-                useProxy: $("input[name='UseProxy']:checked").val() === "on",
-                useTracing: $("input[name='UseTracing']:checked").val() === "on"
+                allowAutoRedirect: data.field.AllowAutoRedirect === "on",
+                useCookieContainer: data.field.UseCookieContainer === "on",
+                useProxy: data.field.UseProxy === "on",
+                useTracing: data.field.UseTracing === "on"
             },
             loadBalancerOptions: {
                 type: data.field.Type

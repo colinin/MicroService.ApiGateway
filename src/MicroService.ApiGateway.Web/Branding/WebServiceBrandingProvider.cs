@@ -6,7 +6,7 @@ namespace MicroService.ApiGateway.Branding
     [Dependency(ReplaceServices = true)]
     public class WebServiceBrandingProvider : DefaultBrandingProvider
     {
-        public override string AppName => "微服务平台";
+        public override string AppName => "Ocelot配置中心";
 
         public override string LogoUrl => "/favicon.png";
     }

@@ -41,12 +41,14 @@ namespace MicroService.ApiGateway.Menus
         private async Task ConfigureSideMenuAsync(MenuConfigurationContext context)
         {
             var l = context.ServiceProvider.GetRequiredService<IStringLocalizer<ApiGatewayResource>>();
-            var makeMenu = new ApplicationMenuItem("WebService.Menu.Ocelot", l["Side:Ocelot"], "#");
-            makeMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.Global", l["Side:Ocelot:Global"], "/OcelotConfiguration/Global"));
+            var oceloteMenu = new ApplicationMenuItem("WebService.Menu.Ocelot", l["Side:Ocelot"], "#");
+            oceloteMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.Global", l["Side:Ocelot:Global"], "/OcelotConfiguration/Global"));
 
-            makeMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.ReRoutes", l["Side:Ocelot:ReRoutes"], "/OcelotConfiguration/ReRoutes"));
+            oceloteMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.ReRoutes", l["Side:Ocelot:ReRoutes"], "/OcelotConfiguration/ReRoutes"));
 
-            context.Menu.Items.AddRange(new List<ApplicationMenuItem> { makeMenu });
+            oceloteMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.Source", l["Side:Ocelot:Source"], "/OcelotConfiguration/Source"));
+
+            context.Menu.Items.AddRange(new List<ApplicationMenuItem> { oceloteMenu });
 
             await Task.CompletedTask;
         }

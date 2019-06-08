@@ -1,0 +1,17 @@
+﻿@using Ocelot.Responses;
+@using Ocelot.Configuration.File;
+@using Newtonsoft.Json;
+@model Response<FileConfiguration>
+
+@section scripts{
+    <script src="~/js/ocelot/source.js"></script>
+}
+@{ 
+    var defaultConfiguration = "{}";
+    var ocelotConfiguration = Model.IsError ? defaultConfiguration : JsonConvert.SerializeObject(Model.Data, Formatting.Indented);
+}
+
+<div class="layui-footer ocelot-footer">
+    <button class="layui-btn" id="btnDownload">导出Json配置</button>
+</div>
+<pre class="layui-code" id="ocelotConfiguration">@ocelotConfiguration</pre>
