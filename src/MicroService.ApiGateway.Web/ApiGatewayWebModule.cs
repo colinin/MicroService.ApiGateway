@@ -14,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
 using Ocelot.Configuration.Repository;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
 using Swashbuckle.AspNetCore.Swagger;
 using System.IdentityModel.Tokens.Jwt;
 using System.IO;
@@ -74,7 +76,7 @@ namespace MicroService.ApiGateway
 
             context.Services.AddSingleton<IFileConfigurationRepository, EfCoreFileConfigurationRepository>();
 
-            
+            context.Services.AddOcelot();
         }
 
         private void ConfigureBundling()
@@ -122,7 +124,6 @@ namespace MicroService.ApiGateway
                 options.Scope.Add(AuthenticationConsts.ScopeEmail);
                 options.Scope.Add(AuthenticationConsts.ScopeRoles);
                 options.Scope.Add(AuthenticationConsts.ScopeCustomProfile);
-                options.Scope.Add(AuthenticationConsts.ScopeMicroService);
                 options.Scope.Add(AuthenticationConsts.ScopeRefreshToken);
 
                 options.SaveTokens = true;
@@ -134,6 +135,12 @@ namespace MicroService.ApiGateway
                     NameClaimType = "name",
                     RoleClaimType = "role",
                 };
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(AuthenticationConsts.AdministrationPolicy,
+                    policy => policy.RequireRole(AuthenticationConsts.AdministrationRole));
             });
         }
 
@@ -234,6 +241,8 @@ namespace MicroService.ApiGateway
             app.UseAuditing();
 
             app.UseMvcWithDefaultRouteAndArea();
+
+            app.UseOcelot().Wait();
         }
     }
 }

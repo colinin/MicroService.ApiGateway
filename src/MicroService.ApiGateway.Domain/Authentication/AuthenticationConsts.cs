@@ -20,5 +20,8 @@ namespace MicroService.ApiGateway.Authentication
 
         public const string AccountLoginPage = "Account/Login";
         public const string AccountAccessDeniedPage = "/Account/AccessDenied/";
+
+        public const string AdministrationPolicy = "OcelotAdministrationPolicy";
+        public const string AdministrationRole = "OcelotAdmin";
     }
 }

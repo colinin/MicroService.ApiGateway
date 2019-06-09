@@ -30,6 +30,8 @@
             reRouteIsCaseSensitive: data.field.CaseSensitive === 'on',
             serviceName: data.field.ServiceName,
             downstreamScheme: data.field.DownstreamScheme,
+            key: data.field.AggregateKey,
+            priority: data.field.Priority,
             httpHandlerOptions: {
                 allowAutoRedirect: data.field.AllowAutoRedirect === "on",
                 useCookieContainer: data.field.UseCookieContainer === "on",
@@ -88,6 +90,8 @@
                     'DownstreamScheme': result.downstreamScheme,
                     'RequestIdKey': result.requestIdKey,
                     'CertificateValidator': result.dangerousAcceptAnyServerCertificateValidator,
+                    'AggregateKey': result.key,
+                    'Priority': result.priority,
                     'CaseSensitive': result.reRouteIsCaseSensitive,
                     'RouteClaimsRequirement': result.routeClaimsRequirement,
                     //http

@@ -58,8 +58,7 @@ namespace MicroService.ApiGateway.Ocelot.Configuration.Repository
         public async Task<Response> Set(FileConfiguration fileConfiguration)
         {
             // 不实现,从自己的微服务中去实现
-            await Task.CompletedTask;
-            return new OkResponse();
+            return await Task.FromResult(new OkResponse());
         }
     }
 }

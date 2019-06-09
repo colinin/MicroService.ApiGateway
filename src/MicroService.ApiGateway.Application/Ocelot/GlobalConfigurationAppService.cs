@@ -4,12 +4,11 @@ using MicroService.ApiGateway.Repositories;
 using MicroService.ApiGateway.Snowflake;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Volo.Abp.Application.Services;
 
 namespace MicroService.ApiGateway.Ocelot
 {
     [Route("GlobalConfiguration")]
-    public class GlobalConfigurationAppService : ApplicationService, IGlobalConfigurationAppService
+    public class GlobalConfigurationAppService : ApiGatewayApplicationServiceBase, IGlobalConfigurationAppService
     {
         private readonly IGlobalConfigRepository _globalConfigRepository;
         private readonly ISnowflakeIdGenerator _snowflakeIdGenerator;
@@ -35,6 +34,8 @@ namespace MicroService.ApiGateway.Ocelot
         [Route("Create")]
         public async Task<GlobalConfigurationDto> CreateAsync(GlobalConfigurationDto configurationDto)
         {
+            await CheckPolicyAsync();
+
             var globalConfiguration = new GlobalConfiguration(_snowflakeIdGenerator.NextId(), configurationDto.BaseUrl);
             globalConfiguration.RequestIdKey = configurationDto.RequestIdKey;
             globalConfiguration.DownstreamScheme = configurationDto.DownstreamScheme;
@@ -50,6 +51,8 @@ namespace MicroService.ApiGateway.Ocelot
         [Route("Update")]
         public async Task<GlobalConfigurationDto> UpdateAsync(GlobalConfigurationDto configurationDto)
         {
+            await CheckPolicyAsync();
+
             var globalConfiguration = await _globalConfigRepository.GetByItemIdAsync(configurationDto.ItemId);
 
             globalConfiguration.BaseUrl = configurationDto.BaseUrl;

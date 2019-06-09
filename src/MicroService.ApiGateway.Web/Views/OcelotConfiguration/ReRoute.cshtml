@@ -17,7 +17,7 @@
         <div class="layui-tab  layui-tab-brief" lay-filter="docDemoTabBrief">
             <ul class="layui-tab-title">
                 <li class="layui-this">基本设置</li>
-                <li>HTTP选项</li>
+                <li>HTTP相关</li>
                 <li>流量控制</li>
                 <li>服务质量</li>
                 <li>安全选项</li>
@@ -27,7 +27,7 @@
                     @await Html.PartialAsync("ReRoute/Basic")
                 </div>
                 <div class="layui-tab-item" role="tabpanel">
-                    @await Html.PartialAsync("ReRoute/Http")
+                    @await Html.PartialAsync("ReRoute/Handler")
                 </div>
                 <div class="layui-tab-item" role="tabpanel">
                     @await Html.PartialAsync("ReRoute/RateLimit")

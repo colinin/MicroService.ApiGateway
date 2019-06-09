@@ -19,5 +19,9 @@ namespace MicroService.ApiGateway.Ocelot
         Task<ReRouteDto> CreateAsync(ReRouteDto routeDto);
 
         Task<ReRouteDto> UpdateAsync(ReRouteDto routeDto);
+
+        Task DeleteAsync(long routeId);
+
+        Task RemoveAsync();
     }
 }

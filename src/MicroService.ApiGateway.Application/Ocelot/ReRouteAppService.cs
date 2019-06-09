@@ -5,12 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
 
 namespace MicroService.ApiGateway.Ocelot
 {
     [Route("ReRoute")]
-    public class ReRouteAppService : ApplicationService, IReRouteAppService
+    public class ReRouteAppService : ApiGatewayApplicationServiceBase, IReRouteAppService
     {
         private readonly IReRouteRepository _reRouteRepository;
 
@@ -24,6 +23,8 @@ namespace MicroService.ApiGateway.Ocelot
         [Route("Create")]
         public async Task<ReRouteDto> CreateAsync(ReRouteDto routeDto)
         {
+            await CheckPolicyAsync();
+
             var reRoute = ObjectMapper.Map<ReRouteDto, ReRoute>(routeDto);
 
             ApplyReRouteOptions(reRoute, routeDto);
@@ -37,6 +38,8 @@ namespace MicroService.ApiGateway.Ocelot
         [Route("Update")]
         public async Task<ReRouteDto> UpdateAsync(ReRouteDto routeDto)
         {
+            await CheckPolicyAsync();
+
             var reRoute = await _reRouteRepository.GetByReRouteIdAsync(routeDto.ReRouteId);
 
             reRoute.DangerousAcceptAnyServerCertificateValidator = routeDto.DangerousAcceptAnyServerCertificateValidator;
@@ -62,7 +65,7 @@ namespace MicroService.ApiGateway.Ocelot
         [Route("Get")]
         public async Task<ReRouteDto> GetAsync(long routeId)
         {
-            if(routeId == 0)
+            if (routeId == 0)
             {
                 return new ReRouteDto();
             }
@@ -97,6 +100,24 @@ namespace MicroService.ApiGateway.Ocelot
             var reroutesTuple = await _reRouteRepository.GetPagedListAsync(requestDto.SkipCount, requestDto.MaxResultCount);
 
             return new PagedResultDto<ReRouteDto>(reroutesTuple.total, ObjectMapper.Map<List<ReRoute>, List<ReRouteDto>>(reroutesTuple.routes));
+        }
+
+        [HttpDelete]
+        [Route("Delete")]
+        public async Task DeleteAsync(long routeId)
+        {
+            await CheckPolicyAsync();
+
+            await _reRouteRepository.DeleteAsync(x => x.ReRouteId.Equals(routeId));
+        }
+
+        [HttpDelete]
+        [Route("Remove")]
+        public async Task RemoveAsync()
+        {
+            await CheckPolicyAsync();
+
+            await _reRouteRepository.RemoveAsync();
         }
 
         protected virtual void ApplyReRouteOptions(ReRoute reRoute, ReRouteDto routeDto)

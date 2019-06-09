@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Collections.Generic;
 using Volo.Abp.MicroService.Json.Newtonsoft;
 
 namespace MicroService.ApiGateway.Ocelot.Dto
@@ -8,6 +7,11 @@ namespace MicroService.ApiGateway.Ocelot.Dto
     {
         public int Id { get; set; }
         
+        /// <remarks>
+        /// 类型 <see cref="AbpHexLongConverter"/> 为自定义的
+        /// Json格式转换器,它避免了JavaScript与C#对于Long数据
+        /// 类型的序列化数据精度丢失问题,自己实现一个就行了
+        /// </remarks>
         [JsonConverter(typeof(AbpHexLongConverter))]
         public long ReRouteId { get; set; }
         public string ConcurrencyStamp { get; set; }

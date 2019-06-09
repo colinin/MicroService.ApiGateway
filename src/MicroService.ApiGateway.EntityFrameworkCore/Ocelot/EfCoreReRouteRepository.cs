@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Threading;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Entities;
 using Volo.Abp.EntityFrameworkCore;
@@ -39,6 +41,18 @@ namespace MicroService.ApiGateway.Ocelot
             var total = await GetQueryable().LongCountAsync();
 
             return ValueTuple.Create(resultReRoutes, total);
+        }
+
+        public async Task RemoveAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var entityType = DbContext.Model.FindEntityType(typeof(ReRoute));
+            var tableName = entityType.Relational().TableName;
+
+            var sqlText = $"DELETE FROM @tableName";
+            var sqlParam = new List<object> { new { tableName } };
+
+            // TODO: Test
+            await DbContext.Database.ExecuteSqlCommandAsync(sqlText, sqlParam, cancellationToken);
         }
 
         public override IQueryable<ReRoute> WithDetails()

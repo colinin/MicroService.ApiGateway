@@ -2,6 +2,8 @@
     let table = layui.table,
         form = layui.form;
 
+    let _rerouteService = microService.apiGateway.ocelot.reRoute;
+
     let reRouteTable = table.render({
         elem: '#ReRoutesTable'
         , id: "routeTable"
@@ -32,28 +34,14 @@
                 title: '上游请求方式',
                 width: 200,
                 unresize: true,
-                sort: false,
-                templet: function (d) {
-                    if (typeof d.upstreamHttpMethod === 'array') {
-                        return d.upstreamHttpMethod.join(";")
-                    }
-                    return d.upstreamHttpMethod;
-                }
+                sort: false
             }
             , { field: 'downstreamPathTemplate', title: '下游跳转地址', width: 200 }
             , { field: 'downstreamScheme', title: '下游请求协议', width: 200}
             , {
                 field: 'downstreamHostAndPorts',
                 title: '下游服务地址',
-                width: 200,
-                templet: function (d) {
-                    if (typeof d.downstreamHostAndPorts === 'array') {
-                        var result = "";
-                        d.downstreamHostAndPorts.forEach(x => result += x.host + ":" + x.port + ";");
-                        return result;
-                    }
-                    return d.downstreamHostAndPorts;
-                }
+                width: 200
             }
             , { field: 'reRouteIsCaseSensitive', title: '区分大小写', width: 110}
             , { field: 'serviceName', title: '服务发现名称', width: 110}
@@ -95,7 +83,8 @@
                 title: '是否限流',
                 width: 150,
                 templet: function (d) {
-                    return '<input type="checkbox" disabled title="是否限流"  {{ d.rateLimitOptions.enableRateLimiting ? "checked" : "" }}>';
+                    var checked = d.rateLimitOptions.enableRateLimiting ? "checked='checked'" : "";
+                    return '<input type="checkbox" title="是否限流" ' + checked + '>';
                 }
             }
             , {
@@ -138,7 +127,6 @@
                 refreshReRouteTable(1);
                 break;
             case 'add':
-                /// TODO:增加路由
                 layer.open({
                     type: 2,
                     title: '增加路由',
@@ -164,6 +152,11 @@
                 abp.message.confirm("请确认是否继续", '将删除选定的路由', function (result) {
                     if (result) {
                         // TODO: 删除选择的路由
+                        _rerouteService.delete(checkStatus.data[0].reRouteId)
+                            .done(function (result) {
+                                console.log(result);
+                                refreshReRouteTable();
+                            });
                     }
                 });
                 break;
@@ -171,6 +164,11 @@
                 abp.message.confirm("请确认是否继续", '将删除所有路由', function (result) {
                     if (result) {
                         // TODO: 删除所有路由
+                        _rerouteService.remove()
+                            .done(function (result) {
+                                console.log(result);
+                                refreshReRouteTable();
+                            });
                     }
                 });
                 //layer.msg('删除所有');

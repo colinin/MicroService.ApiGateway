@@ -36,7 +36,7 @@
         </div>
     </div>
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">请求标识</label>
+        <label class="layui-form-label ocelot-line">访问标识</label>
         <div class="layui-input-inline  ocelot-line-input">
             <input type="text" name="RequestIdKey" id="RequestIdKey" autocomplete="off" class="layui-input">
         </div>
@@ -64,6 +64,21 @@
     <div class="layui-input-block ocelot-block">
         <input name="RouteClaimsRequirement" id="RouteClaimsRequirement" tgclass="ocelot-line-input" class="tags-input"
                placeholder="格式 RoleId:10">
+    </div>
+</div>
+
+<div class="layui-form-item">
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">聚合标识</label>
+        <div class="layui-input-inline ocelot-line-input">
+            <input type="text" autocomplete="off" id="AggregateKey" name="AggregateKey" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-inline">
+        <label class="layui-form-label ocelot-line">路由优先级</label>
+        <div class="layui-input-inline  ocelot-line-input">
+            <input type="text" autocomplete="off" id="Priority" name="Priority" lay-verify="number" class="layui-input">
+        </div>
     </div>
 </div>
 

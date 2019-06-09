@@ -5,12 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Application.Services;
 
 namespace MicroService.ApiGateway.Ocelot
 {
     [Route("DynamicReRoute")]
-    public class DynamicReRouteAppService : ApplicationService, IDynamicReRouteAppService
+    public class DynamicReRouteAppService : ApiGatewayApplicationServiceBase, IDynamicReRouteAppService
     {
         private readonly IDynamicReRouteRepository _dynamicReRouteRepository;
         public DynamicReRouteAppService(IDynamicReRouteRepository dynamicReRouteRepository)

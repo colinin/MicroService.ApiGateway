@@ -4,7 +4,7 @@ using Volo.Abp.AspNetCore.Mvc;
 
 namespace MicroService.ApiGateway.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : AbpController
     {
         public IActionResult Index()

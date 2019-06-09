@@ -1,11 +1,14 @@
-﻿using MicroService.ApiGateway.Ocelot;
+﻿using MicroService.ApiGateway.Authentication;
+using MicroService.ApiGateway.Ocelot;
 using MicroService.ApiGateway.Ocelot.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Ocelot.Configuration.Repository;
 using System.Threading.Tasks;
 
 namespace MicroService.ApiGateway.Controllers.OcelotView
 {
+    [Authorize(Policy = AuthenticationConsts.AdministrationPolicy)]
     [Route("[controller]")]
     public class OcelotConfigurationController : OcelotControllerBase
     {
