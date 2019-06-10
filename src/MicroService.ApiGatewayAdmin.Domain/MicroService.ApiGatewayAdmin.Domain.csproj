@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>MicroService.ApiGateway</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Auditing" Version="0.16.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.DataAnnotations" Version="2.2.0" />
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="0.16.0" />
+    <PackageReference Include="Volo.Abp.Localization" Version="0.16.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\ApiGateway\*.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Volo.Abp\Extensions\Json\Volo.Abp.MicroService.Json\Volo.Abp.MicroService.Json.csproj" />
+    <ProjectReference Include="..\MicroService.ApiGatewayAdmin.Domain.Shared\MicroService.ApiGatewayAdmin.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

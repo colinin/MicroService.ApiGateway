@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Localization\ApiGateway\en.json" />
+    <None Remove="Localization\ApiGateway\zh-Hans.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\ApiGateway\en.json" />
+    <EmbeddedResource Include="Localization\ApiGateway\zh-Hans.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="0.16.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroService.ApiGatewayAdmin.Domain.Shared\MicroService.ApiGatewayAdmin.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>
