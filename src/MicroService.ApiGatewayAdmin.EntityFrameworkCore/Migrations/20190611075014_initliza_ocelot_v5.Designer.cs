@@ -4,14 +4,16 @@ using MicroService.ApiGateway.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MicroService.ApiGateway.Migrations
 {
     [DbContext(typeof(ApiGatewayDbContext))]
-    partial class ApiGatewayDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190611075014_initliza_ocelot_v5")]
+    partial class initliza_ocelot_v5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

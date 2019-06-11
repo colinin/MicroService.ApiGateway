@@ -21,7 +21,7 @@ namespace MicroService.ApiGateway.Ocelot
         [Route("GetList")]
         public async Task<ListResultDto<DynamicReRouteDto>> GetListAsync()
         {
-            var dynamicReRoutes = await _dynamicReRouteRepository.GetListAsync();
+            var dynamicReRoutes = await _dynamicReRouteRepository.GetListAsync(true);
 
             return new ListResultDto<DynamicReRouteDto>(ObjectMapper.Map<List<DynamicReRoute>, List<DynamicReRouteDto>>(dynamicReRoutes));
         }

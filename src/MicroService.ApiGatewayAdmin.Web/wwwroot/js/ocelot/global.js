@@ -13,6 +13,7 @@
                 'ItemId': result.itemId,
                 'BaseUrl': result.baseUrl,
                 'RequestIdKey': result.requestIdKey,
+                'DownstreamScheme': result.downstreamScheme,
                 'ExceptionsAllowedBeforeBreaking': result.qoSOptions.exceptionsAllowedBeforeBreaking,
                 'DurationOfBreak': result.qoSOptions.durationOfBreak,
                 'TimeoutValue': result.qoSOptions.timeoutValue,
@@ -38,6 +39,7 @@
             itemId: data.field.ItemId,
             baseUrl: data.field.BaseUrl,
             requestIdKey: data.field.RequestIdKey,
+            downstreamScheme: data.field.DownstreamScheme,
             qoSOptions: {
                 exceptionsAllowedBeforeBreaking: data.field.ExceptionsAllowedBeforeBreaking,
                 durationOfBreak: data.field.DurationOfBreak,

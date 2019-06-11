@@ -2,6 +2,7 @@
 using MicroService.ApiGateway.Settings;
 using MicroService.ApiGatewayAdmin.Domain.Shared;
 using Volo.Abp.Auditing;
+using Volo.Abp.CAP;
 using Volo.Abp.Localization;
 using Volo.Abp.MicroService.Json;
 using Volo.Abp.Modularity;
@@ -19,7 +20,8 @@ namespace MicroService.ApiGateway
     [DependsOn(
         typeof(ApiGatewayDomainSharedModule),
         typeof(AbpAuditingModule),
-        typeof(AbpMicroServiceJsonModule)
+        typeof(AbpMicroServiceJsonModule),
+        typeof(AbpDotNetCapModule)
         )]
     public class ApiGatewayDomainModule : AbpModule
     {

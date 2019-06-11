@@ -29,13 +29,21 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volo.Abp.CAP", "..\DotnetCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.CAP", "..\DotnetCore\cap\DotNetCore.CAP\DotNetCore.CAP.csproj", "{4851EEBB-0403-4B5A-AFE5-CB2E4342877C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.ApiGateway", "src\MicroService.ApiGateway\MicroService.ApiGateway.csproj", "{E19D933D-7034-4082-AB44-19FE9E95F7F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.ApiGateway", "src\MicroService.ApiGateway\MicroService.ApiGateway.csproj", "{E19D933D-7034-4082-AB44-19FE9E95F7F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.ApiGatewayAdmin.Application.Shared", "src\MicroService.ApiGatewayAdmin.Application.Shared\MicroService.ApiGatewayAdmin.Application.Shared.csproj", "{DCB41D89-0D4A-43AB-9F74-5E19045C6D6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.ApiGatewayAdmin.Application.Shared", "src\MicroService.ApiGatewayAdmin.Application.Shared\MicroService.ApiGatewayAdmin.Application.Shared.csproj", "{DCB41D89-0D4A-43AB-9F74-5E19045C6D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.ApiGatewayAdmin.Domain.Shared", "src\MicroService.ApiGatewayAdmin.Domain.Shared\MicroService.ApiGatewayAdmin.Domain.Shared.csproj", "{1BEA49FB-E2FF-4307-90A5-EAAA9069344B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.ApiGatewayAdmin.Domain.Shared", "src\MicroService.ApiGatewayAdmin.Domain.Shared\MicroService.ApiGatewayAdmin.Domain.Shared.csproj", "{1BEA49FB-E2FF-4307-90A5-EAAA9069344B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroService.ApiGateway.HttpApi.Client", "src\MicroService.ApiGateway.HttpApi.Client\MicroService.ApiGateway.HttpApi.Client.csproj", "{A2B6E198-B021-4B65-A1E4-145CBBA1ACFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroService.ApiGateway.HttpApi.Client", "src\MicroService.ApiGateway.HttpApi.Client\MicroService.ApiGateway.HttpApi.Client.csproj", "{A2B6E198-B021-4B65-A1E4-145CBBA1ACFA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volo.Abp.MicroService.HttpClient", "..\Volo.Abp\Extensions\Http\Volo.Abp.MicroService.HttpClient\Volo.Abp.MicroService.HttpClient.csproj", "{B18A7682-D076-425A-B53C-56E564F1469E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.CAP.RabbitMQ", "..\DotnetCore\cap\DotNetCore.CAP.RabbitMQ\DotNetCore.CAP.RabbitMQ.csproj", "{9E029F5F-E8BC-470C-BD50-5DEA4B1BB036}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.CAP.InMemoryStorage", "..\DotnetCore\cap\DotNetCore.CAP.InMemoryStorage\DotNetCore.CAP.InMemoryStorage.csproj", "{ED808308-B76C-4234-B56B-AB11B9E91DC8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.CAP.SqlServer", "..\DotnetCore\cap\DotNetCore.CAP.SqlServer\DotNetCore.CAP.SqlServer.csproj", "{7D4386D4-61D5-452D-B27C-21A5A538DBF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +99,22 @@ Global
 		{A2B6E198-B021-4B65-A1E4-145CBBA1ACFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2B6E198-B021-4B65-A1E4-145CBBA1ACFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2B6E198-B021-4B65-A1E4-145CBBA1ACFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B18A7682-D076-425A-B53C-56E564F1469E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B18A7682-D076-425A-B53C-56E564F1469E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B18A7682-D076-425A-B53C-56E564F1469E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B18A7682-D076-425A-B53C-56E564F1469E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E029F5F-E8BC-470C-BD50-5DEA4B1BB036}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E029F5F-E8BC-470C-BD50-5DEA4B1BB036}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E029F5F-E8BC-470C-BD50-5DEA4B1BB036}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E029F5F-E8BC-470C-BD50-5DEA4B1BB036}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED808308-B76C-4234-B56B-AB11B9E91DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED808308-B76C-4234-B56B-AB11B9E91DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED808308-B76C-4234-B56B-AB11B9E91DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED808308-B76C-4234-B56B-AB11B9E91DC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D4386D4-61D5-452D-B27C-21A5A538DBF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D4386D4-61D5-452D-B27C-21A5A538DBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D4386D4-61D5-452D-B27C-21A5A538DBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D4386D4-61D5-452D-B27C-21A5A538DBF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +134,10 @@ Global
 		{DCB41D89-0D4A-43AB-9F74-5E19045C6D6C} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{1BEA49FB-E2FF-4307-90A5-EAAA9069344B} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{A2B6E198-B021-4B65-A1E4-145CBBA1ACFA} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{B18A7682-D076-425A-B53C-56E564F1469E} = {876CF402-918E-42A1-B646-D6915A4E42ED}
+		{9E029F5F-E8BC-470C-BD50-5DEA4B1BB036} = {FAFA2320-9C82-42FA-9F87-347C3BFFF84A}
+		{ED808308-B76C-4234-B56B-AB11B9E91DC8} = {FAFA2320-9C82-42FA-9F87-347C3BFFF84A}
+		{7D4386D4-61D5-452D-B27C-21A5A538DBF4} = {FAFA2320-9C82-42FA-9F87-347C3BFFF84A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

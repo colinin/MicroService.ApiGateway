@@ -1,7 +1,7 @@
 ﻿using MicroService.ApiGateway.HttpApi.Client;
-using MicroService.ApiGateway.Ocelot;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Ocelot.Configuration.Repository;
 using Ocelot.DependencyInjection;
 using Ocelot.Extenssions;
@@ -10,7 +10,6 @@ using Volo.Abp;
 using Volo.Abp.AspNetCore;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
-using Volo.Abp.Http.Client;
 using Volo.Abp.Http.Client.IdentityModel;
 using Volo.Abp.Modularity;
 
@@ -19,6 +18,7 @@ namespace MicroService.ApiGateway
     [DependsOn(
         typeof(AbpAutofacModule),
         typeof(AbpHttpClientIdentityModelModule),
+        typeof(AbpAutoMapperModule),
         typeof(ApiGatewayHttpApiClientModule),
         typeof(AbpAspNetCoreModule)
         )]
@@ -36,15 +36,41 @@ namespace MicroService.ApiGateway
                 options.AddProfile<MicroServiceApiGatewayMapperProfile>();
             });
 
-            context.Services.AddTransient<IFileConfigurationRepository, EfCoreFileConfigurationRepository>();
+            ConfigureCAP(context.Services, configuration);
+
+            context.Services.AddSingleton<IFileConfigurationRepository, EfCoreFileConfigurationRepository>();
 
             context.Services.AddOcelot().AddPolly();
+        }
+
+        private void ConfigureCAP(IServiceCollection services, IConfigurationRoot configuration)
+        {
+            services.AddCap(x =>
+            {
+                x.UseInMemoryStorage();
+
+                x.UseDashboard();
+
+                x.UseRabbitMQ(cfg =>
+                {
+                    cfg.HostName = configuration.GetValue<string>("CAP:RabbitMQ:Connect:Host");
+                    cfg.VirtualHost = configuration.GetValue<string>("CAP:RabbitMQ:Connect:VirtualHost");
+                    cfg.Port = configuration.GetValue<int>("CAP:RabbitMQ:Connect:Port");
+                    cfg.UserName = configuration.GetValue<string>("CAP:RabbitMQ:Connect:UserName");
+                    cfg.Password = configuration.GetValue<string>("CAP:RabbitMQ:Connect:Password");
+                    cfg.ExchangeName = configuration.GetValue<string>("CAP:RabbitMQ:Connect:ExchangeName");
+                });
+
+                x.FailedRetryCount = 5;
+            });
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
             var env = context.GetEnvironment();
+
+            app.UseAuditing();
 
             app.UseOcelot().Wait();
         }

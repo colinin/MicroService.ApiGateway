@@ -20,7 +20,7 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
         private static IConfigurationRoot BuildConfiguration()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../MicroService.ApiGateway.Web/"))
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../MicroService.ApiGatewayAdmin.Web/"))
                 .AddJsonFile("appsettings.json", optional: false);
 
             return builder.Build();

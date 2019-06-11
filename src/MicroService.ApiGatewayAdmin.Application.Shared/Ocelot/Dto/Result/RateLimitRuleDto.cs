@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MicroService.ApiGateway.Ocelot.Dto
 {
+    [Serializable]
     public class RateLimitRuleDto
     {
         public List<string> ClientWhitelist { get; set; }

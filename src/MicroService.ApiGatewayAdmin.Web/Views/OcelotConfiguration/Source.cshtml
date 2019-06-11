@@ -1,14 +1,13 @@
-﻿@using Ocelot.Responses;
-@using Ocelot.Configuration.File;
+﻿@using MicroService.ApiGateway.Web.Models;
 @using Newtonsoft.Json;
-@model Response<FileConfiguration>
+@model OcelotConfigurationModel
 
 @section scripts{
     <script src="~/js/ocelot/source.js"></script>
 }
 @{ 
     var defaultConfiguration = "{}";
-    var ocelotConfiguration = Model.IsError ? defaultConfiguration : JsonConvert.SerializeObject(Model.Data, Formatting.Indented);
+    var ocelotConfiguration = Model == null ? defaultConfiguration : JsonConvert.SerializeObject(Model, Formatting.Indented);
 }
 
 <div class="layui-footer ocelot-footer">

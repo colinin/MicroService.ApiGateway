@@ -12,16 +12,27 @@ namespace MicroService.ApiGateway
         public MicroServiceApiGatewayMapperProfile()
         {
             //Configure your AutoMapper mapping configuration here...
-            CreateMap<HostAndPortDto, FileHostAndPort>();
+            CreateMap<HostAndPortDto, FileHostAndPort>()
+                .ForMember(fhp => fhp.Port, map => map.MapFrom(m => m.Port ?? 0));
             CreateMap<HttpHandlerOptionsDto, FileHttpHandlerOptions>();
             CreateMap<AuthenticationOptionsDto, FileAuthenticationOptions>();
-            CreateMap<RateLimitRuleDto, FileRateLimitRule>();
-            CreateMap<LoadBalancerOptionsDto, FileLoadBalancerOptions>();
-            CreateMap<QosOptionsDto, FileQoSOptions>();
-            CreateMap<CacheOptionsDto, FileCacheOptions>();
+            CreateMap<RateLimitRuleDto, FileRateLimitRule>()
+                .ForMember(frl => frl.Limit, map => map.MapFrom(m => m.Limit ?? 0L))
+                .ForMember(frl => frl.PeriodTimespan, map => map.MapFrom(m => m.PeriodTimespan ?? 0d));
+            CreateMap<LoadBalancerOptionsDto, FileLoadBalancerOptions>()
+                .ForMember(flb => flb.Expiry, map => map.MapFrom(m => m.Expiry ?? 0));
+            CreateMap<QosOptionsDto, FileQoSOptions>()
+                .ForMember(fqs => fqs.DurationOfBreak, map => map.MapFrom(m => m.DurationOfBreak ?? 0))
+                .ForMember(fqs => fqs.ExceptionsAllowedBeforeBreaking, map => map.MapFrom(m => m.ExceptionsAllowedBeforeBreaking ?? 0))
+                .ForMember(fqs => fqs.TimeoutValue, map => map.MapFrom(m => m.TimeoutValue ?? 0));
+            CreateMap<CacheOptionsDto, FileCacheOptions>()
+                .ForMember(fco => fco.TtlSeconds, map => map.MapFrom(m => m.TtlSeconds ?? 0));
             CreateMap<SecurityOptionsDto, FileSecurityOptions>();
-            CreateMap<ServiceDiscoveryProviderDto, FileServiceDiscoveryProvider>();
-            CreateMap<RateLimitOptionsDto, FileRateLimitOptions>();
+            CreateMap<ServiceDiscoveryProviderDto, FileServiceDiscoveryProvider>()
+                .ForMember(fsd => fsd.Port, map => map.MapFrom(m => m.Port ?? 0))
+                .ForMember(fsd => fsd.PollingInterval, map => map.MapFrom(m => m.PollingInterval ?? 0));
+            CreateMap<RateLimitOptionsDto, FileRateLimitOptions>()
+                .ForMember(flo => flo.HttpStatusCode, map => map.MapFrom(m => m.HttpStatusCode ?? 429));
 
             CreateMap<ReRouteDto, FileReRoute>()
                 .ForMember(frr => frr.AddClaimsToRequest, map => map.MapFrom(m => MapperDictionary(m.AddClaimsToRequest)))
@@ -33,9 +44,17 @@ namespace MicroService.ApiGateway
                 .ForMember(frr => frr.UpstreamHeaderTransform, map => map.MapFrom(m => MapperDictionary(m.UpstreamHeaderTransform)))
                 .ForMember(frr => frr.UpstreamHttpMethod, map => map.MapFrom(m => MapperList(m.UpstreamHttpMethod)))
                 .ForMember(frr => frr.DownstreamHostAndPorts, map => map.MapFrom(m => MapperHostAndPortList(m.DownstreamHostAndPorts)))
-                .ForMember(frr => frr.FileCacheOptions, map => map.MapFrom(m => m.FileCacheOptions));
+                .ForMember(frr => frr.FileCacheOptions, map => map.MapFrom(m => m.FileCacheOptions))
+                .ForMember(frr => frr.Priority, map => map.MapFrom(m => m.Priority ?? 0))
+                .ForMember(frr => frr.Timeout, map => map.MapFrom(m => m.Timeout ?? 0));
 
-            CreateMap<GlobalConfigurationDto, FileGlobalConfiguration>();
+            CreateMap<GlobalConfigurationDto, FileGlobalConfiguration>()
+                .ForMember(fgc => fgc.HttpHandlerOptions, map => map.MapFrom(m => m.HttpHandlerOptions))
+                .ForMember(fgc => fgc.LoadBalancerOptions, map => map.MapFrom(m => m.LoadBalancerOptions))
+                .ForMember(fgc => fgc.QoSOptions, map => map.MapFrom(m => m.QoSOptions))
+                .ForMember(fgc => fgc.RateLimitOptions, map => map.MapFrom(m => m.RateLimitOptions))
+                .ForMember(fgc => fgc.ServiceDiscoveryProvider, map => map.MapFrom(m => m.ServiceDiscoveryProvider));
+
             CreateMap<DynamicReRouteDto, FileDynamicReRoute>();
         }
 

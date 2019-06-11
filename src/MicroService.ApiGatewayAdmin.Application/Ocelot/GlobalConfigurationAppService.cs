@@ -1,4 +1,5 @@
-﻿using MicroService.ApiGateway.Entites.Ocelot;
+﻿using DotNetCore.CAP;
+using MicroService.ApiGateway.Entites.Ocelot;
 using MicroService.ApiGateway.Ocelot.Dto;
 using MicroService.ApiGateway.Repositories;
 using MicroService.ApiGateway.Snowflake;
@@ -12,13 +13,16 @@ namespace MicroService.ApiGateway.Ocelot
     {
         private readonly IGlobalConfigRepository _globalConfigRepository;
         private readonly ISnowflakeIdGenerator _snowflakeIdGenerator;
+        private readonly ICapPublisher _eventPublisher;
         public GlobalConfigurationAppService(
             IGlobalConfigRepository globalConfigRepository,
-            ISnowflakeIdGenerator snowflakeIdGenerator
+            ISnowflakeIdGenerator snowflakeIdGenerator,
+            ICapPublisher eventPublisher
             )
         {
             _globalConfigRepository = globalConfigRepository;
             _snowflakeIdGenerator = snowflakeIdGenerator;
+            _eventPublisher = eventPublisher;
         }
 
         [HttpGet]
@@ -27,7 +31,9 @@ namespace MicroService.ApiGateway.Ocelot
         {
             var globalConfig =  await _globalConfigRepository.GetOneAsync();
 
-            return ObjectMapper.Map<GlobalConfiguration, GlobalConfigurationDto>(globalConfig);
+            var globalConfigDto = ObjectMapper.Map<GlobalConfiguration, GlobalConfigurationDto>(globalConfig);
+
+            return globalConfigDto;
         }
 
         [HttpPost]
@@ -43,6 +49,8 @@ namespace MicroService.ApiGateway.Ocelot
             ApplyGlobalConfigurationOptions(globalConfiguration, configurationDto);
 
             globalConfiguration = await _globalConfigRepository.InsertAsync(globalConfiguration, true);
+
+            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, Clock.Now);
 
             return ObjectMapper.Map<GlobalConfiguration, GlobalConfigurationDto>(globalConfiguration);
         }
@@ -62,6 +70,8 @@ namespace MicroService.ApiGateway.Ocelot
             ApplyGlobalConfigurationOptions(globalConfiguration, configurationDto);
 
             globalConfiguration = await _globalConfigRepository.UpdateAsync(globalConfiguration, true);
+
+            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, Clock.Now);
 
             return ObjectMapper.Map<GlobalConfiguration, GlobalConfigurationDto>(globalConfiguration);
         }

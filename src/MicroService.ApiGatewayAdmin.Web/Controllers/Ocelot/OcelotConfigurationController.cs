@@ -1,8 +1,11 @@
 ﻿using MicroService.ApiGateway.Authentication;
 using MicroService.ApiGateway.Ocelot;
 using MicroService.ApiGateway.Ocelot.Dto;
+using MicroService.ApiGateway.Web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MicroService.ApiGateway.Controllers.OcelotView
@@ -13,12 +16,18 @@ namespace MicroService.ApiGateway.Controllers.OcelotView
     {
         private readonly IGlobalConfigurationAppService _globalConfigurationAppService;
         private readonly IReRouteAppService _reRouteAppService;
+        private readonly IDynamicReRouteAppService _dynamicReRouteAppService;
+        private readonly IAggregateReRouteAppService _aggregateReRouteAppService;
 
         public OcelotConfigurationController(
             IGlobalConfigurationAppService globalConfigurationAppService,
+            IDynamicReRouteAppService dynamicReRouteAppService,
+            IAggregateReRouteAppService aggregateReRouteAppService,
             IReRouteAppService reRouteAppService)
         {
             _globalConfigurationAppService = globalConfigurationAppService;
+            _aggregateReRouteAppService = aggregateReRouteAppService;
+            _dynamicReRouteAppService = dynamicReRouteAppService;
             _reRouteAppService = reRouteAppService;
         }
         [HttpGet]
@@ -88,7 +97,26 @@ namespace MicroService.ApiGateway.Controllers.OcelotView
         [Route("Source")]
         public async Task<IActionResult> Source()
         {
-            return View(null);
+            var globalConfig = await _globalConfigurationAppService.GetAsync();
+            var reRouteConfig = await _reRouteAppService.GetListAsync();
+            var dynamicConfig = await _dynamicReRouteAppService.GetListAsync();
+            var aggregateConfig = await _aggregateReRouteAppService.GetListAsync();
+
+            // 这是个弊端,以后如果Ocelot的配置属性变更
+            // Admin程序随之需要变更实体、Dto、Model三个地方
+            // 其他解决办法 Emit? 
+            // 如果直接引用Ocelot即可解决,但是在Admin中引用它违反了设计结构
+
+            var ocelotConfigurationDto = new OcelotConfigurationModel
+            {
+                GlobalConfiguration = ObjectMapper.Map<GlobalConfigurationDto, GlobalConfigurationModel>(globalConfig),
+                ReRoutes = ObjectMapper.Map<List<ReRouteDto>, List<ReRouteModel>>(reRouteConfig.Items.ToList()),
+                DynamicReRoutes = ObjectMapper.Map<List<DynamicReRouteDto>, List<DynamicReRouteModel>>(dynamicConfig.Items.ToList()),
+                Aggregates = ObjectMapper.Map<List<AggregateReRouteDto>, List<AggregateReRouteModel>>(aggregateConfig.Items.ToList())
+            };
+
+            return View(ocelotConfigurationDto);
         }
+
     }
 }

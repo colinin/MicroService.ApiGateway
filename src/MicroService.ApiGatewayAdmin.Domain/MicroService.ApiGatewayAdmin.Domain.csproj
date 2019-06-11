@@ -17,6 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DotnetCore\cap\DotNetCore.CAP.RabbitMQ\DotNetCore.CAP.RabbitMQ.csproj" />
+    <ProjectReference Include="..\..\..\DotnetCore\cap\Volo.Abp.CAP\Volo.Abp.CAP.csproj" />
     <ProjectReference Include="..\..\..\Volo.Abp\Extensions\Json\Volo.Abp.MicroService.Json\Volo.Abp.MicroService.Json.csproj" />
     <ProjectReference Include="..\MicroService.ApiGatewayAdmin.Domain.Shared\MicroService.ApiGatewayAdmin.Domain.Shared.csproj" />
   </ItemGroup>

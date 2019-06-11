@@ -120,6 +120,33 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.Property(p => p.ConfigurationKey).HasMaxLength(256);
             });
 
+            builder.Entity<AggregateReRouteConfig>(e =>
+            {
+                e.ToTable(options.TablePrefix + "AggregateConfig", options.Schema);
+
+                e.Property(p => p.ReRouteId).IsRequired();
+                e.Property(p => p.ReRouteKey).HasMaxLength(256);
+                e.Property(p => p.Parameter).HasMaxLength(1000);
+                e.Property(p => p.JsonPath).HasMaxLength(256);
+
+            });
+
+            builder.Entity<AggregateReRoute>(e =>
+            {
+                e.ToTable(options.TablePrefix + "Aggregate", options.Schema);
+
+                e.Property(p => p.ReRouteId).IsRequired();
+
+                e.Property(p => p.Aggregator).HasMaxLength(256);
+                e.Property(p => p.ReRouteKeys).HasMaxLength(1000);
+                e.Property(p => p.UpstreamHost).HasMaxLength(1000);
+                e.Property(p => p.UpstreamPathTemplate).HasMaxLength(1000);
+
+                e.Property(p => p.ReRouteIsCaseSensitive).HasDefaultValue(false);
+
+                e.ConfigureConcurrencyStamp();
+            });
+
             builder.Entity<DynamicReRoute>(e =>
             {
                 e.ToTable(options.TablePrefix + "DynamicReRoute", options.Schema);

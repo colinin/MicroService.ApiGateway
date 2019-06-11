@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Http.Client" Version="0.16.0" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\..\..\Volo.Abp\Extensions\Http\Volo.Abp.MicroService.HttpClient\Volo.Abp.MicroService.HttpClient.csproj" />
     <ProjectReference Include="..\MicroService.ApiGatewayAdmin.Application.Shared\MicroService.ApiGatewayAdmin.Application.Shared.csproj" />
   </ItemGroup>
 

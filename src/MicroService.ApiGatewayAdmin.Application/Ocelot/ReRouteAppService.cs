@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
+using DotNetCore.CAP;
 
 namespace MicroService.ApiGateway.Ocelot
 {
@@ -12,11 +13,14 @@ namespace MicroService.ApiGateway.Ocelot
     public class ReRouteAppService : ApiGatewayApplicationServiceBase, IReRouteAppService
     {
         private readonly IReRouteRepository _reRouteRepository;
+        private readonly ICapPublisher _eventPublisher;
 
         public ReRouteAppService(
-            IReRouteRepository reRouteRepository)
+            IReRouteRepository reRouteRepository,
+            ICapPublisher eventPublisher)
         {
             _reRouteRepository = reRouteRepository;
+            _eventPublisher = eventPublisher;
         }
 
         [HttpPost]
@@ -31,7 +35,11 @@ namespace MicroService.ApiGateway.Ocelot
 
             reRoute = await _reRouteRepository.InsertAsync(reRoute, true);
 
-            return ObjectMapper.Map<ReRoute, ReRouteDto>(reRoute);
+            var reRouteDto = ObjectMapper.Map<ReRoute, ReRouteDto>(reRoute);
+
+            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, Clock.Now);
+
+            return reRouteDto;
         }
 
         [HttpPost]
@@ -58,7 +66,11 @@ namespace MicroService.ApiGateway.Ocelot
 
             reRoute = await _reRouteRepository.UpdateAsync(reRoute, true);
 
-            return ObjectMapper.Map<ReRoute, ReRouteDto>(reRoute);
+            var reRouteDto = ObjectMapper.Map<ReRoute, ReRouteDto>(reRoute);
+
+            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, Clock.Now);
+
+            return reRouteDto;
         }
 
         [HttpGet]

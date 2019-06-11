@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <RootNamespace>MicroService.ApiGateway.Web</RootNamespace>
+    <RootNamespace>MicroService.ApiGatewayAdmin.Web</RootNamespace>
     <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
@@ -10,6 +10,10 @@
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>3</WarningLevel>
   </PropertyGroup>
 
   <ItemGroup>
@@ -49,7 +53,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DotnetCore\cap\Volo.Abp.CAP\Volo.Abp.CAP.csproj" />
     <ProjectReference Include="..\..\themes\Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui\Volo.Abp.AspNetCore.Mvc.UI.Theme.Layui.csproj" />
     <ProjectReference Include="..\MicroService.ApiGatewayAdmin.Application\MicroService.ApiGatewayAdmin.Application.csproj" />
     <ProjectReference Include="..\MicroService.ApiGatewayAdmin.EntityFrameworkCore\MicroService.ApiGatewayAdmin.EntityFrameworkCore.csproj" />

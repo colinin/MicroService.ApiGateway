@@ -9,12 +9,12 @@ namespace MicroService.ApiGateway.Entites.Ocelot
     public class AggregateReRoute : AggregateRoot<int>
     {
         public virtual long ReRouteId { get; private set; }
-        public virtual List<string> ReRouteKeys { get; private set; }
+        public virtual string ReRouteKeys { get; private set; }
         public virtual List<AggregateReRouteConfig> ReRouteKeysConfig { get; private set; }
         public virtual string UpstreamPathTemplate { get; private set; }
         public virtual string UpstreamHost { get; private set; }
         public virtual bool ReRouteIsCaseSensitive { get; private set; }
         public virtual string Aggregator { get; private set; }
-        public virtual int Priority { get; private set; }
+        public virtual int? Priority { get; private set; }
     }
 }

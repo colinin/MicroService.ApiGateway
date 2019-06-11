@@ -17,6 +17,10 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
 
         public virtual DbSet<DynamicReRoute> DynamicReRoutes { get; set; }
 
+        public virtual DbSet<AggregateReRoute> AggregateReRoutes { get; set; }
+
+        public virtual DbSet<AggregateReRouteConfig> AggregateReRouteConfigs { get; set; }
+
         public virtual DbSet<AuthenticationOptions> AuthenticationOptions { get; set; }
         public virtual DbSet<CacheOptions> CacheOptions { get; set; }
         public virtual DbSet<Headers> Headers { get; set; }

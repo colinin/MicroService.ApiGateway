@@ -30,6 +30,7 @@
             reRouteIsCaseSensitive: data.field.CaseSensitive === 'on',
             serviceName: data.field.ServiceName,
             downstreamScheme: data.field.DownstreamScheme,
+            timeout: data.field.ReRouteTimeOut,
             key: data.field.AggregateKey,
             priority: data.field.Priority,
             httpHandlerOptions: {
@@ -94,6 +95,7 @@
                     'Priority': result.priority,
                     'CaseSensitive': result.reRouteIsCaseSensitive,
                     'RouteClaimsRequirement': result.routeClaimsRequirement,
+                    'ReRouteTimeOut': result.timeout,
                     //http
                     'UpstreamHeaderTransform': result.upstreamHeaderTransform,
                     'DownstreamHeaderTransform': result.downstreamHeaderTransform,

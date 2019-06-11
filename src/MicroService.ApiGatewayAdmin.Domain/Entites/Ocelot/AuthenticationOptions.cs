@@ -26,7 +26,14 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 
         public void SetAllowScopes(List<string> allowScopes)
         {
-            AllowedScopes = allowScopes.JoinAsString(",");
+            if(allowScopes != null && allowScopes.Count > 0)
+            {
+                AllowedScopes = allowScopes.JoinAsString(",");
+            }
+            else
+            {
+                AllowedScopes = "";
+            }
         }
     }
 }

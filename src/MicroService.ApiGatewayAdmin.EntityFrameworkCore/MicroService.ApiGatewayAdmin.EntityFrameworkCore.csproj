@@ -11,6 +11,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DotnetCore\cap\DotNetCore.CAP.SqlServer\DotNetCore.CAP.SqlServer.csproj" />
     <ProjectReference Include="..\MicroService.ApiGatewayAdmin.Domain\MicroService.ApiGatewayAdmin.Domain.csproj" />
   </ItemGroup>
 

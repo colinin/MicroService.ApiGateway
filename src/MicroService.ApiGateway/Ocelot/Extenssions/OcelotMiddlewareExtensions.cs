@@ -90,11 +90,12 @@ namespace Ocelot.Extenssions
 
         private static async Task<IInternalConfiguration> CreateConfiguration(IApplicationBuilder builder)
         {
-            // TODO:待解决
-            // 因为ABP框架中,Abp.HttpClient这个模块里面
-            // RemoteServiceOptions 是用的IOptionsSnapshot注入的,这里会出现一个异常
-            // 每个RemoteService服务必须在一个请求范围内
-
+            /* 因为ABP框架中,Abp.HttpClient这个模块里面
+             * RemoteServiceOptions 是用的IOptionsSnapshot注入的,这里会出现一个异常
+             * 每个RemoteService服务必须在一个请求范围内
+             * 解决方案为重写DynamicHttpProxyInterceptor类,替换IOptions<RemoteServiceOptions>
+             * 网关不需要实现网关后台服务地址的实时更新
+            */
             var fileConfigRepo = builder.ApplicationServices.GetService<IFileConfigurationRepository>();
             var fileConfig = await fileConfigRepo.Get();
             var internalConfigCreator = builder.ApplicationServices.GetService<IInternalConfigurationCreator>();

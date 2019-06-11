@@ -4,9 +4,13 @@ using System;
 namespace MicroService.ApiGateway.Ocelot.Dto
 {
     [Serializable]
-    public class DynamicReRouteDto : DynamicReRouteDtoBase
+    public class AggregateReRouteDto : AggregateReRouteDtoBase
     {
         [JsonConverter(typeof(HexLongConverter))]
-        public virtual long DynamicReRouteId { get; set; }
+        public long ReRouteId { get; set; }
+
+        public AggregateReRouteDto()
+        {
+        }
     }
 }

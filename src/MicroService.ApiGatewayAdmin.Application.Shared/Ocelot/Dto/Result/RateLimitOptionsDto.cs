@@ -1,5 +1,8 @@
-﻿namespace MicroService.ApiGateway.Ocelot.Dto
+﻿using System;
+
+namespace MicroService.ApiGateway.Ocelot.Dto
 {
+    [Serializable]
     public class RateLimitOptionsDto
     {
         public string ClientIdHeader { get; set; }

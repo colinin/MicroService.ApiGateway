@@ -67,6 +67,29 @@ namespace MicroService.ApiGateway
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
             ConfigureBundling();
+            ConfigureCAP(context.Services, configuration);
+        }
+
+        private void ConfigureCAP(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddCap(x =>
+            {
+                x.UseEntityFramework<ApiGatewayDbContext>();
+
+                x.UseDashboard();
+
+                x.UseRabbitMQ(cfg =>
+                {
+                    cfg.HostName = configuration.GetValue<string>("CAP:RabbitMQ:Connect:Host");
+                    cfg.VirtualHost = configuration.GetValue<string>("CAP:RabbitMQ:Connect:VirtualHost");
+                    cfg.Port = configuration.GetValue<int>("CAP:RabbitMQ:Connect:Port");
+                    cfg.UserName = configuration.GetValue<string>("CAP:RabbitMQ:Connect:UserName");
+                    cfg.Password = configuration.GetValue<string>("CAP:RabbitMQ:Connect:Password");
+                    cfg.ExchangeName = configuration.GetValue<string>("CAP:RabbitMQ:Connect:ExchangeName");
+                });
+
+                x.FailedRetryCount = 5;
+            });
         }
 
         private void ConfigureBundling()
