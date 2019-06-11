@@ -1,8 +1,5 @@
-""abp framework & ocelot ui manager"  ABP vNext 自用API网关,正在不定期编写中" 
-
-1、实现图形化管理
-2、后台服务后期会分离为单独的微服务，与UI隔离
-
+自用 Ocelot + Abp 图形界面管理
+带有一个定制的Ocelot网关
 
 前端框架：
 
@@ -18,3 +15,4 @@ CAP：https://github.com/dotnetcore/CAP
 
 【2019-06-11】
 1、集成CAP实现Ocelot服务修改/创建同步变更网关配置(需配置RabbitMQ)。
+

@@ -4,7 +4,7 @@ WORKDIR /web
 
 COPY MicroService/. /web
 
-WORKDIR /web/ApiGateway/src/MicroService.ApiGateway.Web
+WORKDIR /web/ApiGateway/src/MicroService.ApiGatewayAdmin.Web
 
 RUN dotnet restore
 
@@ -16,4 +16,4 @@ copy --from=build-env /web/ApiGateway/publish /app
 
 EXPOSE 80/tcp
 
-ENTRYPOINT ["dotnet", "MicroService.ApiGateway.Web.dll"]
+ENTRYPOINT ["dotnet", "MicroService.ApiGatewayAdmin.Web.dll"]
