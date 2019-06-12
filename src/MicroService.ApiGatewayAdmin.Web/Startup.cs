@@ -1,8 +1,12 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using Serilog;
+using System;
 using Volo.Abp;
+using Volo.Abp.VirtualFileSystem;
 
 namespace MicroService.ApiGateway
 {
@@ -14,6 +18,7 @@ namespace MicroService.ApiGateway
             {
                 options.UseAutofac();
             });
+
 
             return services.BuildServiceProviderFromFactory();
         }

@@ -28,6 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Localization\ApiGateway\en.json" />
+    <Content Remove="Localization\ApiGateway\zh-Hans.json" />
     <Content Remove="wwwroot\favicon.png" />
   </ItemGroup>
 
@@ -36,6 +38,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Localization\ApiGateway\en.json" />
+    <EmbeddedResource Include="Localization\ApiGateway\zh-Hans.json" />
     <EmbeddedResource Include="wwwroot\favicon.png" />
   </ItemGroup>
 
@@ -63,6 +67,174 @@
     <Folder Include="Migrations\" />
     <Folder Include="TagHelpers\Bootstrap\" />
     <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_ar.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_az.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_bg.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_bn_BD.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_ca.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_cs.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_da.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_de.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_el.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_es.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_es_AR.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_es_PE.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_et.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_eu.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_fa.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_fr.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_ge.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_hu.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_hy_AM.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_id.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_is.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_it.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_ja.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_kk.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_lv.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_nl.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_no.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_pt_PT.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_sd.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_sl.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_sv.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_tr.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_uk.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_ur.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_vi.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_zh.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\messages_zh_TW.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\methods_de.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\methods_es_CL.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\methods_fi.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\methods_nl.js" />
+    <None Include="wwwroot\libs\jquery-validation\localization\methods_pt.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\af.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\ar.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\az.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\bg.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\bs.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\ca.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\cs.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\da.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\de.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\dsb.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\el.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\en.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\es.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\et.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\eu.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\fa.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\fi.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\fr.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\gl.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\he.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\hi.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\hr.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\hsb.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\hu.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\hy.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\id.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\is.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\it.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\ja.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\km.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\ko.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\lt.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\lv.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\mk.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\ms.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\nb.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\nl.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\pl.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\ps.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\pt-BR.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\pt.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\ro.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\ru.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\sk.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\sl.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\sr-Cyrl.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\sr.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\sv.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\th.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\tr.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\uk.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\vi.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\zh-CN.js" />
+    <None Include="wwwroot\libs\select2\js\i18n\zh-TW.js" />
+    <None Include="wwwroot\libs\select2\js\select2.full.min.js" />
+    <None Include="wwwroot\libs\select2\js\select2.min.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.af.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.am.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.ar.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.az-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.az.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.bg.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.bs.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.ca.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.cs.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.cy.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.da.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.de-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.de.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.dv.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.el.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.en-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.en.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.es-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.es.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.et.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.eu.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.fa-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.fa.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.fi.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.fr-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.fr.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.gl.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.he.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.hr.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.hu.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.hy.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.id.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.is.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.it-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.it.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.ja.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.jv.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.ko.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.ky.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.lt.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.lv.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.mk.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.nl.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.no.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.pl.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.pt-br-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.pt-br.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.pt-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.pt.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.ro.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.rs.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.ru.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.rw.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.si.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.sk.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.sl.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.sq.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.sr.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.sv.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.th.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.tr-short.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.tr.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.uk.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.vi.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.zh-CN.js" />
+    <None Include="wwwroot\libs\timeago\locales\jquery.timeago.zh-TW.js" />
+    <None Include="wwwroot\libs\timeago\locales\README.md" />
   </ItemGroup>
 
   <ItemGroup>

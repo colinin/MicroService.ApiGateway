@@ -1,49 +1,53 @@
-﻿<div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">上游请求头</label>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
+@inject IHtmlLocalizer<ApiGatewayResource> Localizer
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">@Localizer["UpstreamHeaderTransform"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="UpstreamHeaderTransform" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
-               id="UpstreamHeaderTransform" placeholder="格式 Content-type:application/json">
+               id="UpstreamHeaderTransform" placeholder="@Localizer["Format"] Content-type:application/json">
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">下游请求头</label>
+    <label class="layui-form-label ocelot-line">@Localizer["DownstreamHeaderTransform"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="DownstreamHeaderTransform" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
-               id="DownstreamHeaderTransform" placeholder="格式 Content-type:application/json">
+               id="DownstreamHeaderTransform" placeholder="@Localizer["Format"] Content-type:application/json">
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">请求头转换</label>
+    <label class="layui-form-label ocelot-line">@Localizer["AddHeadersToRequest"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="AddHeadersToRequest" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
-               id="AddHeadersToRequest" placeholder="格式 Content-type:application/json">
+               id="AddHeadersToRequest" placeholder="@Localizer["Format"] Content-type:application/json">
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">用户声明转换</label>
+    <label class="layui-form-label ocelot-line">@Localizer["AddClaimsToRequest"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" id="AddClaimsToRequest" name="AddClaimsToRequest" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
-               placeholder="格式 UserId:Claims[sub] > value[1] > |">
+               placeholder="@Localizer["Format"] UserId:Claims[sub] > value[1] > |">
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">查询参数转换</label>
+    <label class="layui-form-label ocelot-line">@Localizer["AddQueriesToRequest"]</label>
     <div class="layui-input-block ocelot-block">
         <input name="AddQueriesToRequest" id="AddQueriesToRequest" class="tags-input" tgclass="ocelot-line-input"
-               placeholder="格式 key:value">
+               placeholder="@Localizer["Format"] key:value">
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">其他选项</label>
+    <label class="layui-form-label ocelot-line">@Localizer["OtherOptions"]</label>
     <div class="layui-input-block">
-        <input type="checkbox" name="AllowAutoRedirect" title="HTTP重定向">
-        <input type="checkbox" name="UseCookieContainer" title="Cookie容器">
-        <input type="checkbox" name="UseProxy" title="HTTP代理">
-        <input type="checkbox" name="UseTracing" title="HTTP追踪">
+        <input type="checkbox" name="AllowAutoRedirect" title="@Localizer["AllowAutoRedirect"]">
+        <input type="checkbox" name="UseCookieContainer" title="@Localizer["UseCookieContainer"]">
+        <input type="checkbox" name="UseProxy" title="@Localizer["UseProxy"]">
+        <input type="checkbox" name="UseTracing" title="@Localizer["UseTracing"]">
     </div>
 </div>

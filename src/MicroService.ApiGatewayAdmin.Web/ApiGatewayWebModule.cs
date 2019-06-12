@@ -2,7 +2,7 @@
 using MicroService.ApiGateway.Authentication;
 using MicroService.ApiGateway.Bundling;
 using MicroService.ApiGateway.EntityFrameworkCore;
-using MicroService.ApiGateway.Localization.MicroService.ApiGateway;
+using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
 using MicroService.ApiGateway.Menus;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -98,8 +98,11 @@ namespace MicroService.ApiGateway
             {
                 options
                     .StyleBundles
+                    .Add(WebServiceBundles.Styles.TagsInput, bundle => bundle.AddFiles("/libs/bootstrap/css/bootstrap.tagsinput.css"))
                     .Add(WebServiceBundles.Styles.DateTimePicker, bundle => bundle.AddFiles("/libs/datetimepicker/css/bootstrap-datepicker3.min.css"))
-                    .Add(WebServiceBundles.Styles.TagsInput, bundle => bundle.AddFiles("/libs/bootstrap/css/bootstrap.tagsinput.css"));
+                    .Add(WebServiceBundles.Styles.OcelotGlobal, bundle => bundle.AddFiles("/css/ocelot/global.css"))
+                    .Add(WebServiceBundles.Styles.OcelotReRoute, bundle => bundle.AddFiles("/css/ocelot/reroute.css"))
+                    .Add(WebServiceBundles.Styles.OcelotReRoutes, bundle => bundle.AddFiles("/css/ocelot/reroutes.css"));
 
                 options
                     .ScriptBundles
@@ -107,7 +110,11 @@ namespace MicroService.ApiGateway
                     .Add(WebServiceBundles.Scripts.TagsInput, bundle => bundle.AddFiles("/libs/bootstrap/js/bootstrap.tagsinput.js"))
                     .Add(WebServiceBundles.Scripts.JavaScriptLinq, bundle => bundle.AddFiles("/libs/linq/linq.min.js"))
                     .Add(WebServiceBundles.Scripts.DateTimePicker, bundle => bundle.AddFiles(
-                        "/libs/datetimepicker/bootstrap-datepicker.min.js", "/libs/datetimepicker/locales/bootstrap-datepicker.zh-CN.min.js"));
+                        "/libs/datetimepicker/bootstrap-datepicker.min.js", "/libs/datetimepicker/locales/bootstrap-datepicker.zh-CN.min.js"))
+                    .Add(WebServiceBundles.Scripts.OcelotGlobal, bundle => bundle.AddFiles("/js/ocelot/global.js"))
+                    .Add(WebServiceBundles.Scripts.OcelotReRoute, bundle => bundle.AddFiles("/js/ocelot/reroute.js"))
+                    .Add(WebServiceBundles.Scripts.OcelotReRoutes, bundle => bundle.AddFiles("/js/ocelot/reroutes.js"))
+                    .Add(WebServiceBundles.Scripts.OcelotSource, bundle => bundle.AddFiles("/js/ocelot/source.js"));
             });
         }
 
@@ -175,13 +182,13 @@ namespace MicroService.ApiGateway
 
         private void ConfigureVirtualFileSystem(IHostingEnvironment hostingEnvironment)
         {
-            if (hostingEnvironment.IsDevelopment())
-            {
-                Configure<VirtualFileSystemOptions>(options =>
-                {
-                    options.FileSets.ReplaceEmbeddedByPhysical<ApiGatewayDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}MicroService.ApiGatewayAdmin.Domain", Path.DirectorySeparatorChar)));
-                });
-            }
+            //if (hostingEnvironment.IsDevelopment())
+            //{
+            //    Configure<VirtualFileSystemOptions>(options =>
+            //    {
+            //        options.FileSets.ReplaceEmbeddedByPhysical<ApiGatewayDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}MicroService.ApiGatewayAdmin.Domain", Path.DirectorySeparatorChar)));
+            //    });
+            //}
         }
 
         private void ConfigureLocalizationServices()
@@ -190,10 +197,7 @@ namespace MicroService.ApiGateway
             {
                 options.Resources
                     .Get<ApiGatewayResource>()
-                    .AddBaseTypes(
-                        typeof(AbpValidationResource),
-                        typeof(AbpUiResource)
-                    );
+                    .AddVirtualJson("/MicroService/ApiGatewayAdmin/Web/Localization/ApiGateway");
 
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
@@ -221,7 +225,7 @@ namespace MicroService.ApiGateway
             services.AddSwaggerGen(
                 options =>
                 {
-                    options.SwaggerDoc("v1", new Info { Title = "MicroService.ApiGateway API", Version = "v1" });
+                    options.SwaggerDoc("v1", new Info { Title = "MicroService.ApiGatewayAdmin API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
                 });
@@ -248,7 +252,7 @@ namespace MicroService.ApiGateway
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroService.ApiGateway API");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "MicroService.ApiGatewayAdmin API");
             });
 
             app.UseAuditing();

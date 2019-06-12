@@ -1,5 +1,9 @@
-﻿<div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">授权标识</label>
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
+@inject IHtmlLocalizer<ApiGatewayResource> Localizer
+
+<div class="layui-form-item">
+    <label class="layui-form-label ocelot-line">@Localizer["AuthenticationProviderKey"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="AuthenticationProviderKey" class="layui-input" autocomplete="off"
                id="AuthenticationProviderKey">
@@ -7,26 +11,26 @@
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">授权范围</label>
+    <label class="layui-form-label ocelot-line">@Localizer["AllowedScopes"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="AllowedScopes" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
-               id="AllowedScopes" placeholder="格式 profile">
+               id="AllowedScopes" placeholder="@Localizer["Format"] profile">
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">IP白名单</label>
+    <label class="layui-form-label ocelot-line">@Localizer["IpAllowedList"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="IpAllowedList" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
-               id="IpAllowedList" placeholder="格式 127.0.0.1">
+               id="IpAllowedList" placeholder="@Localizer["Format"] 127.0.0.1">
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">IP黑名单</label>
+    <label class="layui-form-label ocelot-line">@Localizer["IpBlockedList"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="IpBlockedList" class="tags-input" tgclass="ocelot-line-input" autocomplete="off"
-               id="IpBlockedList" placeholder="格式 127.0.0.1">
+               id="IpBlockedList" placeholder="@Localizer["Format"] 127.0.0.1">
     </div>
 </div>
 

@@ -1,16 +1,20 @@
-﻿<div class="layui-form-item">
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
+@inject IHtmlLocalizer<ApiGatewayResource> Localizer
+
+<div class="layui-form-item">
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">负载均衡算法</label>
+        <label class="layui-form-label ocelot-line">@Localizer["LoadWay"]</label>
         <div class="layui-input-inline">
             <select name="Type">
-                <option value="LeastConnection">总是发往空闲服务器</option>
-                <option value="RoundRobin">请求轮询发送</option>
-                <option value="NoLoadBalance">请求发往首个服务器</option>
+                <option value="LeastConnection">@Localizer["LeastConnection"]</option>
+                <option value="RoundRobin">@Localizer["RoundRobin"]</option>
+                <option value="NoLoadBalance">@Localizer["NoLoadBalance"]</option>
             </select>
         </div>
     </div>
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">最大异常请求</label>
+        <label class="layui-form-label ocelot-line">@Localizer["ExceptionsAllowedBeforeBreaking"]</label>
         <div class="layui-input-line ocelot-block">
             <input type="text" name="ExceptionsAllowedBeforeBreaking" class="layui-input ocelot-line-input" autocomplete="off"
                    id="ExceptionsAllowedBeforeBreaking" lay-verfy="number">
@@ -19,7 +23,7 @@
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">熔断时间(单位:ms)</label>
+    <label class="layui-form-label ocelot-line">@Localizer["DurationOfBreak"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="DurationOfBreak" class="layui-input" autocomplete="off"
                id="DurationOfBreak" lay-verfy="number">
@@ -27,7 +31,7 @@
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">超时时间(单位:ms)</label>
+    <label class="layui-form-label ocelot-line">@Localizer["TimeoutValue"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="TimeoutValue" class="layui-input" autocomplete="off"
                id="TimeoutValue" lay-verfy="number">

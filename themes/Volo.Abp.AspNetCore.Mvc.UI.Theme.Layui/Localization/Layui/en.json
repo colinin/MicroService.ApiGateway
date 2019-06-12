@@ -10,6 +10,27 @@
     "Page:Operation": "Page operation",
     "Page:Refresh": "Refresh current",
     "Page:CloseOther": "Close other page",
-    "Page:CloseAll": "Close all page"
+    "Page:CloseAll": "Close all page",
+    "MaxOpenPage": "Only {0} tabs can be opened at the same time. Close useless tabs!",
+    "RefreshIntervalTooShort": "The refresh interval is too fast, please try again later!",
+    "NotWindowClose": "There are no Windows to close",
+    "Switch": "ON|OFF",
+    "EnableTabCache": "Tab cache on",
+    "TabCacheDescribe": "Refresh page after open without closing open Tab page",
+    "TabChangeRefresh": "Tab refresh",
+    "TabChangeRefreshDescribe": "Refresh page after open without closing open Tab page",
+    "SetComplete": "Save",
+    "SetCancel": "Cancel",
+    "OperaSetting": "Feature set",
+    "Define": "Custom",
+    "ChangeSkins": "Change the skin",
+    "Default": "Default",
+    "Orange": "Orange",
+    "Blue": "Blue",
+    "TopColor": "Top color",
+    "LeftColor": "Left color",
+    "TopMenuColor": "Top menu color",
+    "WaitToCleanCache": "Clear the cache, please wait",
+    "CleanCached": "Cache cleared successfully!"
   }
 }

@@ -1,12 +1,16 @@
-﻿<div class="layui-form-item">
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
+@inject IHtmlLocalizer<ApiGatewayResource> Localizer
+
+<div class="layui-form-item">
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">路由名称</label>
+        <label class="layui-form-label ocelot-line">@Localizer["RouteName"]</label>
         <div class="layui-input-inline ocelot-line-input">
             <input type="text" autocomplete="off" lay-verify="required" id="ReRouteName" name="ReRouteName" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">服务名称</label>
+        <label class="layui-form-label ocelot-line">@Localizer["ServiceName"]</label>
         <div class="layui-input-inline  ocelot-line-input">
             <input type="text" autocomplete="off" id="ServiceName" name="ServiceName" class="layui-input">
         </div>
@@ -15,13 +19,13 @@
 
 <div class="layui-form-item">
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">上游路径</label>
+        <label class="layui-form-label ocelot-line">@Localizer["UpstreamPathTemplate"]</label>
         <div class="layui-input-inline  ocelot-line-input">
             <input type="text" autocomplete="off" lay-verify="required" id="UpstreamPathTemplate" name="UpstreamPathTemplate" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">下游路径</label>
+        <label class="layui-form-label ocelot-line">@Localizer["DownstreamPathTemplate"]</label>
         <div class="layui-input-inline  ocelot-line-input">
             <input type="text" autocomplete="off" lay-verify="required" id="DownstreamPathTemplate" name="DownstreamPathTemplate" class="layui-input">
         </div>
@@ -30,13 +34,13 @@
 
 <div class="layui-form-item">
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">下游协议</label>
+        <label class="layui-form-label ocelot-line">@Localizer["DownstreamScheme"]</label>
         <div class="layui-input-inline ocelot-line-input">
             <input type="text" name="DownstreamScheme" id="DownstreamScheme" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">访问标识</label>
+        <label class="layui-form-label ocelot-line">@Localizer["RequestIdKey"]</label>
         <div class="layui-input-inline  ocelot-line-input">
             <input type="text" name="RequestIdKey" id="RequestIdKey" autocomplete="off" class="layui-input">
         </div>
@@ -44,56 +48,56 @@
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">上游请求方式</label>
+    <label class="layui-form-label ocelot-line">@Localizer["UpstreamHttpMethod"]</label>
     <div class="layui-input-block ocelot-block">
         <input name="UpstreamHttpMethod" id="UpstreamHttpMethod" tgclass="ocelot-line-input" class="tags-input"
-               placeholder="格式 可选:POST;GET;PATCH;PUT" />
+               placeholder="@Localizer["Format"] @Localizer["Optional"]:POST;GET;PATCH;PUT" />
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">下游请求地址</label>
+    <label class="layui-form-label ocelot-line">@Localizer["DownstreamHostAndPorts"]</label>
     <div class="layui-input-block ocelot-block">
         <input name="DownstreamHostAndPorts" id="DownstreamHostAndPorts" tgclass="ocelot-line-input" class="tags-input"
-               lay-verify="required" placeholder="格式 localhost:8080">
+               lay-verify="required" placeholder="@Localizer["Format"] localhost:8080">
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">超时时间(单位ms)</label>
+    <label class="layui-form-label ocelot-line">@Localizer["TimeoutValue"]</label>
     <div class="layui-input-block ocelot-block">
         <input type="text" name="ReRouteTimeOut" class="layui-input" autocomplete="off"
-               id="ReRouteTimeOut" placeholder="示例 1000">
+               id="ReRouteTimeOut" placeholder="@Localizer["Sample"] 1000">
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">路由鉴权标识</label>
+    <label class="layui-form-label ocelot-line">@Localizer["RouteClaimsRequirement"]</label>
     <div class="layui-input-block ocelot-block">
         <input name="RouteClaimsRequirement" id="RouteClaimsRequirement" tgclass="ocelot-line-input" class="tags-input"
-               placeholder="格式 RoleId:10">
+               placeholder="@Localizer["Format"] RoleId:10">
     </div>
 </div>
 
 <div class="layui-form-item">
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">聚合标识</label>
+        <label class="layui-form-label ocelot-line">@Localizer["AggregateKey"]</label>
         <div class="layui-input-inline ocelot-line-input">
             <input type="text" autocomplete="off" id="AggregateKey" name="AggregateKey" class="layui-input">
         </div>
     </div>
     <div class="layui-inline">
-        <label class="layui-form-label ocelot-line">路由优先级</label>
+        <label class="layui-form-label ocelot-line">@Localizer["Priority"]</label>
         <div class="layui-input-inline  ocelot-line-input">
-            <input type="text" autocomplete="off" id="Priority" name="Priority" lay-verify="number" class="layui-input">
+            <input type="text" autocomplete="off" id="Priority" name="Priority" class="layui-input">
         </div>
     </div>
 </div>
 
 <div class="layui-form-item">
-    <label class="layui-form-label ocelot-line">其他选项</label>
+    <label class="layui-form-label ocelot-line">@Localizer["OtherOptions"]</label>
     <div class="layui-input-block">
-        <input type="checkbox" name="CertificateValidator" title="忽略SSL警告">
-        <input type="checkbox" name="CaseSensitive" title="区分大小写">
+        <input type="checkbox" name="CertificateValidator" title="@Localizer["CertificateValidator"]">
+        <input type="checkbox" name="CaseSensitive" title="@Localizer["CaseSensitive"]">
     </div>
 </div>

@@ -20,7 +20,7 @@ namespace MicroService.ApiGateway
             try
             {
                 Log.Information("Starting web host.");
-                BuildWebHostInternal(args).Run();
+                BuildWebHostInternal(configuration, args).Run();
                 return 0;
             }
             catch (Exception ex)
@@ -34,11 +34,10 @@ namespace MicroService.ApiGateway
             }
         }
 
-        public static IWebHost BuildWebHostInternal(string[] args) =>
+        public static IWebHost BuildWebHostInternal(IConfiguration configuration, string[] args) =>
             new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseSerilog()
                 .Build();

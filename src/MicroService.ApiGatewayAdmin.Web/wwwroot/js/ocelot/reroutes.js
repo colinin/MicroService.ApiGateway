@@ -1,8 +1,9 @@
 ﻿layui.use(['table', 'form'], function () {
     let table = layui.table,
         form = layui.form;
-
     let _rerouteService = microService.apiGateway.ocelot.reRoute;
+    let _abpUiLocalizer = abp.localization.getResource('AbpUi');
+    let _localizer = abp.localization.getResource('ApiGateway');
 
     let reRouteTable = table.render({
         elem: '#ReRoutesTable'
@@ -27,27 +28,27 @@
         , url: '../../ReRoute/GetPagedList'
         , cols: [[
             { type: 'radio', fixed: 'left' }
-            , { field: 'reRouteName', title: '路由名称', width: 130 }
-            , { field: 'upstreamPathTemplate', title: '上游请求地址', width: 130 }
+            , { field: 'reRouteName', title: _localizer('RouteName'), width: 130 }
+            , { field: 'upstreamPathTemplate', title: _localizer('UpstreamPathTemplate'), width: 130 }
             , {
                 field: 'upstreamHttpMethod',
-                title: '上游请求方式',
+                title: _localizer('UpstreamHttpMethod'),
                 width: 200,
                 unresize: true,
                 sort: false
             }
-            , { field: 'downstreamPathTemplate', title: '下游跳转地址', width: 200 }
-            , { field: 'downstreamScheme', title: '下游请求协议', width: 200}
+            , { field: 'downstreamPathTemplate', title: _localizer('DownstreamPathTemplate'), width: 200 }
+            , { field: 'downstreamScheme', title: _localizer('DownstreamScheme'), width: 200}
             , {
                 field: 'downstreamHostAndPorts',
-                title: '下游服务地址',
+                title: _localizer('DownstreamHostAndPorts'),
                 width: 200
             }
-            , { field: 'reRouteIsCaseSensitive', title: '区分大小写', width: 110}
-            , { field: 'serviceName', title: '服务发现名称', width: 110}
+            , { field: 'reRouteIsCaseSensitive', title: _localizer('CaseSensitive'), width: 110}
+            , { field: 'serviceName', title: _localizer('ServiceName'), width: 110}
             , {
                 field: 'loadBalancer',
-                title: '负载均衡算法',
+                title: _localizer('LoadBalancer'),
                 width: 125,
                 sort: true,
                 templet: function (d) {
@@ -56,7 +57,7 @@
             }
             , {
                 field: 'exceptionsAllowed',
-                title: '允许异常次数',
+                title: _localizer('ExceptionsAllowedBeforeBreaking'),
                 width: 180,
                 templet: function (d) {
                     return d.qoSOptions.exceptionsAllowedBeforeBreaking;
@@ -64,7 +65,7 @@
             }
             , {
                 field: 'durationOfBreak',
-                title: '熔断时间',
+                title: _localizer('DurationOfBreak'),
                 width: 200,
                 templet: function (d) {
                     return d.qoSOptions.durationOfBreak;
@@ -72,7 +73,7 @@
             }
             , {
                 field: 'timeoutValue',
-                title: '下游请求超时时间',
+                title: _localizer('TimeoutValue'),
                 width: 200,
                 templet: function (d) {
                     return d.qoSOptions.timeoutValue;
@@ -80,16 +81,17 @@
             }
             , {
                 field: 'enableRateLimiting',
-                title: '是否限流',
+                title: _localizer('EnableRateLimiting'),
                 width: 150,
                 templet: function (d) {
                     var checked = d.rateLimitOptions.enableRateLimiting ? "checked='checked'" : "";
-                    return '<input type="checkbox" title="是否限流" ' + checked + '>';
+                    var title = _localizer('EnableRateLimiting');
+                    return '<input type="checkbox" title=' + title + ' ' + checked + '>';
                 }
             }
             , {
                 field: 'limit',
-                title: '最大请求数量',
+                title: _localizer('Limit'),
                 width: 250,
                 sort: true,
                 templet: function (d) {
@@ -129,7 +131,7 @@
             case 'add':
                 layer.open({
                     type: 2,
-                    title: '增加路由',
+                    title: _localizer('AddReoute'),
                     scrollbar: false,
                     area: ['920px', '600px'],
                     content: 'ReRoute'
@@ -138,7 +140,7 @@
             case 'edit':
                 layer.open({
                     type: 2,
-                    title: '编辑路由',
+                    title: _localizer('EditRoute'),
                     scrollbar: false,
                     area: ['920px', '600px'],
                     content: 'ReRoute',
@@ -149,7 +151,7 @@
                 }); 
                 break;
             case 'remove':
-                abp.message.confirm("请确认是否继续", '将删除选定的路由', function (result) {
+                abp.message.confirm(_localizer('WellDeleteSelection'), _abpUiLocalizer('AreYouSure'), function (result) {
                     if (result) {
                         // TODO: 删除选择的路由
                         _rerouteService.delete(checkStatus.data[0].reRouteId)
@@ -161,7 +163,7 @@
                 });
                 break;
             case 'removeAll':
-                abp.message.confirm("请确认是否继续", '将删除所有路由', function (result) {
+                abp.message.confirm(_localizer('WellDeleteAll'), _abpUiLocalizer('AreYouSure'), function (result) {
                     if (result) {
                         // TODO: 删除所有路由
                         _rerouteService.remove()

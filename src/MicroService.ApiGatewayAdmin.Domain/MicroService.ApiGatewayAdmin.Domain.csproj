@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <RootNamespace>MicroService.ApiGateway</RootNamespace>
+    <RootNamespace>MicroService.ApiGatewayAdmin.Domain</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,5 +22,7 @@
     <ProjectReference Include="..\..\..\Volo.Abp\Extensions\Json\Volo.Abp.MicroService.Json\Volo.Abp.MicroService.Json.csproj" />
     <ProjectReference Include="..\MicroService.ApiGatewayAdmin.Domain.Shared\MicroService.ApiGatewayAdmin.Domain.Shared.csproj" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

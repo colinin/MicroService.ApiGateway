@@ -1,4 +1,6 @@
 ﻿using MicroService.ApiGateway.Entites.Ocelot;
+using MicroService.ApiGatewayAdmin.Entites.Ocelot.Cluster;
+using MicroService.ApiGatewayAdmin.Ocelot.Cluster;
 using Microsoft.EntityFrameworkCore;
 using System;
 using Volo.Abp;
@@ -192,6 +194,38 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.HasIndex(i => new { i.DownstreamPathTemplate, i.UpstreamPathTemplate }).IsUnique();
 
                 e.ConfigureConcurrencyStamp();
+                e.ConfigureExtraProperties();
+            });
+
+            builder.Entity<ServerAuth>(e =>
+            {
+                e.ToTable(options.TablePrefix + "ServerAuth", options.Schema);
+
+                e.Property(p => p.ApiAddress).IsRequired().HasMaxLength(100);
+                e.Property(p => p.ClientId).IsRequired().HasMaxLength(50);
+                e.Property(p => p.ClientSecret).IsRequired().HasMaxLength(256);
+                e.Property(p => p.GrantType).IsRequired().HasMaxLength(30);
+                e.Property(p => p.Scope).IsRequired().HasMaxLength(50);
+
+                e.HasIndex(p => p.ServerId).IsUnique();
+            });
+
+            builder.Entity<ServerInfo>(e =>
+            {
+                e.ToTable(options.TablePrefix + "ServerInfo", options.Schema);
+                
+                e.Property(p => p.ServerName).IsRequired().HasMaxLength(100);
+                e.Property(p => p.Host).IsRequired().HasMaxLength(50);
+                e.Property(p => p.Port).IsRequired().HasDefaultValue(80);
+                e.Property(p => p.EventName).IsRequired().HasMaxLength(50);
+
+                e.Property(p => p.Description).HasMaxLength(256);
+                e.Property(p => p.ConfigType).HasDefaultValue(ServceConfigType.DataBase);
+
+                e.HasIndex(p => p.ServerId).IsUnique();
+
+                e.ConfigureConcurrencyStamp();
+                e.ConfigureExtraProperties();
             });
         }
     }

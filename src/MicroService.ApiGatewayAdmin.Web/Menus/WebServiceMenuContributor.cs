@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
+using MicroService.ApiGatewayAdmin;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Localization;
-using MicroService.ApiGateway.Localization.MicroService.ApiGateway;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
 namespace MicroService.ApiGateway.Menus
@@ -43,12 +44,13 @@ namespace MicroService.ApiGateway.Menus
             var l = context.ServiceProvider.GetRequiredService<IStringLocalizer<ApiGatewayResource>>();
             var oceloteMenu = new ApplicationMenuItem("WebService.Menu.Ocelot", l["Side:Ocelot"], "#");
             oceloteMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.Global", l["Side:Ocelot:Global"], "/OcelotConfiguration/Global"));
-
             oceloteMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.ReRoutes", l["Side:Ocelot:ReRoutes"], "/OcelotConfiguration/ReRoutes"));
-
             oceloteMenu.AddItem(new ApplicationMenuItem("WebService.Menu.Ocelot.Source", l["Side:Ocelot:Source"], "/OcelotConfiguration/Source"));
 
-            context.Menu.Items.AddRange(new List<ApplicationMenuItem> { oceloteMenu });
+            var clusterOcelotMenu = new ApplicationMenuItem("WebService.Menu.ClusterOcelot", l["Side:ClusterOcelot"], "#");
+            clusterOcelotMenu.AddItem(new ApplicationMenuItem("WebService.Menu.ClusterOcelot.ServerList", l["Side:ClusterOcelot:ServerList"], "/ClusterOcelot/ServerList"));
+
+            context.Menu.Items.AddRange(new List<ApplicationMenuItem> { clusterOcelotMenu, oceloteMenu });
 
             await Task.CompletedTask;
         }

@@ -19,6 +19,7 @@ layui.use(['bodyTab', 'form', 'element', 'layer', 'jquery'], function () {
     tab = layui.bodyTab({
         openTabNum: "50"
     });
+    let _localizer = abp.localization.getResource('Layui');
 
     $(document).ready(function () {
 
@@ -60,10 +61,10 @@ layui.use(['bodyTab', 'form', 'element', 'layer', 'jquery'], function () {
     $(".clearCache").click(function () {
         window.sessionStorage.clear();
         window.localStorage.clear();
-        var index = layer.msg('清除缓存中，请稍候', { icon: 16, time: false, shade: 0.8 });
+        var index = layer.msg(_localizer('WaitToCleanCache'), { icon: 16, time: false, shade: 0.8 });
         setTimeout(function () {
             layer.close(index);
-            layer.msg("缓存清除成功！");
+            layer.msg(_localizer('CleanCached'));
         }, 1000);
     })
 

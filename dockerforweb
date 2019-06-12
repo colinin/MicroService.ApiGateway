@@ -8,7 +8,7 @@ WORKDIR /web/ApiGateway/src/MicroService.ApiGatewayAdmin.Web
 
 RUN dotnet restore
 
-RUN dotnet publish -c Debug -o ../../publish
+RUN dotnet publish -c Release -o ../../publish
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
 WORKDIR /app

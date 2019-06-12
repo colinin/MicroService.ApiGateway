@@ -1,18 +1,22 @@
-﻿@using MicroService.ApiGateway.Ocelot.Dto
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using MicroService.ApiGateway.Bundling
+@using MicroService.ApiGateway.Ocelot.Dto
+@using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
+@inject IHtmlLocalizer<ApiGatewayResource> Localizer
 @section styles {
-    <link type="text/css" rel="stylesheet" href="~/css/ocelot/reroutes.css" />
+    <abp-style-bundle name="@WebServiceBundles.Styles.OcelotReRoutes"></abp-style-bundle>
 }
 @section scripts{
-    <script src="~/js/ocelot/reroutes.js"></script>
+    <abp-script-bundle name="@WebServiceBundles.Scripts.OcelotReRoutes"></abp-script-bundle>
 }
-    <table class="layui-hide" id="ReRoutesTable" lay-filter="reroute"></table>
+<table class="layui-hide" id="ReRoutesTable" lay-filter="reroute"></table>
 
-    <script type="text/html" id="toolbarOpera">
-        <div class="layui-btn-container">
-            <button class="layui-btn" lay-event="refresh">刷新列表</button>
-            <button class="layui-btn" lay-event="add">添加路由</button>
-            <button class="layui-btn layui-btn-disabled" disabled lay-event="edit" id="editRoute">编辑路由</button>
-            <button class="layui-btn layui-btn-disabled" disabled lay-event="remove" id="removeRoute">删除选择</button>
-            <button class="layui-btn layui-btn-danger" hidden lay-event="removeAll">删除所有</button>
-        </div>
-    </script>
+<script type="text/html" id="toolbarOpera">
+    <div class="layui-btn-container">
+        <button class="layui-btn" lay-event="refresh">@Localizer["RefreshList"]</button>
+        <button class="layui-btn" lay-event="add">@Localizer["AddReoute"]</button>
+        <button class="layui-btn layui-btn-disabled" disabled lay-event="edit" id="editRoute">@Localizer["EditRoute"]</button>
+        <button class="layui-btn layui-btn-disabled" disabled lay-event="remove" id="removeRoute">@Localizer["DeleteSelection"]</button>
+        <button class="layui-btn layui-btn-danger" hidden lay-event="removeAll">@Localizer["DeleteAll"]</button>
+    </div>
+</script>

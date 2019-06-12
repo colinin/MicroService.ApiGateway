@@ -1,4 +1,4 @@
-﻿using MicroService.ApiGateway.Localization.MicroService.ApiGateway;
+﻿using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
 using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 
 namespace MicroService.ApiGateway.Pages

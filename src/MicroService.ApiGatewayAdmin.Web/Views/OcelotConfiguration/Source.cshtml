@@ -1,16 +1,20 @@
-﻿@using MicroService.ApiGateway.Web.Models;
-@using Newtonsoft.Json;
+﻿@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Mvc.Localization
+@using MicroService.ApiGateway.Bundling
+@using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
+@using MicroService.ApiGateway.Web.Models;
+@inject IHtmlLocalizer<ApiGatewayResource> Localizer
 @model OcelotConfigurationModel
 
 @section scripts{
-    <script src="~/js/ocelot/source.js"></script>
+    <abp-script-bundle name="@WebServiceBundles.Scripts.OcelotSource"></abp-script-bundle>
 }
-@{ 
+@{
     var defaultConfiguration = "{}";
     var ocelotConfiguration = Model == null ? defaultConfiguration : JsonConvert.SerializeObject(Model, Formatting.Indented);
 }
 
 <div class="layui-footer ocelot-footer">
-    <button class="layui-btn" id="btnDownload">导出Json配置</button>
+    <button class="layui-btn" id="btnDownload">@Localizer["ExportJson"]</button>
 </div>
 <pre class="layui-code" id="ocelotConfiguration">@ocelotConfiguration</pre>

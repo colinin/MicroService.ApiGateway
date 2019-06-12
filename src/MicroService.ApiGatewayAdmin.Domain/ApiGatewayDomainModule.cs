@@ -1,5 +1,5 @@
-﻿using MicroService.ApiGateway.Localization.MicroService.ApiGateway;
-using MicroService.ApiGateway.Settings;
+﻿using MicroService.ApiGateway.Settings;
+using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
 using MicroService.ApiGatewayAdmin.Domain.Shared;
 using Volo.Abp.Auditing;
 using Volo.Abp.CAP;
@@ -19,6 +19,7 @@ namespace MicroService.ApiGateway
     /// </remarks>
     [DependsOn(
         typeof(ApiGatewayDomainSharedModule),
+        typeof(AbpLocalizationModule),
         typeof(AbpAuditingModule),
         typeof(AbpMicroServiceJsonModule),
         typeof(AbpDotNetCapModule)
@@ -35,8 +36,8 @@ namespace MicroService.ApiGateway
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Get<ApiGatewayResource>()
-                    .AddVirtualJson("/Localization/ApiGateway");
+                    .Add<ApiGatewayResource>("en")
+                    .AddVirtualJson("/MicroService/ApiGatewayAdmin/Domain/Localization/ApiGateway");
             });
 
             Configure<SettingOptions>(options =>

@@ -1,144 +1,148 @@
-﻿@using MicroService.ApiGateway.Ocelot.Dto
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using MicroService.ApiGateway.Bundling
+@using MicroService.ApiGateway.Ocelot.Dto
+@using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
+@inject IHtmlLocalizer<ApiGatewayResource> Localizer
 @model GlobalConfigurationDto
 @section styles {
-    <link type="text/css" rel="stylesheet" href="~/css/ocelot/global.css" />
+    <abp-style-bundle name="@WebServiceBundles.Styles.OcelotGlobal"></abp-style-bundle>
 }
 @section scripts{
-    <script src="~/js/ocelot/global.js"></script>
+    <abp-script-bundle name="@WebServiceBundles.Scripts.OcelotGlobal"></abp-script-bundle>
 }
-    <form class="layui-form layui-form-pane" action="" lay-filter="GlobalCfg">
-        @Html.Hidden("ItemId")
+<form class="layui-form layui-form-pane" action="" lay-filter="GlobalCfg">
+    @Html.Hidden("ItemId")
 
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>基础配置</legend>
-            <hr class="layui-bg-blue">
-        </fieldset>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">访问路径</label>
-                <div class="layui-input-inline ocelot-line-input">
-                    <input type="text" autocomplete="off" lay-verify="required" name="BaseUrl" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">访问标识</label>
-                <div class="layui-input-inline  ocelot-line-input">
-                    <input type="text" autocomplete="off" name="RequestIdKey" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">下游协议</label>
-                <div class="layui-input-inline ocelot-line-input">
-                    <input type="text" name="DownstreamScheme" id="DownstreamScheme" autocomplete="off" class="layui-input">
-                </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>@Localizer["Basic"]</legend>
+        <hr class="layui-bg-blue">
+    </fieldset>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["BaseUrl"]</label>
+            <div class="layui-input-inline ocelot-line-input">
+                <input type="text" autocomplete="off" lay-verify="required" name="BaseUrl" class="layui-input">
             </div>
         </div>
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>服务质量</legend>
-            <hr class="layui-bg-blue">
-        </fieldset>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">最大允许异常请求</label>
-                <div class="layui-input-inline ocelot-line-input">
-                    <input type="text" autocomplete="off" name="ExceptionsAllowedBeforeBreaking" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">熔断时间(ms)</label>
-                <div class="layui-input-inline  ocelot-line-input">
-                    <input type="text" autocomplete="off" name="DurationOfBreak" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">超时时间(ms)</label>
-                <div class="layui-input-inline  ocelot-line-input">
-                    <input type="text" autocomplete="off" name="TimeoutValue" class="layui-input">
-                </div>
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["RequestIdKey"]</label>
+            <div class="layui-input-inline  ocelot-line-input">
+                <input type="text" autocomplete="off" name="RequestIdKey" class="layui-input">
             </div>
         </div>
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>流量控制</legend>
-            <hr class="layui-bg-blue">
-        </fieldset>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">客户端请求头</label>
-                <div class="layui-input-inline ocelot-line-input">
-                    <input type="text" autocomplete="off" name="ClientIdHeader" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">过载错误消息</label>
-                <div class="layui-input-inline  ocelot-line-input">
-                    <input type="text" autocomplete="off" name="QuotaExceededMessage" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">HTTP错误代码</label>
-                <div class="layui-input-inline ocelot-line-input">
-                    <input type="text" autocomplete="off" name="HttpStatusCode" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <div class="layui-input-inline  ocelot-line-input">
-                    <input type="checkbox" name="DisableRateLimitHeaders" title="禁用HTTP头">
-                </div>
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["DownstreamScheme"]</label>
+            <div class="layui-input-inline ocelot-line-input">
+                <input type="text" name="DownstreamScheme" id="DownstreamScheme" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>HTTP处理器</legend>
-            <hr class="layui-bg-blue">
-        </fieldset>
-        <div class="layui-form-item">
-            <label class="layui-form-label ocelot-line">其他选项</label>
-            <div class="layui-input-block">
-                <input type="checkbox" name="AllowAutoRedirect" title="HTTP重定向">
-                <input type="checkbox" name="UseCookieContainer" title="Cookie容器">
-                <input type="checkbox" name="UseProxy" title="HTTP代理">
-                <input type="checkbox" name="UseTracing" title="HTTP追踪">
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>@Localizer["Qos"]</legend>
+        <hr class="layui-bg-blue">
+    </fieldset>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["Basic"]</label>
+            <div class="layui-input-inline ocelot-line-input">
+                <input type="text" autocomplete="off" name="ExceptionsAllowedBeforeBreaking" class="layui-input">
             </div>
         </div>
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>负载均衡</legend>
-            <hr class="layui-bg-blue">
-        </fieldset>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">使用算法</label>
-                <div class="layui-input-inline  ocelot-line-input">
-                    <select name="Type">
-                        <option value="LeastConnection">总是发往空闲服务器</option>
-                        <option value="RoundRobin">请求轮询发送</option>
-                        <option value="NoLoadBalance">请求发往首个服务器</option>
-                    </select>
-                </div>
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["DurationOfBreak"]</label>
+            <div class="layui-input-inline  ocelot-line-input">
+                <input type="text" autocomplete="off" name="DurationOfBreak" class="layui-input">
             </div>
         </div>
-        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-            <legend>服务发现</legend>
-            <hr class="layui-bg-blue">
-        </fieldset>
-        <div class="layui-form-item">
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">主机地址</label>
-                <div class="layui-input-inline ocelot-line-input">
-                    <input type="text" autocomplete="off" name="Host" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label ocelot-line">端口</label>
-                <div class="layui-input-inline  ocelot-line-input">
-                    <input type="text" autocomplete="off" name="Port" class="layui-input">
-                </div>
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["TimeoutValue"]</label>
+            <div class="layui-input-inline  ocelot-line-input">
+                <input type="text" autocomplete="off" name="TimeoutValue" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item layui-layout-admin">
-            <div class="layui-input-block">
-                <div class="layui-footer ocelot-footer" style="left: 0; text-align: center">
-                    <button class="layui-btn" lay-submit="" lay-filter="btnSave">立即提交</button>
-                </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>@Localizer["RateLimit"]</legend>
+        <hr class="layui-bg-blue">
+    </fieldset>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["ClientIdHeader"]</label>
+            <div class="layui-input-inline ocelot-line-input">
+                <input type="text" autocomplete="off" name="ClientIdHeader" class="layui-input">
             </div>
         </div>
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["QuotaExceededMessage"]</label>
+            <div class="layui-input-inline  ocelot-line-input">
+                <input type="text" autocomplete="off" name="QuotaExceededMessage" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["HttpStatusCode"]</label>
+            <div class="layui-input-inline ocelot-line-input">
+                <input type="text" autocomplete="off" name="HttpStatusCode" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <div class="layui-input-inline  ocelot-line-input">
+                <input type="checkbox" name="DisableRateLimitHeaders" title="@Localizer["DisableRateLimitHeaders"]">
+            </div>
+        </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>@Localizer["HttpHandler"]</legend>
+        <hr class="layui-bg-blue">
+    </fieldset>
+    <div class="layui-form-item">
+        <label class="layui-form-label ocelot-line">@Localizer["OtherOptions"]</label>
+        <div class="layui-input-block">
+            <input type="checkbox" name="AllowAutoRedirect" title="@Localizer["AllowAutoRedirect"]">
+            <input type="checkbox" name="UseCookieContainer" title="@Localizer["UseCookieContainer"]">
+            <input type="checkbox" name="UseProxy" title="@Localizer["UseProxy"]">
+            <input type="checkbox" name="UseTracing" title="@Localizer["UseTracing"]">
+        </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>@Localizer["LoadBalancer"]</legend>
+        <hr class="layui-bg-blue">
+    </fieldset>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["LoadWay"]</label>
+            <div class="layui-input-inline  ocelot-line-input">
+                <select name="Type">
+                    <option value="LeastConnection">@Localizer["LeastConnection"]</option>
+                    <option value="RoundRobin">@Localizer["RoundRobin"]</option>
+                    <option value="NoLoadBalance">@Localizer["NoLoadBalance"]</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>@Localizer["ServiceDiscovery"]</legend>
+        <hr class="layui-bg-blue">
+    </fieldset>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["Host"]</label>
+            <div class="layui-input-inline ocelot-line-input">
+                <input type="text" autocomplete="off" name="Host" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["Port"]</label>
+            <div class="layui-input-inline  ocelot-line-input">
+                <input type="text" autocomplete="off" name="Port" class="layui-input">
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item layui-layout-admin">
+        <div class="layui-input-block">
+            <div class="layui-footer ocelot-footer" style="left: 0; text-align: center">
+                <button class="layui-btn" lay-submit="" lay-filter="btnSave">@Localizer["Submit"]</button>
+            </div>
+        </div>
+    </div>
 
-    </form>
+</form>

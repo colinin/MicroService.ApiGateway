@@ -10,6 +10,27 @@
     "Page:Operation": "页面操作",
     "Page:Refresh": "刷新当前",
     "Page:CloseOther": "关闭其他",
-    "Page:CloseAll": "关闭全部"
+    "Page:CloseAll": "关闭全部",
+    "MaxOpenPage": "只能同时打开{0}个选项卡,请关闭无用的选项卡!",
+    "RefreshIntervalTooShort": "刷新间隔时间太快,请稍后再试!",
+    "NotWindowClose": "没有可以关闭的窗口了",
+    "Switch": "开|关",
+    "EnableTabCache": "开启Tab缓存",
+    "TabCacheDescribe": "开启后刷新页面不关闭打开的Tab页",
+    "TabChangeRefresh": "Tab切换刷新",
+    "TabChangeRefreshDescribe": "开启后刷新页面不关闭打开的Tab页",
+    "SetComplete": "设定完成",
+    "SetCancel": "不考虑了",
+    "OperaSetting": "功能设定",
+    "Define": "自定义",
+    "ChangeSkins": "更换皮肤",
+    "Default": "默认",
+    "Orange": "橙色",
+    "Blue": "蓝色",
+    "TopColor": "顶部颜色",
+    "LeftColor": "左侧颜色",
+    "TopMenuColor": "顶部菜单颜色",
+    "WaitToCleanCache": "清除缓存中，请稍候",
+    "CleanCached": "缓存清除成功!"
   }
 }

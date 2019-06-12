@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.AspNetCore.Mvc.Razor.Internal;
-using MicroService.ApiGateway.Localization.MicroService.ApiGateway;
 using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
+using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
 
 namespace MicroService.ApiGateway.Pages
 {

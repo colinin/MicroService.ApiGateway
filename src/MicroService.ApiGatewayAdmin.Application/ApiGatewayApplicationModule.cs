@@ -2,6 +2,9 @@
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Localization;
+using MicroService.ApiGatewayAdmin.Domain.Localization.ApiGateway;
 
 namespace MicroService.ApiGateway
 {
@@ -14,6 +17,18 @@ namespace MicroService.ApiGateway
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            Configure<VirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<ApiGatewayApplicationModule>();
+            });
+
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                options.Resources
+                    .Get<ApiGatewayResource>()
+                    .AddVirtualJson("/MicroService/ApiGatewayAdmin/Application/Localization/ApiGateway");
+            });
+
             Configure<AbpAutoMapperOptions>(options =>
             {
                 options.Configurators.Add(ctx =>

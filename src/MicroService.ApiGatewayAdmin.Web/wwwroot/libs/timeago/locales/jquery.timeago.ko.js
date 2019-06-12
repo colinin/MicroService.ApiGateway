@@ -1,13 +1,31 @@
-	<DimensionPropertyCacheSize>4000000</DimensionPropertyCacheSize>
-			<AllowSEFiltering>1</AllowSEFiltering>
-			<AllowOptimizedResponse>1</AllowOptimizedResponse>
-			<AllowNonXMLIslands>1</AllowNonXMLIslands>
-			<IgnoreNullRolapRows>1</IgnoreNullRolapRows>
-			<UseVBANet>1</UseVBANet>
-			<DisableStrongAttributeRelationships>0</DisableStrongAttributeRelationships>
-			<CalculatedVisualTotalStyleForSubselects>0</CalculatedVisualTotalStyleForSubselects>
-			<EnableCalculatedMemberUsageForCalculationLRU>1</EnableCalculatedMemberUsageForCalculationLRU>
-			<CalculationLRUSize>20</CalculationLRUSize>
-			<CalculationLRUMinSize>60</CalculationLRUMinSize>
-			<CalculationLRUMaxSize>3000</CalculationLRUMaxSize>
-			<Disa
+﻿(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery'], factory);
+  } else if (typeof module === 'object' && typeof module.exports === 'object') {
+    factory(require('jquery'));
+  } else {
+    factory(jQuery);
+  }
+}(function (jQuery) {
+  // Korean
+  jQuery.timeago.settings.strings = {
+    prefixAgo: null,
+    prefixFromNow: null,
+    suffixAgo: "전",
+    suffixFromNow: "후",
+    seconds: "1분",
+    minute: "약 1분",
+    minutes: "%d분",
+    hour: "약 1시간",
+    hours: "약 %d시간",
+    day: "하루",
+    days: "%d일",
+    month: "약 1개월",
+    months: "%d개월",
+    year: "약 1년",
+    years: "%d년",
+    wordSeparator: " ",
+    numbers: []
+  };
+}));
+

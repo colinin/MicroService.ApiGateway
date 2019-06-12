@@ -527,6 +527,92 @@ namespace MicroService.ApiGateway.Migrations
                     b.ToTable("AbpApiGatewayDiscovery");
                 });
 
+            modelBuilder.Entity("MicroService.ApiGatewayAdmin.Entites.Ocelot.Cluster.ServerAuth", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApiAddress")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("ClientId")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("ClientSecret")
+                        .IsRequired()
+                        .HasMaxLength(256);
+
+                    b.Property<string>("GrantType")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Scope")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<long>("ServerId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServerId")
+                        .IsUnique();
+
+                    b.ToTable("AbpApiGatewayServerAuth");
+                });
+
+            modelBuilder.Entity("MicroService.ApiGatewayAdmin.Entites.Ocelot.Cluster.ServerInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<int>("ConfigType")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("EventName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("ExtraProperties")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<string>("Host")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Port")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(80);
+
+                    b.Property<int?>("ServerAuthId");
+
+                    b.Property<long>("ServerId");
+
+                    b.Property<string>("ServerName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServerAuthId");
+
+                    b.HasIndex("ServerId")
+                        .IsUnique();
+
+                    b.ToTable("AbpApiGatewayServerInfo");
+                });
+
             modelBuilder.Entity("Volo.Abp.SettingManagement.Setting", b =>
                 {
                     b.Property<Guid>("Id")
@@ -619,6 +705,13 @@ namespace MicroService.ApiGateway.Migrations
                     b.HasOne("MicroService.ApiGateway.Entites.Ocelot.SecurityOptions", "SecurityOptions")
                         .WithMany()
                         .HasForeignKey("SecurityOptionsId");
+                });
+
+            modelBuilder.Entity("MicroService.ApiGatewayAdmin.Entites.Ocelot.Cluster.ServerInfo", b =>
+                {
+                    b.HasOne("MicroService.ApiGatewayAdmin.Entites.Ocelot.Cluster.ServerAuth", "ServerAuth")
+                        .WithMany()
+                        .HasForeignKey("ServerAuthId");
                 });
 #pragma warning restore 612, 618
         }

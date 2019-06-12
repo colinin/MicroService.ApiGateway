@@ -7,7 +7,8 @@ var cacheStr = window.sessionStorage.getItem("cache");
 layui.use(['form','jquery',"layer"],function() {
     var form = layui.form,
         $ = layui.jquery,
-        layer = parent.layer === undefined ? layui.layer : top.layer;
+        layer = parent.layer === undefined ? layui.layer : top.layer,
+        _localizer = abp.localization.getResource('Layui');
     //退出
     $(".exitSystem").click(function(){
         window.close();
@@ -16,28 +17,28 @@ layui.use(['form','jquery',"layer"],function() {
     //功能设定
     $(".functionSetting").click(function(){
         layer.open({
-            title: "功能设定",
+            title: _localizer('OperaSetting'),
             area: ["380px", "280px"],
             type: "1",
             content :  '<div class="functionSrtting_box">'+
                             '<form class="layui-form">'+
                                 '<div class="layui-form-item">'+
-                                    '<label class="layui-form-label">开启Tab缓存</label>'+
+                                    '<label class="layui-form-label">' + _localizer('EnableTabCache') + '</label>'+
                                     '<div class="layui-input-block">'+
-                                        '<input type="checkbox" name="cache" lay-skin="switch" lay-text="开|关">'+
-                                        '<div class="layui-word-aux">开启后刷新页面不关闭打开的Tab页</div>'+
+                                        '<input type="checkbox" name="cache" lay-skin="switch" lay-text="' + _localizer('Switch') + '">'+
+                                        '<div class="layui-word-aux">' + _localizer('TabCacheDescribe') + '</div>'+
                                     '</div>'+
                                 '</div>'+
                                 '<div class="layui-form-item">'+
-                                    '<label class="layui-form-label">Tab切换刷新</label>'+
+                                    '<label class="layui-form-label">' + _localizer('TabChangeRefresh') + '</label>'+
                                     '<div class="layui-input-block">'+
-                                        '<input type="checkbox" name="changeRefresh" lay-skin="switch" lay-text="开|关">'+
-                                        '<div class="layui-word-aux">开启后切换窗口刷新当前页面</div>'+
+                                        '<input type="checkbox" name="changeRefresh" lay-skin="switch" lay-text="' + _localizer('Switch') + '">'+
+                                        '<div class="layui-word-aux">' + _localizer('TabChangeRefreshDescribe') + '</div>'+
                                     '</div>'+
                                 '</div>'+
                                 '<div class="layui-form-item skinBtn">'+
-                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-normal" lay-submit="" lay-filter="settingSuccess">设定完成</a>'+
-                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-primary" lay-submit="" lay-filter="noSetting">朕再想想</a>'+
+                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-normal" lay-submit="" lay-filter="settingSuccess">' + _localizer('SetComplete') + '</a>'+
+                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-primary" lay-submit="" lay-filter="noSetting">' + _localizer('SetCancel') + '</a>'+
                                 '</div>'+
                             '</form>'+
                         '</div>',
@@ -72,8 +73,8 @@ layui.use(['form','jquery',"layer"],function() {
     //更换皮肤
     function skins(){
         var skin = window.sessionStorage.getItem("skin");
-        if(skin){  //如果更换过皮肤
-            if(window.sessionStorage.getItem("skinValue") != "自定义"){
+        if (skin) {  //如果更换过皮肤
+            if (window.sessionStorage.getItem("skinValue") != _localizer('Define')) {
                 $("body").addClass(window.sessionStorage.getItem("skin"));
             }else{
                 $(".layui-layout-admin .layui-header").css("background-color",skin.split(',')[0]);
@@ -85,25 +86,25 @@ layui.use(['form','jquery',"layer"],function() {
     skins();
     $(".changeSkin").click(function(){
         layer.open({
-            title : "更换皮肤",
+            title: _localizer('ChangeSkins'),
             area : ["310px","280px"],
             type : "1",
             content : '<div class="skins_box">'+
                             '<form class="layui-form">'+
                                 '<div class="layui-form-item">'+
-                                    '<input type="radio" name="skin" value="默认" title="默认" lay-filter="default" checked="">'+
-                                    '<input type="radio" name="skin" value="橙色" title="橙色" lay-filter="orange">'+
-                                    '<input type="radio" name="skin" value="蓝色" title="蓝色" lay-filter="blue">'+
-                                    '<input type="radio" name="skin" value="自定义" title="自定义" lay-filter="custom">'+
+                                    '<input type="radio" name="skin" value="' + _localizer('Default') + '" title="' + _localizer('Default') + '" lay-filter="default" checked="">'+
+                                    '<input type="radio" name="skin" value="' + _localizer('Orange') + '" title="' + _localizer('Orange') + '" lay-filter="orange">'+
+                                    '<input type="radio" name="skin" value="' + _localizer('Blue') + '" title="' + _localizer('Blue') + '" lay-filter="blue">'+
+                                    '<input type="radio" name="skin" value="' + _localizer('Define') + '" title="' + _localizer('Define') + '" lay-filter="custom">'+
                                     '<div class="skinCustom">'+
-                                        '<input type="text" class="layui-input topColor" name="topSkin" placeholder="顶部颜色" />'+
-                                        '<input type="text" class="layui-input leftColor" name="leftSkin" placeholder="左侧颜色" />'+
-                                        '<input type="text" class="layui-input menuColor" name="btnSkin" placeholder="顶部菜单按钮" />'+
+                                        '<input type="text" class="layui-input topColor" name="topSkin" placeholder="' + _localizer('TopColor') + '" />'+
+                                        '<input type="text" class="layui-input leftColor" name="leftSkin" placeholder="' + _localizer('LeftColor') + '" />'+
+                                        '<input type="text" class="layui-input menuColor" name="btnSkin" placeholder="' + _localizer('TopMenuColor') + '" />'+
                                     '</div>'+
                                 '</div>'+
                                 '<div class="layui-form-item skinBtn">'+
-                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-normal" lay-submit="" lay-filter="changeSkin">确定更换</a>'+
-                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-primary" lay-submit="" lay-filter="noChangeSkin">朕再想想</a>'+
+                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-normal" lay-submit="" lay-filter="changeSkin">' + _localizer('SetComplete') + '</a>'+
+                                    '<a href="javascript:;" class="layui-btn layui-btn-sm layui-btn-primary" lay-submit="" lay-filter="noChangeSkin">' + _localizer('SetCancel') + '</a>'+
                                 '</div>'+
                             '</form>'+
                         '</div>',
@@ -112,7 +113,7 @@ layui.use(['form','jquery',"layer"],function() {
                 if(window.sessionStorage.getItem("skinValue")){
                     $(".skins_box input[value="+window.sessionStorage.getItem("skinValue")+"]").attr("checked","checked");
                 };
-                if($(".skins_box input[value=自定义]").attr("checked")){
+                if($(".skins_box input[value=" + _localizer('Define') + "]").attr("checked")){
                     $(".skinCustom").css("visibility","inherit");
                     $(".topColor").val(skin.split(',')[0]);
                     $(".leftColor").val(skin.split(',')[1]);
@@ -122,14 +123,14 @@ layui.use(['form','jquery',"layer"],function() {
                 $(".skins_box").removeClass("layui-hide");
                 $(".skins_box .layui-form-radio").on("click",function(){
                     var skinColor;
-                    if($(this).find("div").text() == "橙色"){
+                    if ($(this).find("div").text() == _localizer('Orange')){
                         skinColor = "orange";
-                    }else if($(this).find("div").text() == "蓝色"){
+                    } else if ($(this).find("div").text() == _localizer('Blue')){
                         skinColor = "blue";
-                    }else if($(this).find("div").text() == "默认"){
+                    } else if ($(this).find("div").text() == _localizer('Default')){
                         skinColor = "";
                     }
-                    if($(this).find("div").text() != "自定义"){
+                    if ($(this).find("div").text() != _localizer('Define')){
                         $(".topColor,.leftColor,.menuColor").val('');
                         $("body").removeAttr("class").addClass("main_body "+skinColor+"");
                         $(".skinCustom").removeAttr("style");
@@ -150,12 +151,12 @@ layui.use(['form','jquery',"layer"],function() {
                 })
 
                 form.on("submit(changeSkin)",function(data){
-                    if(data.field.skin != "自定义"){
-                        if(data.field.skin == "橙色"){
+                    if (data.field.skin != _localizer('Define')){
+                        if (data.field.skin == _localizer('Orange')){
                             skinColor = "orange";
-                        }else if(data.field.skin == "蓝色"){
+                        } else if (data.field.skin == _localizer('Blue')){
                             skinColor = "blue";
-                        }else if(data.field.skin == "默认"){
+                        } else if (data.field.skin == _localizer('Define')){
                             skinColor = "";
                         }
                         window.sessionStorage.setItem("skin",skinColor);
