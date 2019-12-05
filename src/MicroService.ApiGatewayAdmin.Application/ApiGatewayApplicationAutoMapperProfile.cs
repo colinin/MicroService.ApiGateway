@@ -2,6 +2,7 @@
 using MicroService.ApiGateway.Entites.Ocelot;
 using MicroService.ApiGateway.Ocelot.Dto;
 using MicroService.ApiGateway.Snowflake;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Volo.Abp.DependencyInjection;
@@ -22,25 +23,51 @@ namespace MicroService.ApiGateway
 
             CreateMap<RateLimitOptions, RateLimitOptionsDto>();
 
+            CreateMap<ServiceDiscoveryProvider, ServiceDiscoveryProviderDto>();
+
             CreateMap<RateLimitRule, RateLimitRuleDto>()
-                .ForMember(dto => dto.ClientWhitelist, map => map.MapFrom(m => m.ClientWhitelist.Split(',').ToList()));
+                .ForMember(dto => dto.ClientWhitelist, map => map.MapFrom((m, n) =>
+                {
+                    if (!m.ClientWhitelist.IsNullOrWhiteSpace() && m.ClientWhitelist.Contains(","))
+                    {
+                        return m.ClientWhitelist.Split(',').ToList();
+                    }
+                    return new List<string>();
+                }));
 
             CreateMap<AuthenticationOptions, AuthenticationOptionsDto>()
                 .ForMember(dto => dto.AllowedScopes, map => map.MapFrom(m => !string.IsNullOrWhiteSpace(m.AllowedScopes) 
-                ? m.AllowedScopes.Split(',').ToList() : new List<string>()));
+                ? m.AllowedScopes.Split(',').ToList() 
+                : new List<string>()));
 
             CreateMap<HttpHandlerOptions, HttpHandlerOptionsDto>();
 
             CreateMap<HostAndPort, HostAndPortDto>();
 
             CreateMap<SecurityOptions, SecurityOptionsDto>()
-                .ForMember(dto => dto.IPAllowedList, map => map.MapFrom(m => m.IPAllowedList.Split(',').ToList()))
-                .ForMember(dto => dto.IPBlockedList, map => map.MapFrom(m => m.IPBlockedList.Split(',').ToList()));
+                .ForMember(dto => dto.IPAllowedList, map => map.MapFrom((m, n) =>
+                {
+                    if (!m.IPAllowedList.IsNullOrWhiteSpace() && m.IPAllowedList.Contains(","))
+                    {
+                        return m.IPAllowedList.Split(',').ToList();
+                    }
+                    return new List<string>();
+                }))
+                .ForMember(dto => dto.IPBlockedList, map => map.MapFrom((m, n) =>
+                {
+                    if (!m.IPBlockedList.IsNullOrWhiteSpace() && m.IPBlockedList.Contains(","))
+                    {
+                        return m.IPBlockedList.Split(',').ToList();
+                    }
+                    return new List<string>();
+                }));
 
             CreateMap<AggregateReRouteConfig, AggregateReRouteConfigDto>();
 
             CreateMap<AggregateReRoute, AggregateReRouteDto>()
-                .ForMember(dto => dto.ReRouteKeys, map => map.MapFrom(m => m.ReRouteKeys.Split(',').ToList()));
+                .ForMember(dto => dto.ReRouteKeys, map => map.MapFrom(m => !m.ReRouteKeys.IsNullOrWhiteSpace() && m.ReRouteKeys.Contains(",") 
+                ? m.ReRouteKeys.Split(',').ToList()
+                : new List<string>()));
 
             CreateMap<GlobalConfiguration, GlobalConfigurationDto>();
 

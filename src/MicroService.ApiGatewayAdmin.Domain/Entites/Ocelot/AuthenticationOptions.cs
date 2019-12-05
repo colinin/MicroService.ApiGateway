@@ -8,6 +8,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         public virtual long ReRouteId { get; private set; }
         public virtual string AuthenticationProviderKey { get; private set; }
         public virtual string AllowedScopes { get; set; }
+        public virtual ReRoute ReRoute { get; private set; }
 
         protected AuthenticationOptions()
         {

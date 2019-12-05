@@ -24,17 +24,29 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
             {
                 e.ToTable(options.TablePrefix + "CacheOptions", options.Schema);
 
-                e.Property(p => p.ReRouteId).IsRequired();
                 e.Property(p => p.Region).HasMaxLength(256);
+
+                e.HasOne(p => p.ReRoute)
+                 .WithOne(q => q.CacheOptions)
+                 .HasForeignKey<CacheOptions>(fk => fk.ReRouteId)
+                 .HasPrincipalKey<ReRoute>(pk => pk.ReRouteId)
+                 .IsRequired()
+                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<AuthenticationOptions>(e =>
             {
                 e.ToTable(options.TablePrefix + "AuthOptions", options.Schema);
 
-                e.Property(p => p.ReRouteId).IsRequired();
                 e.Property(p => p.AllowedScopes).HasMaxLength(200);
                 e.Property(p => p.AuthenticationProviderKey).HasMaxLength(100);
+
+                e.HasOne(p => p.ReRoute)
+                 .WithOne(q => q.AuthenticationOptions)
+                 .HasForeignKey<AuthenticationOptions>(fk => fk.ReRouteId)
+                 .HasPrincipalKey<ReRoute>(pk => pk.ReRouteId)
+                 .IsRequired()
+                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<Headers>(e =>
@@ -52,37 +64,73 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
 
                 e.Property(p => p.ReRouteId).IsRequired();
                 e.Property(p => p.Host).IsRequired().HasMaxLength(50);
-                e.Property(p => p.Port).IsRequired();
+                e.Property(p => p.Port).HasDefaultValue(0);
             });
 
             builder.Entity<HttpHandlerOptions>(e =>
             {
                 e.ToTable(options.TablePrefix + "HttpOptions", options.Schema);
 
-                e.Property(p => p.ItemId).IsRequired();
+                e.HasOne(p => p.ReRoute)
+                 .WithOne(q => q.HttpHandlerOptions)
+                 .HasForeignKey<HttpHandlerOptions>(fk => fk.ReRouteId)
+                 .HasPrincipalKey<ReRoute>(pk => pk.ReRouteId)
+                 .IsRequired(false)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+                e.HasOne(p => p.GlobalConfiguration)
+                 .WithOne(q => q.HttpHandlerOptions)
+                 .HasForeignKey<HttpHandlerOptions>(fk => fk.ItemId)
+                 .HasPrincipalKey<GlobalConfiguration>(pk => pk.ItemId)
+                 .IsRequired(false)
+                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<LoadBalancerOptions>(e =>
             {
                 e.ToTable(options.TablePrefix + "BalancerOptions", options.Schema);
 
-                e.Property(p => p.ItemId).IsRequired();
                 e.Property(p => p.Type).HasMaxLength(100);
                 e.Property(p => p.Key).HasMaxLength(100);
+
+                e.HasOne(p => p.ReRoute)
+                 .WithOne(q => q.LoadBalancerOptions)
+                 .HasForeignKey<LoadBalancerOptions>(fk => fk.ReRouteId)
+                 .HasPrincipalKey<ReRoute>(pk => pk.ReRouteId)
+                 .IsRequired(false)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+                e.HasOne(p => p.GlobalConfiguration)
+                 .WithOne(q => q.LoadBalancerOptions)
+                 .HasForeignKey<LoadBalancerOptions>(fk => fk.ItemId)
+                 .HasPrincipalKey<GlobalConfiguration>(pk => pk.ItemId)
+                 .IsRequired(false)
+                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<QoSOptions>(e =>
             {
                 e.ToTable(options.TablePrefix + "QoSOptions", options.Schema);
 
-                e.Property(p => p.ItemId).IsRequired();
+                e.HasOne(p => p.ReRoute)
+                 .WithOne(q => q.QoSOptions)
+                 .HasForeignKey<QoSOptions>(fk => fk.ReRouteId)
+                 .HasPrincipalKey<ReRoute>(pk => pk.ReRouteId)
+                 .IsRequired(false)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+                e.HasOne(p => p.GlobalConfiguration)
+                 .WithOne(q => q.QoSOptions)
+                 .HasForeignKey<QoSOptions>(fk => fk.ItemId)
+                 .HasPrincipalKey<GlobalConfiguration>(pk => pk.ItemId)
+                 .IsRequired(false)
+                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<RateLimitOptions>(e =>
             {
                 e.ToTable(options.TablePrefix + "RateLimitOptions", options.Schema);
 
-                e.Property(p => p.ItemId).IsRequired();
                 e.Property(p => p.ClientIdHeader).HasMaxLength(50);
                 e.Property(p => p.QuotaExceededMessage).HasMaxLength(256);
                 e.Property(p => p.RateLimitCounterPrefix).HasMaxLength(50);
@@ -90,36 +138,68 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.Property(p => p.HttpStatusCode).HasDefaultValue(429);
                 e.Property(p => p.ClientIdHeader).HasDefaultValue("ClientId");
                 e.Property(p => p.RateLimitCounterPrefix).HasDefaultValue("ocelot");
+
+                e.HasOne(p => p.GlobalConfiguration)
+                 .WithOne(q => q.RateLimitOptions)
+                 .HasForeignKey<RateLimitOptions>(fk => fk.ItemId)
+                 .HasPrincipalKey<GlobalConfiguration>(pk => pk.ItemId)
+                 .IsRequired()
+                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<RateLimitRule>(e =>
             {
                 e.ToTable(options.TablePrefix + "RateLimitRule", options.Schema);
 
-                e.Property(p => p.ReRouteId).IsRequired();
                 e.Property(p => p.Period).HasMaxLength(50);
                 e.Property(p => p.ClientWhitelist).HasMaxLength(1000);
+
+                e.HasOne(p => p.ReRoute)
+                 .WithOne(q => q.RateLimitOptions)
+                 .HasForeignKey<RateLimitRule>(fk => fk.ReRouteId)
+                 .HasPrincipalKey<ReRoute>(pk => pk.ReRouteId)
+                 .IsRequired(false)
+                 .OnDelete(DeleteBehavior.Cascade);
+
+                e.HasOne(p => p.DynamicReRoute)
+                 .WithOne(q => q.RateLimitRule)
+                 .HasForeignKey<RateLimitRule>(fk => fk.DynamicReRouteId)
+                 .HasPrincipalKey<DynamicReRoute>(pk => pk.DynamicReRouteId)
+                 .IsRequired(false)
+                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<SecurityOptions>(e =>
             {
                 e.ToTable(options.TablePrefix + "SecurityOptions", options.Schema);
 
-                e.Property(p => p.ReRouteId).IsRequired();
                 e.Property(p => p.IPAllowedList).HasMaxLength(1000);
                 e.Property(p => p.IPBlockedList).HasMaxLength(1000);
+
+                e.HasOne(p => p.ReRoute)
+                 .WithOne(q => q.SecurityOptions)
+                 .HasForeignKey<SecurityOptions>(fk => fk.ReRouteId)
+                 .HasPrincipalKey<ReRoute>(pk => pk.ReRouteId)
+                 .IsRequired()
+                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<ServiceDiscoveryProvider>(e =>
             {
                 e.ToTable(options.TablePrefix + "Discovery", options.Schema);
 
-                e.Property(p => p.ItemId).IsRequired();
                 e.Property(p => p.Host).HasMaxLength(50);
                 e.Property(p => p.Type).HasMaxLength(128);
                 e.Property(p => p.Token).HasMaxLength(256);
                 e.Property(p => p.Namespace).HasMaxLength(128);
                 e.Property(p => p.ConfigurationKey).HasMaxLength(256);
+
+                e.HasOne(p => p.GlobalConfiguration)
+                 .WithOne(q => q.ServiceDiscoveryProvider)
+                 .HasForeignKey<ServiceDiscoveryProvider>(fk => fk.ItemId)
+                 .HasPrincipalKey<GlobalConfiguration>(pk => pk.ItemId)
+                 .IsRequired()
+                 .OnDelete(DeleteBehavior.Cascade);
             });
 
             builder.Entity<AggregateReRouteConfig>(e =>
@@ -153,8 +233,9 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
             {
                 e.ToTable(options.TablePrefix + "DynamicReRoute", options.Schema);
 
-                e.Property(p => p.DynamicReRouteId).IsRequired();
                 e.Property(p => p.ServiceName).IsRequired().HasMaxLength(100);
+
+
             });
 
             builder.Entity<GlobalConfiguration>(e =>

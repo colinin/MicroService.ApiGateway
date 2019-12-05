@@ -7,7 +7,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         public virtual long ReRouteId { get; private set; }
         public virtual string Key { get; private set; }
         public virtual string Value { get; private set; }
-
+      
         protected Headers()
         {
 

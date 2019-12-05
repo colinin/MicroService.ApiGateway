@@ -10,7 +10,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         public virtual string IPAllowedList { get; private set; }
 
         public virtual string IPBlockedList { get; private set; }
-
+        public virtual ReRoute ReRoute { get; private set; }
         protected SecurityOptions()
         {
 

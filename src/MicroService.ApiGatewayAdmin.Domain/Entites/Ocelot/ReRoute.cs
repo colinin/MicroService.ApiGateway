@@ -102,12 +102,16 @@ namespace MicroService.ApiGateway.Entites.Ocelot
 
         private void InitlizaReRoute()
         {
-            QoSOptions = new QoSOptions(ReRouteId);
+            QoSOptions = new QoSOptions(null, null, 30000);
+            QoSOptions.SetReRouteId(ReRouteId);
             CacheOptions = new CacheOptions(ReRouteId);
-            LoadBalancerOptions = new LoadBalancerOptions(ReRouteId);
-            RateLimitOptions = new RateLimitRule(ReRouteId);
+            LoadBalancerOptions = new LoadBalancerOptions("LeastConnection", "SessionId", null);
+            LoadBalancerOptions.SetReRouteId(ReRouteId);
+            RateLimitOptions = new RateLimitRule("", null, null);
+            RateLimitOptions.SetReRouteId(ReRouteId);
             AuthenticationOptions = new AuthenticationOptions(ReRouteId);
-            HttpHandlerOptions = new HttpHandlerOptions(ReRouteId);
+            HttpHandlerOptions = HttpHandlerOptions.Default();
+            HttpHandlerOptions.SetReRouteId(ReRouteId);
             SecurityOptions = new SecurityOptions(ReRouteId);
         }
     }

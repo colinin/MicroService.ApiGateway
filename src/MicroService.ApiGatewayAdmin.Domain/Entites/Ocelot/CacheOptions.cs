@@ -7,7 +7,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         public virtual long ReRouteId { get; private set; }
         public virtual int? TtlSeconds { get; private set; }
         public virtual string Region { get; private set; }
-
+        public virtual ReRoute ReRoute { get; private set; }
         protected CacheOptions()
         {
 

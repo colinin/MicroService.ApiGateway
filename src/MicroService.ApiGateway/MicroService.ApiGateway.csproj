@@ -6,6 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DotNetCore.CAP.InMemoryStorage" Version="2.6.0" />
+    <PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="2.6.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Serilog.AspNetCore" Version="2.1.1" />
@@ -13,17 +15,14 @@
     <PackageReference Include="Serilog.Enrichers.Thread" Version="3.0.0" />
     <PackageReference Include="Serilog.Settings.Configuration" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
-    <PackageReference Include="Ocelot.Provider.Polly" Version="13.5.2" />
-    <PackageReference Include="Volo.Abp.AspNetCore" Version="0.16.0" />
-    <PackageReference Include="Volo.Abp.Autofac" Version="0.16.0" />
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="0.16.0" />
-    <PackageReference Include="Volo.Abp.Http.Client.IdentityModel" Version="0.16.0" />
+    <PackageReference Include="Ocelot.Provider.Polly" Version="13.5.1" />
+    <PackageReference Include="Volo.Abp.AspNetCore" Version="0.19.0" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="0.19.0" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="0.19.0" />
+    <PackageReference Include="Volo.Abp.Http.Client.IdentityModel" Version="0.19.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DotnetCore\cap\DotNetCore.CAP.InMemoryStorage\DotNetCore.CAP.InMemoryStorage.csproj" />
-    <ProjectReference Include="..\..\..\DotnetCore\cap\DotNetCore.CAP.RabbitMQ\DotNetCore.CAP.RabbitMQ.csproj" />
-    <ProjectReference Include="..\..\..\DotnetCore\cap\Volo.Abp.CAP\Volo.Abp.CAP.csproj" />
     <ProjectReference Include="..\MicroService.ApiGateway.HttpApi.Client\MicroService.ApiGateway.HttpApi.Client.csproj" />
   </ItemGroup>
 

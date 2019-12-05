@@ -15,7 +15,8 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         {
             DynamicReRouteId = dynamicReRouteId;
             ServiceName = serviceName;
-            RateLimitRule = new RateLimitRule(DynamicReRouteId);
+            RateLimitRule = new RateLimitRule("", null, null);
+            RateLimitRule.SetDynamicReRouteId(DynamicReRouteId);
         }
 
         public void SetRateLimitRule(RateLimitRule limitRule)

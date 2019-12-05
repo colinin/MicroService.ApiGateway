@@ -8,6 +8,7 @@
 
     $(function () {
         _globalService.get().done(function (result) {
+            console.log(result);
             _itemId = result.itemId;
             form.val('GlobalCfg', {
                 'ItemId': result.itemId,

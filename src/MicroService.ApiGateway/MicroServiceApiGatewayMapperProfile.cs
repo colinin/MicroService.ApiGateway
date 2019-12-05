@@ -84,7 +84,7 @@ namespace MicroService.ApiGateway
         private List<string> MapperList(string sourceString)
         {
             var list = new List<string>();
-            if (!string.IsNullOrWhiteSpace(sourceString))
+            if (!string.IsNullOrWhiteSpace(sourceString) && sourceString.Contains(","))
             {
                 list = sourceString.Split(',').ToList();
             }
@@ -94,7 +94,7 @@ namespace MicroService.ApiGateway
         private List<FileHostAndPort> MapperHostAndPortList(string sourceString)
         {
             var list = new List<FileHostAndPort>();
-            if (!string.IsNullOrWhiteSpace(sourceString))
+            if (!string.IsNullOrWhiteSpace(sourceString) && sourceString.Contains(","))
             {
                 var sourceList = sourceString.Split(',').ToList();
                 foreach (var source in sourceList)

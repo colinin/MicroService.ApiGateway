@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Ocelot.Configuration;
 using Ocelot.Configuration.Creator;
+using Ocelot.Configuration.File;
 using Ocelot.Configuration.Repository;
 using Ocelot.Logging;
 using Ocelot.Middleware;
@@ -96,9 +97,9 @@ namespace Ocelot.Extenssions
              * 解决方案为重写DynamicHttpProxyInterceptor类,替换IOptions<RemoteServiceOptions>
              * 网关不需要实现网关后台服务地址的实时更新
             */
-            var fileConfigRepo = builder.ApplicationServices.GetService<IFileConfigurationRepository>();
+            var fileConfigRepo = builder.ApplicationServices.GetRequiredService<IFileConfigurationRepository>();
             var fileConfig = await fileConfigRepo.Get();
-            var internalConfigCreator = builder.ApplicationServices.GetService<IInternalConfigurationCreator>();
+            var internalConfigCreator = builder.ApplicationServices.GetRequiredService<IInternalConfigurationCreator>();
             var internalConfig = await internalConfigCreator.Create(fileConfig.Data);
             if (internalConfig.IsError)
             {

@@ -132,7 +132,7 @@ namespace MicroService.ApiGateway
             {
                 options.SignInScheme = AuthenticationConsts.CookieName;
                 options.Authority = configuration.GetValue<string>("Host");
-                options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
+                //options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
                 options.RequireHttpsMetadata = false;
 
                 options.ClientId = configuration.GetValue<string>("ClientId");
@@ -244,7 +244,7 @@ namespace MicroService.ApiGateway
             {
                 app.UseErrorPage();
             }
-
+            app.UseCorrelationId();
             app.UseVirtualFiles();
             app.UseAuthentication();
             app.UseAbpRequestLocalization();

@@ -10,16 +10,80 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MicroService.ApiGateway.Migrations
 {
     [DbContext(typeof(ApiGatewayDbContext))]
-    [Migration("20190521075812_initliza_ocelot_v4")]
-    partial class initliza_ocelot_v4
+    [Migration("20191204080839_initliza-ocelot-v1")]
+    partial class initlizaocelotv1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.AggregateReRoute", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Aggregator")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<string>("ExtraProperties")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<int?>("Priority");
+
+                    b.Property<long>("ReRouteId");
+
+                    b.Property<bool>("ReRouteIsCaseSensitive")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("ReRouteKeys")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("UpstreamHost")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("UpstreamPathTemplate")
+                        .HasMaxLength(1000);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AbpApiGatewayAggregate");
+                });
+
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.AggregateReRouteConfig", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AggregateReRouteId");
+
+                    b.Property<string>("JsonPath")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("Parameter")
+                        .HasMaxLength(1000);
+
+                    b.Property<long>("ReRouteId");
+
+                    b.Property<string>("ReRouteKey")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AggregateReRouteId");
+
+                    b.ToTable("AbpApiGatewayAggregateConfig");
+                });
 
             modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.AuthenticationOptions", b =>
                 {
@@ -36,6 +100,9 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<long>("ReRouteId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ReRouteId")
+                        .IsUnique();
 
                     b.ToTable("AbpApiGatewayAuthOptions");
                 });
@@ -55,6 +122,9 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ReRouteId")
+                        .IsUnique();
+
                     b.ToTable("AbpApiGatewayCacheOptions");
                 });
 
@@ -73,15 +143,11 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<string>("ExtraProperties")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<int?>("RateLimitRuleId");
-
                     b.Property<string>("ServiceName")
                         .IsRequired()
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("RateLimitRuleId");
 
                     b.ToTable("AbpApiGatewayDynamicReRoute");
                 });
@@ -121,12 +187,8 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.Property<int?>("QoSOptionsId");
 
-                    b.Property<int?>("RateLimitOptionsId");
-
                     b.Property<string>("RequestIdKey")
                         .HasMaxLength(100);
-
-                    b.Property<int?>("ServiceDiscoveryProviderId");
 
                     b.HasKey("Id");
 
@@ -135,10 +197,6 @@ namespace MicroService.ApiGateway.Migrations
                     b.HasIndex("LoadBalancerOptionsId");
 
                     b.HasIndex("QoSOptionsId");
-
-                    b.HasIndex("RateLimitOptionsId");
-
-                    b.HasIndex("ServiceDiscoveryProviderId");
 
                     b.ToTable("AbpApiGatewayGlobalConfiguration");
                 });
@@ -173,7 +231,8 @@ namespace MicroService.ApiGateway.Migrations
                         .HasMaxLength(50);
 
                     b.Property<int?>("Port")
-                        .IsRequired();
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(0);
 
                     b.Property<long>("ReRouteId");
 
@@ -200,6 +259,9 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ItemId")
+                        .IsUnique();
+
                     b.ToTable("AbpApiGatewayHttpOptions");
                 });
 
@@ -221,6 +283,9 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ItemId")
+                        .IsUnique();
+
                     b.ToTable("AbpApiGatewayBalancerOptions");
                 });
 
@@ -239,6 +304,9 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<int?>("TimeoutValue");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ItemId")
+                        .IsUnique();
 
                     b.ToTable("AbpApiGatewayQoSOptions");
                 });
@@ -272,6 +340,9 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ItemId")
+                        .IsUnique();
+
                     b.ToTable("AbpApiGatewayRateLimitOptions");
                 });
 
@@ -297,6 +368,9 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ReRouteId")
+                        .IsUnique();
+
                     b.ToTable("AbpApiGatewayRateLimitRule");
                 });
 
@@ -314,10 +388,6 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.Property<string>("AddQueriesToRequest")
                         .HasMaxLength(1000);
-
-                    b.Property<int?>("AuthenticationOptionsId");
-
-                    b.Property<int?>("CacheOptionsId");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -344,18 +414,10 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<string>("ExtraProperties")
                         .HasColumnName("ExtraProperties");
 
-                    b.Property<int?>("HttpHandlerOptionsId");
-
                     b.Property<string>("Key")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("LoadBalancerOptionsId");
-
                     b.Property<int?>("Priority");
-
-                    b.Property<int?>("QoSOptionsId");
-
-                    b.Property<int?>("RateLimitOptionsId");
 
                     b.Property<long>("ReRouteId");
 
@@ -370,8 +432,6 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.Property<string>("RouteClaimsRequirement")
                         .HasMaxLength(1000);
-
-                    b.Property<int?>("SecurityOptionsId");
 
                     b.Property<string>("ServiceName")
                         .HasMaxLength(100);
@@ -394,20 +454,6 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AuthenticationOptionsId");
-
-                    b.HasIndex("CacheOptionsId");
-
-                    b.HasIndex("HttpHandlerOptionsId");
-
-                    b.HasIndex("LoadBalancerOptionsId");
-
-                    b.HasIndex("QoSOptionsId");
-
-                    b.HasIndex("RateLimitOptionsId");
-
-                    b.HasIndex("SecurityOptionsId");
-
                     b.HasIndex("DownstreamPathTemplate", "UpstreamPathTemplate")
                         .IsUnique();
 
@@ -429,6 +475,9 @@ namespace MicroService.ApiGateway.Migrations
                     b.Property<long>("ReRouteId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ReRouteId")
+                        .IsUnique();
 
                     b.ToTable("AbpApiGatewaySecurityOptions");
                 });
@@ -462,7 +511,96 @@ namespace MicroService.ApiGateway.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ItemId")
+                        .IsUnique();
+
                     b.ToTable("AbpApiGatewayDiscovery");
+                });
+
+            modelBuilder.Entity("MicroService.ApiGatewayAdmin.Entites.Ocelot.Cluster.ServerAuth", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApiAddress")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.Property<string>("ClientId")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("ClientSecret")
+                        .IsRequired()
+                        .HasMaxLength(256);
+
+                    b.Property<string>("GrantType")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
+                    b.Property<string>("Scope")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<long>("ServerId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServerId")
+                        .IsUnique();
+
+                    b.ToTable("AbpApiGatewayServerAuth");
+                });
+
+            modelBuilder.Entity("MicroService.ApiGatewayAdmin.Entites.Ocelot.Cluster.ServerInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnName("ConcurrencyStamp");
+
+                    b.Property<int>("ConfigType")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("EventName")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<string>("ExtraProperties")
+                        .HasColumnName("ExtraProperties");
+
+                    b.Property<string>("Host")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<int>("Port")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue(80);
+
+                    b.Property<int?>("ServerAuthId");
+
+                    b.Property<long>("ServerId");
+
+                    b.Property<string>("ServerName")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServerAuthId");
+
+                    b.HasIndex("ServerId")
+                        .IsUnique();
+
+                    b.ToTable("AbpApiGatewayServerInfo");
                 });
 
             modelBuilder.Entity("Volo.Abp.SettingManagement.Setting", b =>
@@ -491,11 +629,29 @@ namespace MicroService.ApiGateway.Migrations
                     b.ToTable("AbpSettings");
                 });
 
-            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.DynamicReRoute", b =>
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.AggregateReRouteConfig", b =>
                 {
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.RateLimitRule", "RateLimitRule")
-                        .WithMany()
-                        .HasForeignKey("RateLimitRuleId");
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.AggregateReRoute")
+                        .WithMany("ReRouteKeysConfig")
+                        .HasForeignKey("AggregateReRouteId");
+                });
+
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.AuthenticationOptions", b =>
+                {
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRoute")
+                        .WithOne("AuthenticationOptions")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.AuthenticationOptions", "ReRouteId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRouteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.CacheOptions", b =>
+                {
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRoute")
+                        .WithOne("CacheOptions")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.CacheOptions", "ReRouteId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRouteId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.GlobalConfiguration", b =>
@@ -511,45 +667,82 @@ namespace MicroService.ApiGateway.Migrations
                     b.HasOne("MicroService.ApiGateway.Entites.Ocelot.QoSOptions", "QoSOptions")
                         .WithMany()
                         .HasForeignKey("QoSOptionsId");
-
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.RateLimitOptions", "RateLimitOptions")
-                        .WithMany()
-                        .HasForeignKey("RateLimitOptionsId");
-
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ServiceDiscoveryProvider", "ServiceDiscoveryProvider")
-                        .WithMany()
-                        .HasForeignKey("ServiceDiscoveryProviderId");
                 });
 
-            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.ReRoute", b =>
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.HttpHandlerOptions", b =>
                 {
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.AuthenticationOptions", "AuthenticationOptions")
-                        .WithMany()
-                        .HasForeignKey("AuthenticationOptionsId");
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRoute")
+                        .WithOne("HttpHandlerOptions")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.HttpHandlerOptions", "ItemId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRouteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
 
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.CacheOptions", "CacheOptions")
-                        .WithMany()
-                        .HasForeignKey("CacheOptionsId");
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.LoadBalancerOptions", b =>
+                {
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRoute")
+                        .WithOne("LoadBalancerOptions")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.LoadBalancerOptions", "ItemId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRouteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
 
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.HttpHandlerOptions", "HttpHandlerOptions")
-                        .WithMany()
-                        .HasForeignKey("HttpHandlerOptionsId");
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.QoSOptions", b =>
+                {
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRoute")
+                        .WithOne("QoSOptions")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.QoSOptions", "ItemId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRouteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
 
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.LoadBalancerOptions", "LoadBalancerOptions")
-                        .WithMany()
-                        .HasForeignKey("LoadBalancerOptionsId");
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.RateLimitOptions", b =>
+                {
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.GlobalConfiguration", "GlobalConfiguration")
+                        .WithOne("RateLimitOptions")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.RateLimitOptions", "ItemId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.GlobalConfiguration", "ItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
 
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.QoSOptions", "QoSOptions")
-                        .WithMany()
-                        .HasForeignKey("QoSOptionsId");
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.RateLimitRule", b =>
+                {
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.DynamicReRoute", "DynamicReRoute")
+                        .WithOne("RateLimitRule")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.RateLimitRule", "ReRouteId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.DynamicReRoute", "DynamicReRouteId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.RateLimitRule", "RateLimitOptions")
-                        .WithMany()
-                        .HasForeignKey("RateLimitOptionsId");
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRoute")
+                        .WithOne("RateLimitOptions")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.RateLimitRule", "ReRouteId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRouteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
 
-                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.SecurityOptions", "SecurityOptions")
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.SecurityOptions", b =>
+                {
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRoute")
+                        .WithOne("SecurityOptions")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.SecurityOptions", "ReRouteId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.ReRoute", "ReRouteId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MicroService.ApiGateway.Entites.Ocelot.ServiceDiscoveryProvider", b =>
+                {
+                    b.HasOne("MicroService.ApiGateway.Entites.Ocelot.GlobalConfiguration", "GlobalConfiguration")
+                        .WithOne("ServiceDiscoveryProvider")
+                        .HasForeignKey("MicroService.ApiGateway.Entites.Ocelot.ServiceDiscoveryProvider", "ItemId")
+                        .HasPrincipalKey("MicroService.ApiGateway.Entites.Ocelot.GlobalConfiguration", "ItemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MicroService.ApiGatewayAdmin.Entites.Ocelot.Cluster.ServerInfo", b =>
+                {
+                    b.HasOne("MicroService.ApiGatewayAdmin.Entites.Ocelot.Cluster.ServerAuth", "ServerAuth")
                         .WithMany()
-                        .HasForeignKey("SecurityOptionsId");
+                        .HasForeignKey("ServerAuthId");
                 });
 #pragma warning restore 612, 618
         }

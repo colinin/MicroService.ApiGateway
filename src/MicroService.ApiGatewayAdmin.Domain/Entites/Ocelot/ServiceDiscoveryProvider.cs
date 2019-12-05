@@ -12,7 +12,7 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         public virtual string ConfigurationKey { get; set; }
         public virtual int? PollingInterval { get; set; }
         public virtual string Namespace { get; set; }
-
+        public virtual GlobalConfiguration GlobalConfiguration { get; private set; }
         protected ServiceDiscoveryProvider()
         {
 

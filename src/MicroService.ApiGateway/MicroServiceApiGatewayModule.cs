@@ -29,16 +29,17 @@ namespace MicroService.ApiGateway
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
 
-
-
             Configure<AbpAutoMapperOptions>(options =>
             {
                 options.AddProfile<MicroServiceApiGatewayMapperProfile>();
             });
 
-            ConfigureCAP(context.Services, configuration);
-
-            context.Services.AddSingleton<IFileConfigurationRepository, EfCoreFileConfigurationRepository>();
+            // 不启用则使用本地配置文件的方式启动Ocelot
+            if (configuration.GetValue<bool>("EnabledDynamicOcelot"))
+            {
+                context.Services.AddSingleton<IFileConfigurationRepository, ApiHttpClientFileConfigurationRepository>();
+                ConfigureCAP(context.Services, configuration);
+            }
 
             context.Services.AddOcelot().AddPolly();
         }

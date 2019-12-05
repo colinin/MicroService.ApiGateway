@@ -41,9 +41,12 @@ namespace MicroService.ApiGateway.Entites.Ocelot
         {
             ServiceDiscoveryProvider = new ServiceDiscoveryProvider(ItemId);
             RateLimitOptions = new RateLimitOptions(ItemId);
-            QoSOptions = new QoSOptions(ItemId);
-            LoadBalancerOptions = new LoadBalancerOptions(ItemId);
-            HttpHandlerOptions = new HttpHandlerOptions(ItemId);
+            QoSOptions = new QoSOptions(null, null, 30000);
+            QoSOptions.SetItemId(ItemId);
+            LoadBalancerOptions = new LoadBalancerOptions("LeastConnection", "SessionId", null);
+            LoadBalancerOptions.SetItemId(ItemId);
+            HttpHandlerOptions = HttpHandlerOptions.Default();
+            HttpHandlerOptions.SetItemId(ItemId);
             IsActive = true;
             IsDeleted = false;
         }

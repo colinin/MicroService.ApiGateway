@@ -1,11 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Volo.Abp\Extensions\Http\Volo.Abp.MicroService.HttpClient\Volo.Abp.MicroService.HttpClient.csproj" />
+    <PackageReference Include="Volo.Abp.Http.Client" Version="0.19.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MicroService.ApiGatewayAdmin.Application.Shared\MicroService.ApiGatewayAdmin.Application.Shared.csproj" />
   </ItemGroup>
 

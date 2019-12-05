@@ -7,13 +7,13 @@ using Volo.Abp.ObjectMapping;
 
 namespace Ocelot.Configuration.Repository
 {
-    public class EfCoreFileConfigurationRepository : IFileConfigurationRepository
+    public class ApiHttpClientFileConfigurationRepository : IFileConfigurationRepository
     {
         private readonly IReRouteAppService _reRouteAppService;
         private readonly IGlobalConfigurationAppService _globalConfigurationAppService;
         private readonly IDynamicReRouteAppService _dynamicReRouteAppService;
         private readonly IObjectMapper _objectMapper;
-        public EfCoreFileConfigurationRepository(
+        public ApiHttpClientFileConfigurationRepository(
             IReRouteAppService reRouteAppService,
             IGlobalConfigurationAppService globalConfigurationAppService,
             IDynamicReRouteAppService dynamicReRouteAppService,
@@ -58,7 +58,7 @@ namespace Ocelot.Configuration.Repository
         public async Task<Response> Set(FileConfiguration fileConfiguration)
         {
             // 不实现,从自己的微服务中去实现
-            return await Task.FromResult(new OkResponse());
+            return await Task.FromResult(new OkResponse<FileConfiguration>(fileConfiguration));
         }
     }
 }
