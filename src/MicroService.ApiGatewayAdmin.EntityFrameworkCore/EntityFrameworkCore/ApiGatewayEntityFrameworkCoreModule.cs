@@ -4,7 +4,6 @@ using MicroService.ApiGateway.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Data;
-using Volo.Abp.EntityFrameworkCore.SqlServer;
 using Volo.Abp.Modularity;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 
@@ -12,8 +11,7 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
 {
     [DependsOn(
         typeof(ApiGatewayDomainModule),
-        typeof(AbpSettingManagementEntityFrameworkCoreModule),
-        typeof(AbpEntityFrameworkCoreSqlServerModule)
+        typeof(AbpSettingManagementEntityFrameworkCoreModule)
         )]
     public class ApiGatewayEntityFrameworkCoreModule : AbpModule
     {

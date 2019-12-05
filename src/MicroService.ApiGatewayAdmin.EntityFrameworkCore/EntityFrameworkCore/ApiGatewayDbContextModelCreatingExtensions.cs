@@ -227,6 +227,7 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.Property(p => p.ReRouteIsCaseSensitive).HasDefaultValue(false);
 
                 e.ConfigureConcurrencyStamp();
+                e.ConfigureExtraProperties();
             });
 
             builder.Entity<DynamicReRoute>(e =>
@@ -235,7 +236,8 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
 
                 e.Property(p => p.ServiceName).IsRequired().HasMaxLength(100);
 
-
+                e.ConfigureConcurrencyStamp();
+                e.ConfigureExtraProperties();
             });
 
             builder.Entity<GlobalConfiguration>(e =>
@@ -246,6 +248,10 @@ namespace MicroService.ApiGateway.EntityFrameworkCore
                 e.Property(p => p.RequestIdKey).HasMaxLength(100);
                 e.Property(p => p.BaseUrl).IsRequired().HasMaxLength(256);
                 e.Property(p => p.DownstreamScheme).HasMaxLength(100);
+
+                e.ConfigureSoftDelete();
+                e.ConfigureConcurrencyStamp();
+                e.ConfigureExtraProperties();
             });
 
             builder.Entity<ReRoute>(e =>

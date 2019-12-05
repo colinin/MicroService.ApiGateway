@@ -1,8 +1,8 @@
 ﻿using DotNetCore.CAP;
+using MicroService.ApiGatewayAdmin.Ocelot.Event;
 using Microsoft.Extensions.Logging;
 using Ocelot.Configuration.Creator;
 using Ocelot.Configuration.Repository;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
@@ -29,7 +29,7 @@ namespace MicroService.ApiGateway.Event
         }
 
         [CapSubscribe(ApiGatewayDomainConsts.Events_OcelotConfigChanged)]
-        public async Task OnOcelotConfigurationChanged(DateTime changedTime)
+        public async Task OnOcelotConfigurationChanged(OcelotConfigChangeCommand changeCommand)
         {
             var fileConfig = await _fileConfigRepo.Get();
 
@@ -46,7 +46,7 @@ namespace MicroService.ApiGateway.Event
                     _internalConfigRepo.AddOrReplace(config.Data);
                 }
             }
-            _logger.LogInformation("ocelot configuration changed on {changedTime}", changedTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            _logger.LogInformation("ocelot configuration changed on {0}", changeCommand.DateTime);
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using DotNetCore.CAP;
+using MicroService.ApiGatewayAdmin.Ocelot.Event;
 
 namespace MicroService.ApiGateway.Ocelot
 {
@@ -37,7 +38,7 @@ namespace MicroService.ApiGateway.Ocelot
 
             var reRouteDto = ObjectMapper.Map<ReRoute, ReRouteDto>(reRoute);
 
-            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, Clock.Now);
+            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, new OcelotConfigChangeCommand("ReRoute", "Create"));
 
             return reRouteDto;
         }
@@ -68,7 +69,7 @@ namespace MicroService.ApiGateway.Ocelot
 
             var reRouteDto = ObjectMapper.Map<ReRoute, ReRouteDto>(reRoute);
 
-            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, Clock.Now);
+            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, new OcelotConfigChangeCommand("ReRoute", "Modify"));
 
             return reRouteDto;
         }
@@ -121,6 +122,8 @@ namespace MicroService.ApiGateway.Ocelot
             await CheckPolicyAsync();
 
             await _reRouteRepository.DeleteAsync(x => x.ReRouteId.Equals(routeId));
+
+            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, new OcelotConfigChangeCommand("ReRoute", "Delete"));
         }
 
         [HttpDelete]
@@ -130,6 +133,8 @@ namespace MicroService.ApiGateway.Ocelot
             await CheckPolicyAsync();
 
             await _reRouteRepository.RemoveAsync();
+
+            await _eventPublisher.PublishAsync(ApiGatewayDomainConsts.Events_OcelotConfigChanged, new OcelotConfigChangeCommand("ReRoute", "Clean"));
         }
 
         protected virtual void ApplyReRouteOptions(ReRoute reRoute, ReRouteDto routeDto)

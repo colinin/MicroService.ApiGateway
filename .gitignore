@@ -254,3 +254,4 @@ paket-files/
 # MicroService.ApiGateway
 src/MicroService.ApiGateway.Web/Logs/logs.txt
 appsettings.json
+appsettings.*.json

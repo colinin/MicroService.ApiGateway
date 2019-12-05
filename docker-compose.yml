@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  ocelot-admin:
+    build:
+      context: ../../
+      dockerfile: MicroService/ApiGateway/dockerforAdmin
+    volumes:
+        - /var/log/ocelot-admin:/app/Logs
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Production
+        - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+        - "22001:80"
+
+  ocelot-host:
+    build:
+      context: ../../
+      dockerfile: MicroService/ApiGateway/dockerforHost
+    depends_on:
+      - ocelot-admin
+    restart: always
+    volumes:
+        - /var/log/ocelot-host:/app/Logs
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Production
+        - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+        - "22000:80"
+volumes:
+  dbdata:

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.InProcess;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using System;
@@ -10,17 +11,11 @@ namespace MicroService.ApiGateway
     {
         public static int Main(string[] args)
         {
-            var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json")
-                .Build();
-            Log.Logger = new LoggerConfiguration()
-                .ReadFrom.Configuration(configuration)
-                .CreateLogger();
-
+            CurrentDirectoryHelpers.SetCurrentDirectory();
             try
             {
                 Log.Information("Starting web host.");
-                BuildWebHostInternal(configuration, args).Run();
+                BuildWebHostInternal(args).Run();
                 return 0;
             }
             catch (Exception ex)
@@ -34,7 +29,7 @@ namespace MicroService.ApiGateway
             }
         }
 
-        public static IWebHost BuildWebHostInternal(IConfiguration configuration, string[] args) =>
+        public static IWebHost BuildWebHostInternal(string[] args) =>
             new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

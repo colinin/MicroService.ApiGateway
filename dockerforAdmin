@@ -1,0 +1,22 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:2.2 as build-env
+MAINTAINER Colin
+WORKDIR /web
+
+COPY MicroService/. /web
+
+WORKDIR /web/ApiGateway/src/MicroService.ApiGatewayAdmin.Web
+
+RUN dotnet restore
+
+RUN dotnet publish -c Release -o ../../publish
+
+FROM mcr.microsoft.com/dotnet/core/aspnet:2.2 AS runtime
+WORKDIR /app
+copy --from=build-env /web/ApiGateway/publish /app
+
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo '$TZ' > /etc/timezone
+
+EXPOSE 80/tcp
+
+ENTRYPOINT ["dotnet", "MicroService.ApiGatewayAdmin.Web.dll"]

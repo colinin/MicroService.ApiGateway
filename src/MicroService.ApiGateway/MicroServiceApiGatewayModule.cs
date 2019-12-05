@@ -6,6 +6,7 @@ using Ocelot.Configuration.Repository;
 using Ocelot.DependencyInjection;
 using Ocelot.Extenssions;
 using Ocelot.Provider.Polly;
+using Serilog;
 using Volo.Abp;
 using Volo.Abp.AspNetCore;
 using Volo.Abp.Autofac;
@@ -28,6 +29,10 @@ namespace MicroService.ApiGateway
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
+
+            Log.Logger = new LoggerConfiguration()
+               .ReadFrom.Configuration(configuration)
+               .CreateLogger();
 
             Configure<AbpAutoMapperOptions>(options =>
             {
