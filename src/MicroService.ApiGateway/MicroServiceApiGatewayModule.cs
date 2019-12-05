@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Ocelot.Configuration.Repository;
 using Ocelot.DependencyInjection;
 using Ocelot.Extenssions;
-using Ocelot.Provider.Consul;
 using Ocelot.Provider.Polly;
 using Volo.Abp;
 using Volo.Abp.AspNetCore;
