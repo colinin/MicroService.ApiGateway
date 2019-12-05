@@ -125,6 +125,17 @@
     </fieldset>
     <div class="layui-form-item">
         <div class="layui-inline">
+            <label class="layui-form-label ocelot-line">@Localizer["DiscoveryType"]</label>
+            <div class="layui-input-inline  ocelot-line-input">
+                <select name="ServiceType">
+                    <option value="">@Localizer["None"]</option>
+                    <option value="Consul">Consul</option>
+                    <option value="Zookeeper">Zookeeper</option>
+                    <option value="Eureka">Eureka</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-inline">
             <label class="layui-form-label ocelot-line">@Localizer["Host"]</label>
             <div class="layui-input-inline ocelot-line-input">
                 <input type="text" autocomplete="off" name="Host" class="layui-input">

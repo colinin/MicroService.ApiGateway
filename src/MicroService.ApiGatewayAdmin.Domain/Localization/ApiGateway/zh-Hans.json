@@ -1,6 +1,7 @@
 ﻿{
   "culture": "zh-Hans",
   "texts": {
+    "None": "未指定",
     "Format": "格式",
     "Optional": "可选",
     "Sample": "示例",
@@ -41,6 +42,7 @@
     "RoundRobin": "服务器轮询",
     "NoLoadBalance": "发往首个服务器",
     "ServiceDiscovery": "服务发现",
+    "DiscoveryType": "实例类型",
     "Host": "主机地址",
     "Port": "端口号",
     "RouteName": "路由名称",

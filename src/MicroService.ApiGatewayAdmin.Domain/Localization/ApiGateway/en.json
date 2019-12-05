@@ -1,6 +1,7 @@
 ﻿{
   "culture": "en",
   "texts": {
+    "None": "None",
     "Format": "format",
     "Optional": "optional",
     "Sample": "sample",
@@ -41,6 +42,7 @@
     "RoundRobin": "Round robin",
     "NoLoadBalance": "No load balance",
     "ServiceDiscovery": "Service discovery",
+    "DiscoveryType": "Service type",
     "Host": "Host",
     "Port": "Port",
     "RouteName": "Route name",

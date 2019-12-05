@@ -9,7 +9,7 @@
     $(function () {
         _globalService.get().done(function (result) {
             console.log(result);
-            _itemId = result.itemId;
+            _itemId = result.itemId ? result.itemId :0;
             form.val('GlobalCfg', {
                 'ItemId': result.itemId,
                 'BaseUrl': result.baseUrl,
@@ -27,6 +27,7 @@
                 'UseProxy': result.httpHandlerOptions.useProxy,
                 'UseTracing': result.httpHandlerOptions.useTracing,
                 'Type': result.loadBalancerOptions.type,
+                'ServiceType': result.serviceDiscoveryProvider.type,
                 'Host': result.serviceDiscoveryProvider.host,
                 'Port': result.serviceDiscoveryProvider.port,
             });
@@ -62,6 +63,7 @@
                 type: data.field.Type
             },
             serviceDiscoveryProvider: {
+                type: data.field.ServiceType,
                 host: data.field.Host,
                 port: data.field.Port
             }

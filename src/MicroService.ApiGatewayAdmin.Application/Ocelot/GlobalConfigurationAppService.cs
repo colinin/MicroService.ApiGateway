@@ -79,10 +79,9 @@ namespace MicroService.ApiGateway.Ocelot
 
         private void ApplyGlobalConfigurationOptions(GlobalConfiguration globalConfiguration, GlobalConfigurationDto configurationDto)
         {
-
-            if (!string.IsNullOrWhiteSpace(configurationDto.ServiceDiscoveryProvider.Host)){
-                globalConfiguration.ServiceDiscoveryProvider.BindServiceRegister(configurationDto.ServiceDiscoveryProvider.Host, configurationDto.ServiceDiscoveryProvider.Port);
-            }
+            globalConfiguration.ServiceDiscoveryProvider.Type = configurationDto.ServiceDiscoveryProvider.Type;
+            globalConfiguration.ServiceDiscoveryProvider
+                .BindServiceRegister(configurationDto.ServiceDiscoveryProvider.Host, configurationDto.ServiceDiscoveryProvider.Port);
 
             globalConfiguration.HttpHandlerOptions.ApplyAllowAutoRedirect(configurationDto.HttpHandlerOptions.AllowAutoRedirect);
             globalConfiguration.HttpHandlerOptions.ApplyCookieContainer(configurationDto.HttpHandlerOptions.UseCookieContainer);
