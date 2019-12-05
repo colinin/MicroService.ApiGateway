@@ -1,18 +1,21 @@
-×ÔÓÃ Ocelot + Abp Í¼ĞÎ½çÃæ¹ÜÀí
-´øÓĞÒ»¸ö¶¨ÖÆµÄOcelotÍø¹Ø
+è‡ªç”¨ Ocelot + Abp å›¾å½¢ç•Œé¢ç®¡ç†
+å¸¦æœ‰ä¸€ä¸ªå®šåˆ¶çš„Ocelotç½‘å…³
 
-Ç°¶Ë¿ò¼Ü£º
+å‰ç«¯æ¡†æ¶ï¼š
 
-LayUi£ºhttps://github.com/sentsin/layui
+LayUiï¼šhttps://github.com/sentsin/layui
 
-ºó¶ËÒÀÀµ¿ò¼Ü£º
+åç«¯ä¾èµ–æ¡†æ¶ï¼š
 
-ABP£ºhttps://github.com/abpframework/abp
+ABPï¼šhttps://github.com/abpframework/abp
 
-CAP£ºhttps://github.com/dotnetcore/CAP
+CAPï¼šhttps://github.com/dotnetcore/CAP
 
-ÆäÖĞÊµÌå±êÊ¶²ÉÓÃµÄCAPÖĞµÄÑ©»¨Ëã·¨Éú³É
+å…¶ä¸­å®ä½“æ ‡è¯†é‡‡ç”¨çš„CAPä¸­çš„é›ªèŠ±ç®—æ³•ç”Ÿæˆ
 
-¡¾2019-06-11¡¿
-1¡¢¼¯³ÉCAPÊµÏÖOcelot·şÎñĞŞ¸Ä/´´½¨Í¬²½±ä¸üÍø¹ØÅäÖÃ(ĞèÅäÖÃRabbitMQ)¡£
+ã€2019-06-11ã€‘
+1ã€é›†æˆCAPå®ç°OcelotæœåŠ¡ä¿®æ”¹/åˆ›å»ºåŒæ­¥å˜æ›´ç½‘å…³é…ç½®(éœ€é…ç½®RabbitMQ)ã€‚
 
+![image](https://github.com/colinin/MicroService.ApiGateway/blob/master/images/preview_zh-hans_reroute.png)
+
+![image](https://github.com/colinin/MicroService.ApiGateway/blob/master/images/preview_zh-hans_sourceJsonFile.png)
